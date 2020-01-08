@@ -28,7 +28,6 @@ public class CartController {
     @Reference
     CartService cartService;
 
-
     @LoginRequire(ifNeedSuccess = false)
     @RequestMapping("checkCart")
     public String checkCart(HttpServletRequest request, HttpServletResponse response, CartInfo cartInfo, ModelMap map) {
