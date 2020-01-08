@@ -18,6 +18,8 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: mall
       MYSQL_ROOT_HOST: '%'
+    volumes:
+      - ./db:/var/lib/mysql
     command:
       --default-authentication-plugin=mysql_native_password
       --character-set-server=utf8mb4
