@@ -6,11 +6,16 @@ import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.unit.DataSize;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import javax.servlet.MultipartConfigElement;
 
 @SpringBootApplication
 @Configuration
+@CrossOrigin
 public class GmallManageWebApplication {
 
     public static void main(String[] args) {
@@ -29,5 +34,4 @@ public class GmallManageWebApplication {
         factory.setMaxRequestSize(DataSize.ofKilobytes(10240));
         return factory.createMultipartConfig();
     }
-
 }
