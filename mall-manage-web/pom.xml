@@ -26,7 +26,15 @@
             <artifactId>mall-web-util</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.csource/fastdfs-client-java -->
         <dependency>
             <groupId>org.csource</groupId>

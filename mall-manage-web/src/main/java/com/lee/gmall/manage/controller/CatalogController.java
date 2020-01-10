@@ -1,15 +1,17 @@
 package com.lee.gmall.manage.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.lee.gmall.bean.BaseCatalog1;
 import com.lee.gmall.bean.BaseCatalog2;
 import com.lee.gmall.bean.BaseCatalog3;
 import com.lee.gmall.service.CatalogService;
+import io.swagger.annotations.Api;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+@Api
 
 @Controller
 public class CatalogController {

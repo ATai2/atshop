@@ -1,6 +1,7 @@
 package com.lee.gmall.manage.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
+import io.swagger.annotations.Api;
+import org.apache.dubbo.config.annotation.Reference;
 import com.lee.gmall.bean.*;
 import com.lee.gmall.manage.util.MyUploadUtil;
 import com.lee.gmall.service.SpuService;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+@Api
 @Controller
 public class SpuController {
 

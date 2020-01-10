@@ -1,7 +1,9 @@
 package com.lee.gmall.manage;
 
+import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +15,8 @@ import org.springframework.web.filter.CorsFilter;
 
 import javax.servlet.MultipartConfigElement;
 
-@SpringBootApplication
+@EnableDubbo(scanBasePackages = "com.lee.gmall.manage.controller")
+@SpringBootApplication(exclude= {DataSourceAutoConfiguration.class})
 @Configuration
 @CrossOrigin
 public class GmallManageWebApplication {

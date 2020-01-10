@@ -1,6 +1,7 @@
 package com.lee.gmall.manage.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
+import io.swagger.annotations.Api;
+import org.apache.dubbo.config.annotation.Reference;
 import com.lee.gmall.bean.BaseAttrInfo;
 import com.lee.gmall.bean.BaseAttrValue;
 import com.lee.gmall.service.AttrService;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-
+@Api
 @Controller
 public class AttrController {
 
