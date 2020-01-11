@@ -30,6 +30,10 @@ public class AttrController {
     @ResponseBody
     public String saveAttr(BaseAttrInfo baseAttrInfo) {
         attrService.saveAttr(baseAttrInfo);
+
+
+
+
         return "success";
     }
 

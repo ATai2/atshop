@@ -6,12 +6,14 @@ import lombok.Setter;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.List;
 @Data
 public class BaseAttrInfo implements Serializable {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String attrName;
