@@ -12,4 +12,6 @@ public interface TableInfoService {
     Object deleteData(TableDataReq tableDataReq);
 
     Object updateData(TableDataReq tableDataReq);
+
+    Object addData(TableDataReq tableDataReq);
 }

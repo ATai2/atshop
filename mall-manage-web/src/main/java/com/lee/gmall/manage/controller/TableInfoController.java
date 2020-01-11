@@ -52,6 +52,10 @@ public class TableInfoController {
     public Object updateData(TableDataReq tableDataReq) {
         Object o = tableInfoService.updateData(tableDataReq);
         return o;
+    }    @PostMapping("/addData")
+    public Object addData(TableDataReq tableDataReq) {
+        Object o = tableInfoService.addData(tableDataReq);
+        return o;
     }
 
 }

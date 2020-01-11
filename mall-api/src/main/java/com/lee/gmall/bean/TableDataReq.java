@@ -5,8 +5,8 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class TableDataReq implements Serializable {
+public class TableDataReq<T> implements Serializable {
     private String tableName;
     private Object id;
-    private Object data;
+    private T data;
 }

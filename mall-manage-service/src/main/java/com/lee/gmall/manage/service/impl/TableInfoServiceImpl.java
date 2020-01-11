@@ -1,5 +1,6 @@
 package com.lee.gmall.manage.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.lee.gmall.bean.ColumnInfo;
 import com.lee.gmall.bean.SkuInfo;
 import com.lee.gmall.bean.SpuInfo;
@@ -78,7 +79,19 @@ public class TableInfoServiceImpl implements TableInfoService {
             case "sku_info":
                 return skuInfoMapper.updateByPrimaryKey((SkuInfo) tableDataReq.getData());
             case "spu_info":
-                return spuInfoMapper.updateByPrimaryKey((SpuInfo) tableDataReq.getData());
+
+                return spuInfoMapper.updateByPrimaryKey(JSON.parseObject((String)tableDataReq.getData(),SpuInfo.class));
+        }
+        return null;
+    }
+    @Override
+    public Object addData(TableDataReq tableDataReq) {
+        switch (tableDataReq.getTableName()) {
+            case "sku_info":
+                return skuInfoMapper.insert((SkuInfo) tableDataReq.getData());
+            case "spu_info":
+
+                return spuInfoMapper.insert(JSON.parseObject((String)tableDataReq.getData(),SpuInfo.class));
         }
         return null;
     }
