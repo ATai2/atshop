@@ -12,4 +12,9 @@ public interface TableInfoMapper {
     @ResultType(ColumnInfo.class)
     List<ColumnInfo> tableColumnInfo(String tableName);
 
+    @Select("select table_name as column_name from information_schema.tables where table_schema='mall' ")
+    @ResultType(ColumnInfo.class)
+    List<ColumnInfo> tableNames();
+
+
 }

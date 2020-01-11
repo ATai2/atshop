@@ -6,12 +6,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import java.lang.reflect.Method;
 
-@RestControllerAdvice
+//@RestControllerAdvice
 public class ResultHandler implements ResponseBodyAdvice<Object> {
 
 //    @Override
@@ -27,7 +28,13 @@ public class ResultHandler implements ResponseBodyAdvice<Object> {
 
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
-        return true;
+        Method method = methodParameter.getMethod();
+        SysLog sysLog = method.getAnnotation(SysLog.class);
+        if(sysLog != null) {
+            // 只处理含有SysLog注解的方法
+            return true;
+        }
+        return false;
     }
 
     @Override

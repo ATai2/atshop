@@ -37,6 +37,8 @@ public class NameUtils {
         return sb.toString();
     }
 
+
+
     public static void main(String[] args) {
         String lineToHump = lineToHump("f_parent_no_leader");
         System.out.println(lineToHump);// fParentNoLeader

@@ -34,6 +34,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     public Object exception(HttpServletRequest request, Exception e, HandlerMethod handlerMethod) {
         log.error("服务器发生异常，异常信息为", e);
+        e.printStackTrace();
         Method method = handlerMethod.getMethod();
 //        if(method.getReturnType().equals(ModelAndView.class)) {
 //            String view = (String) request.getAttribute(SessionKey.ERROR_RETURN_PAGE);
