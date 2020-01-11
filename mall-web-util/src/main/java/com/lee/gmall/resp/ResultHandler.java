@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import java.lang.reflect.Method;
 
-//@RestControllerAdvice
+@RestControllerAdvice
 public class ResultHandler implements ResponseBodyAdvice<Object> {
 
 //    @Override
@@ -26,11 +26,14 @@ public class ResultHandler implements ResponseBodyAdvice<Object> {
 ////        return false;
 //    }
 
+//    查看是否是swagger获取数据会发生问题？ 是的
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
         Method method = methodParameter.getMethod();
+        Class<?> containingClass = methodParameter.getContainingClass();
+        SysLog annotation = containingClass.getAnnotation(SysLog.class);
         SysLog sysLog = method.getAnnotation(SysLog.class);
-        if(sysLog != null) {
+        if(sysLog != null ||annotation!=null) {
             // 只处理含有SysLog注解的方法
             return true;
         }
