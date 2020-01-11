@@ -70,3 +70,9 @@ services:
       - admin.registry.address=zookeeper://zoo1:2181
       - admin.config-center=zookeeper://zoo1:2181
       - admin.metadata-report.address=zookeeper://zoo1:2181
+
+  fastdfs:
+    image: fastdfs
+    volumes:
+      - ./fdfs/storage:/var/fdfs
+    environment:

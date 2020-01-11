@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.unit.DataSize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +19,7 @@ import javax.servlet.MultipartConfigElement;
 @EnableDubbo(scanBasePackages = "com.lee.gmall.manage.controller")
 @SpringBootApplication(exclude= {DataSourceAutoConfiguration.class})
 @Configuration
+@ComponentScan(basePackages = {"com.lee.gmall.manage","com.lee.gmall.resp"})
 @CrossOrigin
 public class GmallManageWebApplication {
 
