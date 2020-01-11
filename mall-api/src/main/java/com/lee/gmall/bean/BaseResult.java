@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class BaseResult<T> {
-    boolean success;
-    String msg;
-    T data;
+  private boolean success;
+  private String msg;
+  private T data;
 }
