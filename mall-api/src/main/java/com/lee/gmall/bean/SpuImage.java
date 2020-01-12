@@ -13,7 +13,7 @@ public class SpuImage implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-  private String spuId;
+  private Long spuId;
   private String imgName;
   private String imgUrl;
 

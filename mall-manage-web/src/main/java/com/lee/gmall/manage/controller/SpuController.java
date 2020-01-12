@@ -53,35 +53,35 @@ public class SpuController {
     // 把商品图片列表加载到对话框中
     @RequestMapping("getSpuImageList")
     @ResponseBody
-    public List<SpuImage> getSpuImageList(String spuId) {
+    public List<SpuImage> getSpuImageList(Long spuId) {
         return spuService.getSpuImageList(spuId);
     }
 
     // 把销售属性列表加载到对话框中
     @RequestMapping("getSpuSaleAttrList")
     @ResponseBody
-    public List<SpuSaleAttr> getSpuSaleAttrList(String spuId) {
+    public List<SpuSaleAttr> getSpuSaleAttrList(Long spuId) {
         return spuService.getSpuSaleAttrList(spuId);
     }
 
     //删除选中spu的相关数据
     @RequestMapping("deleteSpu")
     @ResponseBody
-    public String deleteSpu(String spuId) {
+    public String deleteSpu(Long spuId) {
         spuService.deleteSpu(spuId);
         return "success";
     }
 
     @RequestMapping("getSpuSaleAttrListBySpuId")
     @ResponseBody
-    public List<SpuSaleAttr> getSpuSaleAttrListBySpuId(String spuId) {
+    public List<SpuSaleAttr> getSpuSaleAttrListBySpuId(Long spuId) {
         return spuService.getSpuSaleAttrListBySpuId(spuId);
 
     }
 
     @RequestMapping("getSpuImageListBySpuId")
     @ResponseBody
-    public List<SpuImage> getSpuImageListBySpuId(String spuId) {
+    public List<SpuImage> getSpuImageListBySpuId(Long spuId) {
         return spuService.getSpuImageList(spuId);
     }
 

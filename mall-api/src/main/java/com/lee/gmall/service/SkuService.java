@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface SkuService {
 
-    List<SkuInfo> getSkuListBySpuId(String spuId);
+    List<SkuInfo> getSkuListBySpuId(Long spuId);
 
     void saveSku(SkuInfo skuInfo);
 
-    SkuInfo getSkuById(String skuId);
+    SkuInfo getSkuById(Long skuId);
 
     List<SkuInfo> getSkuListByCatalog3Id(String catalog3Id);
 
-    boolean checkPrice(BigDecimal skuPrice, String skuId);
+    boolean checkPrice(BigDecimal skuPrice, Long skuId);
 }

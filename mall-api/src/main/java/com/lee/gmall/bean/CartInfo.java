@@ -16,8 +16,8 @@ public class CartInfo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userId;
-    private String skuId;
+    private Long userId;
+    private Long skuId;
     private BigDecimal cartPrice;
     private long quantity;
     private String imgUrl;

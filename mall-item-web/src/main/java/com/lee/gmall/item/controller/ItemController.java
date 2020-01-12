@@ -43,14 +43,14 @@ public class ItemController {
     }
 
     @RequestMapping("{skuId}.html")
-    public String item(@PathVariable String skuId, ModelMap map) {
+    public String item(@PathVariable Long skuId, ModelMap map) {
 
         //查询并返回sku
         SkuInfo skuInfo = skuService.getSkuById(skuId);
         map.put("skuInfo", skuInfo);
 
         //查询并返回销售属性列表和销售属性值列表，并通过设置isCheck属性把页面上skuId对应的销售属性值标红
-        Map<String, String> idMap = new HashMap<>();
+        Map<String, Object> idMap = new HashMap<>();
         idMap.put("spuId", skuInfo.getSpuId());
         idMap.put("skuId", skuId);
         List<SpuSaleAttr> saleAttrListBySpuId = spuService.getSpuSaleAttrListCheckBySku(idMap);
@@ -58,10 +58,10 @@ public class ItemController {
 
         //将当前sku对应的兄弟sku列表所对应的销售属性值列表组合成map，然后转化为Json返回给前台,用于点击销售属性值时页面间的切换
         List<SkuInfo> skuInfos = spuService.getSkuSaleAttrValueListBySpu(skuInfo.getSpuId());
-        Map<String, String> map1 = new HashMap<>();
+        Map<String, Object> map1 = new HashMap<>();
         for (SkuInfo skuInfo1 :
                 skuInfos) {
-            String value = skuInfo1.getId();
+            Long value = skuInfo1.getId();
             String key = "";
             List<SkuSaleAttrValue> skuSaleAttrValueList = skuInfo1.getSkuSaleAttrValueList();
             for (SkuSaleAttrValue saleAttrValue :

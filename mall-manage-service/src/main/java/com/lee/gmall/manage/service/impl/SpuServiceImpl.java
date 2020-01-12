@@ -42,7 +42,7 @@ public class SpuServiceImpl implements SpuService {
     public void saveSpu(SpuInfo spuInfo) {
         //保存SpuInfo
         spuInfoMapper.insertSelective(spuInfo);
-        String spuId = spuInfo.getId();
+        Long spuId = spuInfo.getId();
         //保存SPU图片信息
         List<SpuImage> spuImageList = spuInfo.getSpuImageList();
         for (SpuImage spuImage :
@@ -69,7 +69,7 @@ public class SpuServiceImpl implements SpuService {
     }
 
     @Override
-    public List<SpuImage> getSpuImageList(String spuId) {
+    public List<SpuImage> getSpuImageList(Long spuId) {
         SpuImage spuImage = new SpuImage();
         spuImage.setSpuId(spuId);
         List<SpuImage> select = spuImageMapper.select(spuImage);
@@ -80,14 +80,14 @@ public class SpuServiceImpl implements SpuService {
     }
 
     @Override
-    public List<SpuSaleAttr> getSpuSaleAttrList(String spuId) {
+    public List<SpuSaleAttr> getSpuSaleAttrList(Long spuId) {
         SpuSaleAttr saleAttr = new SpuSaleAttr();
         saleAttr.setSpuId(spuId);
         return spuSaleAttrMapper.select(saleAttr);
     }
 
     @Override
-    public void deleteSpu(String spuId) {
+    public void deleteSpu(Long spuId) {
         SpuInfo spuInfo = new SpuInfo();
         spuInfo.setId(spuId);
         spuInfoMapper.delete(spuInfo);
@@ -103,7 +103,7 @@ public class SpuServiceImpl implements SpuService {
     }
 
     @Override
-    public List<SpuSaleAttr> getSpuSaleAttrListBySpuId(String spuId) {
+    public List<SpuSaleAttr> getSpuSaleAttrListBySpuId(Long spuId) {
         SpuSaleAttr saleAttr = new SpuSaleAttr();
         saleAttr.setSpuId(spuId);
         List<SpuSaleAttr> spuSaleAttrs = spuSaleAttrMapper.select(saleAttr);
@@ -119,13 +119,13 @@ public class SpuServiceImpl implements SpuService {
     }
 
     @Override
-    public List<SpuSaleAttr> getSpuSaleAttrListCheckBySku(Map<String, String> idMap) {
+    public List<SpuSaleAttr> getSpuSaleAttrListCheckBySku(Map<String, Object> idMap) {
 
         return spuSaleAttrValueMapper.selectSpuSaleAttrListCheckBySku(idMap);
     }
 
     @Override
-    public List<SkuInfo> getSkuSaleAttrValueListBySpu(String spuId) {
+    public List<SkuInfo> getSkuSaleAttrValueListBySpu(Long spuId) {
         return spuSaleAttrValueMapper.selectSkuSaleAttrValueListBySpu(spuId);
     }
 

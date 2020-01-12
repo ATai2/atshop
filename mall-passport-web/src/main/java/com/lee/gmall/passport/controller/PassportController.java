@@ -55,7 +55,7 @@ public class PassportController {
             return "username or password err";
         } else {
             //使用jwt，颁发token
-            Map<String, String> map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
             map.put("userId", user.getId());
             map.put("nickName", user.getNickName());
 

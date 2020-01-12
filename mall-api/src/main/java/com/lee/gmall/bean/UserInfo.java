@@ -18,15 +18,15 @@ public class UserInfo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-  private String loginName;
-  private String nickName;
-  private String passwd;
-  private String name;
-  private String phoneNum;
-  private String email;
-  private String headImg;
-  private String userLevel;
+    private String loginName;
+    private String nickName;
+    private String passwd;
+    private String name;
+    private String phoneNum;
+    private String email;
+    private String headImg;
+    private String userLevel;
 
-  @Transient
-  List<UserAddress> userAddressList;
+    @Transient
+    List<UserAddress> userAddressList;
 }

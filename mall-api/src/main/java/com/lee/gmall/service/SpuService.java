@@ -12,15 +12,15 @@ public interface SpuService {
 
     void saveSpu(SpuInfo spuInfo);
 
-    List<SpuImage> getSpuImageList(String spuId);
+    List<SpuImage> getSpuImageList(Long spuId);
 
-    List<SpuSaleAttr> getSpuSaleAttrList(String spuId);
+    List<SpuSaleAttr> getSpuSaleAttrList(Long spuId);
 
-    void deleteSpu(String spuId);
+    void deleteSpu(Long spuId);
 
-    List<SpuSaleAttr> getSpuSaleAttrListBySpuId(String spuId);
+    List<SpuSaleAttr> getSpuSaleAttrListBySpuId(Long spuId);
 
-    List<SpuSaleAttr> getSpuSaleAttrListCheckBySku(Map<String, String> idMap);
+    List<SpuSaleAttr> getSpuSaleAttrListCheckBySku(Map<String, Object> idMap);
 
-    List<SkuInfo> getSkuSaleAttrValueListBySpu(String spuId);
+    List<SkuInfo> getSkuSaleAttrValueListBySpu(Long spuId);
 }

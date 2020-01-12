@@ -21,7 +21,7 @@ public class OrderInfo implements Serializable {
     private String consignee;
     private BigDecimal totalAmount;
     private String orderStatus;
-    private String userId;
+    private Long userId;
     private PaymentWay paymentWay;
     private Date expectDeliveryTime;
     private String deliveryAddress;

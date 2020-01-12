@@ -15,7 +15,7 @@ public class SpuSaleAttr implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-  private String spuId;
+  private Long spuId;
   private String saleAttrId;
   private String saleAttrName;
 

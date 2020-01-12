@@ -46,7 +46,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void syncCache(String userId) {
+    public void syncCache(Long userId) {
         Jedis jedis = redisUtil.getJedis();
 
         CartInfo cartInfo = new CartInfo();
@@ -55,7 +55,7 @@ public class CartServiceImpl implements CartService {
 
         Map<String, String> cartInfoMap = new HashMap<>();
         for (CartInfo info : cartInfos) {
-            cartInfoMap.put(info.getId(), JSON.toJSONString(info));
+            cartInfoMap.put(info.getId()+"", JSON.toJSONString(info));
         }
         if (cartInfoMap != null && cartInfoMap.size() > 0) {
             jedis.hmset("carts:" + userId + ":info", cartInfoMap);
@@ -65,7 +65,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public List<CartInfo> getCartCache(String userId) {
+    public List<CartInfo> getCartCache(Long userId) {
         Jedis jedis = redisUtil.getJedis();
         List<CartInfo> cartInfos = new ArrayList<>();
 
@@ -92,7 +92,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void combineCart(List<CartInfo> cartInfos, String userId) {
+    public void combineCart(List<CartInfo> cartInfos, Long userId) {
         if (cartInfos != null) {
             for (CartInfo cartInfo : cartInfos) {
                 CartInfo info = ifCartExist(cartInfo);
@@ -115,7 +115,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public List<CartInfo> getCartCacheByChecked(String userId) {
+    public List<CartInfo> getCartCacheByChecked(Long userId) {
         Jedis jedis = redisUtil.getJedis();
         List<CartInfo> cartInfos = new ArrayList<>();
 

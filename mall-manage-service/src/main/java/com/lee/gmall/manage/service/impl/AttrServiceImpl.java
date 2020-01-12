@@ -40,14 +40,14 @@ public class AttrServiceImpl implements AttrService {
     }
 
     @Override
-    public List<BaseAttrValue> getAttrValue(String attrId) {
+    public List<BaseAttrValue> getAttrValue(Long attrId) {
         BaseAttrValue baseAttrValue = new BaseAttrValue();
         baseAttrValue.setAttrId(attrId);
         return baseAttrValueMapper.select(baseAttrValue);
     }
 
     @Override
-    public void deleteAttr(String attrId) {
+    public void deleteAttr(Long attrId) {
         BaseAttrInfo baseAttrInfo = new BaseAttrInfo();
         baseAttrInfo.setId(attrId);
         baseAttrInfoMapper.delete(baseAttrInfo);

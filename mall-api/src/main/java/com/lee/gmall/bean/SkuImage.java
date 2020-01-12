@@ -13,7 +13,7 @@ public class SkuImage implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String skuId;
+    private Long skuId;
     private String imgName;
     private String imgUrl;
     private String spuImgId;

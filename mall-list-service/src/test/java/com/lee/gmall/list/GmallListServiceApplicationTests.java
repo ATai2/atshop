@@ -28,9 +28,6 @@ public class GmallListServiceApplicationTests {
     @Reference
     SkuService skuService;
 
-
-
-
     @Test
     public void contextLoads() {
 
@@ -52,7 +49,7 @@ public class GmallListServiceApplicationTests {
         //导入到es中
         for (SkuLsInfo skuLsInfo :
                 skuLsInfos) {
-            Index index = new Index.Builder(skuLsInfo).index("gmall").type("skuLsInfo").id(skuLsInfo.getId()).build();
+            Index index = new Index.Builder(skuLsInfo).index("gmall").type("skuLsInfo").id(skuLsInfo.getId()+"").build();
             System.out.println(index);
             try {
                 jestClient.execute(index);

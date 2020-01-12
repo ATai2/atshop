@@ -31,11 +31,11 @@ public class CartController {
     @LoginRequire(ifNeedSuccess = false)
     @RequestMapping("checkCart")
     public String checkCart(HttpServletRequest request, HttpServletResponse response, CartInfo cartInfo, ModelMap map) {
-        String userId = (String) request.getAttribute("userId");
+        Long userId = (Long) request.getAttribute("userId");
         List<CartInfo> cartInfos = new ArrayList<>();
 
         //修改购物车选中状态
-        if (StringUtils.isNotBlank(userId)) {
+        if (userId!=null){
             //更新数据库
             cartInfo.setUserId(userId);
             cartService.updateCartChecked(cartInfo);
@@ -54,7 +54,7 @@ public class CartController {
         }
 
         //更新数据后将最新数据查询出来
-        if (StringUtils.isBlank(userId)) {
+        if ( userId!=null) {
             //取cookie中的数据
             String cartListCookie = CookieUtil.getCookieValue(request, "cartListCookie", true);
             if (StringUtils.isNotBlank(cartListCookie)) {
@@ -74,10 +74,10 @@ public class CartController {
     @LoginRequire(ifNeedSuccess = false)
     @RequestMapping("cartList")
     public String cartList(HttpServletRequest request, ModelMap map) {
-        String userId = (String) request.getAttribute("userId");
+        Long userId = (Long) request.getAttribute("userId");
         List<CartInfo> cartInfos = new ArrayList<>();
 
-        if (StringUtils.isBlank(userId)) {
+        if ( userId==null) {
             //取cookie中的数据
             String cartListCookie = CookieUtil.getCookieValue(request, "cartListCookie", true);
             if (StringUtils.isNotBlank(cartListCookie)) {
@@ -114,10 +114,10 @@ public class CartController {
         cartInfo.setImgUrl(sku.getSkuDefaultImg());
         cartInfo.setIsChecked("1");
 
-        String userId = (String) request.getAttribute("userId");
+        Long userId = (Long) request.getAttribute("userId");
         List<CartInfo> cartInfos = new ArrayList<>();
 
-        if (StringUtils.isBlank(userId)) {
+        if (userId==null) {
             //用户未登录,添加到cookie
             String cartListCookieStr = CookieUtil.getCookieValue(request, "cartListCookie", true);
             if (StringUtils.isBlank(cartListCookieStr)) {
@@ -132,8 +132,8 @@ public class CartController {
                     cartInfos.add(cartInfo);
                 } else {
                     for (CartInfo info : cartInfos) {
-                        String skuId = info.getSkuId();
-                        String skuId1 = cartInfo.getSkuId();
+                        Long skuId = info.getSkuId();
+                        Long skuId1 = cartInfo.getSkuId();
                         if (skuId.equals(skuId1)) {
                             info.setSkuNum(info.getSkuNum() + cartInfo.getSkuNum());
                             info.setCartPrice(info.getSkuPrice().multiply(new BigDecimal(info.getSkuNum())));
@@ -146,10 +146,10 @@ public class CartController {
         } else {
             //用户已登录,添加到数据库
             cartInfo.setUserId(userId);
-            String skuId = cartInfo.getSkuId();
+            Long skuId = cartInfo.getSkuId();
             //判断数据库中对应的cartInfo是否存在
             CartInfo cartInfoDb = cartService.ifCartExist(cartInfo);
-            if (cartInfoDb != null) {
+            if (cartInfoDb == null) {
                 //更新数据库
                 cartInfoDb.setSkuNum(cartInfoDb.getSkuNum() + cartInfo.getSkuNum());
                 cartInfoDb.setCartPrice(cartInfoDb.getSkuPrice().multiply(new BigDecimal(cartInfoDb.getSkuNum())));
@@ -168,7 +168,7 @@ public class CartController {
 
     private boolean isNewCart(List<CartInfo> cartInfos, CartInfo cartInfo) {
         boolean isNewCart = true;
-        String skuId = cartInfo.getSkuId();
+        Long skuId = cartInfo.getSkuId();
         for (CartInfo info : cartInfos) {
             skuId.equals(info.getSkuId());
             isNewCart = false;
@@ -178,7 +178,7 @@ public class CartController {
 
     @LoginRequire(ifNeedSuccess = false)
     @RequestMapping("cartSuccess")
-    public String cartSuccess(ModelMap map, String skuId) {
+    public String cartSuccess(ModelMap map, Long skuId) {
         SkuInfo sku = skuService.getSkuById(skuId);
         map.put("skuInfo", sku);
         return "success";

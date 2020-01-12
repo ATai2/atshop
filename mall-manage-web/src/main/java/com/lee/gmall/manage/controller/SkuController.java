@@ -24,7 +24,7 @@ public class SkuController {
 
     @RequestMapping("getSkuListBySpuId")
     @ResponseBody
-    public List<SkuInfo> getSkuListBySpuId(String spuId) {
+    public List<SkuInfo> getSkuListBySpuId(Long spuId) {
         return skuService.getSkuListBySpuId(spuId);
     }
 

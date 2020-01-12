@@ -15,7 +15,7 @@ public class BaseAttrValue implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String valueName;
-    private String attrId;
+    private Long attrId;
     private String isEnabled;
 
 }

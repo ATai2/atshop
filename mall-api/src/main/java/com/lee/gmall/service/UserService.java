@@ -13,5 +13,5 @@ public interface UserService {
 
     UserInfo login(UserInfo userInfo);
 
-    List<UserAddress> getUserAddressList(String userId);
+    List<UserAddress> getUserAddressList(Long userId);
 }

@@ -35,7 +35,7 @@ public class SkuServiceImpl implements SkuService {
     RedisUtil redisUtil;
 
     @Override
-    public List<SkuInfo> getSkuListBySpuId(String spuId) {
+    public List<SkuInfo> getSkuListBySpuId(Long spuId) {
         SkuInfo skuInfo = new SkuInfo();
         skuInfo.setSpuId(spuId);
         return skuInfoMapper.select(skuInfo);
@@ -44,7 +44,7 @@ public class SkuServiceImpl implements SkuService {
     @Override
     public void saveSku(SkuInfo skuInfo) {
         skuInfoMapper.insert(skuInfo);
-        String skuId = skuInfo.getId();
+        Long skuId = skuInfo.getId();
 
         List<SkuAttrValue> skuAttrValueList = skuInfo.getSkuAttrValueList();
         for (SkuAttrValue skuAttrValue :
@@ -70,7 +70,7 @@ public class SkuServiceImpl implements SkuService {
     }
 
     @Override
-    public SkuInfo getSkuById(String skuId) {
+    public SkuInfo getSkuById(Long skuId) {
         //redis缓存和缓存锁应该为不同的节点，这里简化为在同一个节点上
 
         Jedis jedis = redisUtil.getJedis();
@@ -137,7 +137,7 @@ public class SkuServiceImpl implements SkuService {
     }
 
     @Override
-    public boolean checkPrice(BigDecimal skuPrice, String skuId) {
+    public boolean checkPrice(BigDecimal skuPrice, Long skuId) {
         boolean bPrice = false;
         SkuInfo skuInfo = new SkuInfo();
         skuInfo.setId(skuId);
@@ -152,7 +152,7 @@ public class SkuServiceImpl implements SkuService {
         return bPrice;
     }
 
-    private SkuInfo getSkuByIdFormDb(String skuId) {
+    private SkuInfo getSkuByIdFormDb(Long skuId) {
         SkuInfo skuInfo = new SkuInfo();
         skuInfo.setId(skuId);
         SkuInfo sku = skuInfoMapper.selectOne(skuInfo);

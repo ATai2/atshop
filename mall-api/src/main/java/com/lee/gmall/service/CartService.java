@@ -11,15 +11,15 @@ public interface CartService {
 
     void insertCart(CartInfo cartInfo);
 
-    void syncCache(String userId);
+    void syncCache(Long userId);
 
-    List<CartInfo> getCartCache(String userId);
+    List<CartInfo> getCartCache(Long userId);
 
     void updateCartChecked(CartInfo cartInfo);
 
-    void combineCart(List<CartInfo> cartInfos, String userId);
+    void combineCart(List<CartInfo> cartInfos, Long userId);
 
-    List<CartInfo> getCartCacheByChecked(String userId);
+    List<CartInfo> getCartCacheByChecked(Long userId);
 
     void deleteCartById(List<CartInfo> cartInfos);
 }

@@ -12,9 +12,11 @@ public interface AttrService {
 
     void saveAttr(BaseAttrInfo baseAttrInfo);
 
-    List<BaseAttrValue> getAttrValue(String attrName);
+//    List<BaseAttrValue> getAttrValue(String attrName);
 
-    void deleteAttr(String attrId);
+    List<BaseAttrValue> getAttrValue(Long attrId);
+
+    void deleteAttr(Long attrId);
 
     List<BaseAttrInfo> getAttrListByCtg3Id(String ctg3Id);
 

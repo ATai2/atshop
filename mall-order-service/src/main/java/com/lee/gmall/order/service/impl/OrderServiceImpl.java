@@ -24,7 +24,7 @@ public class OrderServiceImpl implements OrderService {
     OrderDetailMapper orderDetailMapper;
 
     @Override
-    public String genTradeCode(String userId) {
+    public String genTradeCode(Long userId) {
 
         String key = "user:" + userId + ":tradeCode";
         String val = UUID.randomUUID().toString();
@@ -37,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public boolean checkTradeCode(String tradeCode, String userId) {
+    public boolean checkTradeCode(String tradeCode, Long userId) {
         boolean bool = false;
 
         String key = "user:" + userId + ":tradeCode";
@@ -56,7 +56,7 @@ public class OrderServiceImpl implements OrderService {
     public void saveOrder(OrderInfo orderInfo) {
 
         orderInfoMapper.insertSelective(orderInfo);
-        String orderId = orderInfo.getId();
+        Long orderId = orderInfo.getId();
 
         List<OrderDetail> orderDetailList = orderInfo.getOrderDetailList();
         for (OrderDetail orderDetail : orderDetailList) {

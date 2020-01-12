@@ -36,7 +36,7 @@ public class OrderController {
     @LoginRequire(ifNeedSuccess = true)
     @RequestMapping("submitOrder")
     public String submitOrder(HttpServletRequest request, HttpServletResponse response, ModelMap map, String tradeCode) {
-        String userId = (String) request.getAttribute("userId");
+        Long userId = (Long) request.getAttribute("userId");
         //比较交易码
         boolean bTrade = orderService.checkTradeCode(tradeCode, userId);
         //订单对象
@@ -52,7 +52,7 @@ public class OrderController {
             //生成订单信息
             for (CartInfo cartInfo : cartInfos) {
                 OrderDetail orderDetail = new OrderDetail();
-                String skuId = cartInfo.getSkuId();
+                Long skuId = cartInfo.getSkuId();
                 BigDecimal skuPrice = cartInfo.getSkuPrice();
                 //验价
                 boolean bPrice = skuService.checkPrice(skuPrice, skuId);
@@ -114,7 +114,7 @@ public class OrderController {
     @LoginRequire(ifNeedSuccess = true)
     @RequestMapping("toTrade")
     public String toTrade(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
-        String userId = (String) request.getAttribute("userId");
+        Long userId = (Long) request.getAttribute("userId");
 
         //将选中的购物车对象转化为订单对象
         List<CartInfo> cartInfos = cartService.getCartCacheByChecked(userId);

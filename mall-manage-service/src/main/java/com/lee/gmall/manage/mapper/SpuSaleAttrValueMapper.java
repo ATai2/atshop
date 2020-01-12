@@ -11,8 +11,8 @@ import java.util.Map;
 
 public interface SpuSaleAttrValueMapper extends Mapper<SpuSaleAttrValue> {
 
-    List<SpuSaleAttr> selectSpuSaleAttrListCheckBySku(Map<String, String> map);
+    List<SpuSaleAttr> selectSpuSaleAttrListCheckBySku(Map<String, Object> map);
 
-    List<SkuInfo> selectSkuSaleAttrValueListBySpu(@Param("spuId") String spuId);
+    List<SkuInfo> selectSkuSaleAttrValueListBySpu(@Param("spuId") Long spuId);
 
 }

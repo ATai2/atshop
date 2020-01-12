@@ -12,7 +12,7 @@ public class SkuSaleAttrValue implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String skuId;
+    private Long skuId;
     private String saleAttrId;
     private String saleAttrValueId;
     private String saleAttrName;

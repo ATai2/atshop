@@ -40,7 +40,7 @@ public class AttrController {
     //显示属性值列表
     @RequestMapping("getAttrValue")
     @ResponseBody
-    public List<BaseAttrValue> getAttrValue(String attrId) {
+    public List<BaseAttrValue> getAttrValue(Long attrId) {
         List<BaseAttrValue> baseAttrValues = attrService.getAttrValue(attrId);
         return baseAttrValues;
     }
@@ -48,7 +48,7 @@ public class AttrController {
     //删除选中的属性列表行
     @RequestMapping("deleteAttr")
     @ResponseBody
-    public String deleteAttr(String attrId) {
+    public String deleteAttr(Long attrId) {
         attrService.deleteAttr(attrId);
         return "success";
     }

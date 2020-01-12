@@ -7,7 +7,7 @@ public class PaymentInfo {
 
   private long id;
   private String outTradeNo;
-  private String orderId;
+  private Long orderId;
   private String alipayTradeNo;
   private double totalAmount;
   private String subject;

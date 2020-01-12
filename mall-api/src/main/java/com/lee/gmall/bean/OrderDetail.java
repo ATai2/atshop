@@ -16,8 +16,8 @@ public class OrderDetail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String orderId;
-    private String skuId;
+    private Long orderId;
+    private Long skuId;
     private String skuName;
     private String imgFileName;
     private BigDecimal orderPrice;

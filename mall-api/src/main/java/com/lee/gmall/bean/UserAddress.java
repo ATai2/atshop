@@ -14,7 +14,7 @@ public class UserAddress implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
   private String userAddress;
-  private String userId;
+  private Long userId;
   private String consignee;
   private String phoneNum;
   private String isDefault;

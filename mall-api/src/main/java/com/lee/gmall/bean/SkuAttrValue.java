@@ -12,8 +12,8 @@ public class SkuAttrValue implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-  private String attrId;
+  private Long attrId;
   private String valueId;
-  private String skuId;
+  private Long skuId;
 
 }
