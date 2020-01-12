@@ -1,6 +1,6 @@
 package com.lee.gmall.service;
 
-import com.lee.gmall.bean.TableDataReq;
+import com.lee.gmall.entity.TableDataReq;
 
 public interface TableInfoService {
     Object getTableInfo(String tableName);

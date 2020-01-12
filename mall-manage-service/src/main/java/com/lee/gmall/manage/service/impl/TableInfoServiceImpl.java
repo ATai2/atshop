@@ -4,16 +4,18 @@ import com.alibaba.fastjson.JSON;
 import com.lee.gmall.bean.ColumnInfo;
 import com.lee.gmall.bean.SkuInfo;
 import com.lee.gmall.bean.SpuInfo;
-import com.lee.gmall.bean.TableDataReq;
+import com.lee.gmall.entity.TableDataReq;
 import com.lee.gmall.manage.mapper.*;
 import com.lee.gmall.service.TableInfoService;
 import com.lee.gmall.utils.NameUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Service;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
+import tk.mybatis.mapper.common.Mapper;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 @Service
@@ -32,6 +34,9 @@ public class TableInfoServiceImpl implements TableInfoService {
 
     @Autowired
     SpuInfoMapper spuInfoMapper;
+
+    @Autowired
+    Map<String, Mapper> mapperMap;
 
     @Override
     public Object getTableInfo(String tableName) {
@@ -53,46 +58,38 @@ public class TableInfoServiceImpl implements TableInfoService {
 
     @Override
     public Object getTableData(TableDataReq tableDataReq) {
-        switch (tableDataReq.getTableName()) {
-            case "sku_info":
-                return skuInfoMapper.selectAll();
-            case "spu_info":
-                return spuInfoMapper.selectAll();
-        }
-        return null;
+        return excuteMapperMethod(tableDataReq).selectAll();
     }
 
     @Override
     public Object deleteData(TableDataReq tableDataReq) {
-        switch (tableDataReq.getTableName()) {
-            case "sku_info":
-                return skuInfoMapper.deleteByPrimaryKey(tableDataReq.getId());
-            case "spu_info":
-                return spuInfoMapper.deleteByPrimaryKey(tableDataReq.getId());
-        }
-        return null;
+        return excuteMapperMethod(tableDataReq).deleteByPrimaryKey(tableDataReq.getId());
     }
 
     @Override
     public Object updateData(TableDataReq tableDataReq) {
-        switch (tableDataReq.getTableName()) {
-            case "sku_info":
-                return skuInfoMapper.updateByPrimaryKey((SkuInfo) tableDataReq.getData());
-            case "spu_info":
-
-                return spuInfoMapper.updateByPrimaryKey(JSON.parseObject((String)tableDataReq.getData(),SpuInfo.class));
+        String beanName = StringUtils.capitalize(NameUtils.lineToHump(tableDataReq.getTableName()));
+        try {
+            return excuteMapperMethod(tableDataReq).updateByPrimaryKey(JSON.parseObject((String) tableDataReq.getData(), Class.forName("com.lee.gmall.bean." + beanName)));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
         }
-        return null;
     }
+
     @Override
     public Object addData(TableDataReq tableDataReq) {
-        switch (tableDataReq.getTableName()) {
-            case "sku_info":
-                return skuInfoMapper.insert((SkuInfo) tableDataReq.getData());
-            case "spu_info":
-
-                return spuInfoMapper.insert(JSON.parseObject((String)tableDataReq.getData(),SpuInfo.class));
+        String beanName = StringUtils.capitalize(NameUtils.lineToHump(tableDataReq.getTableName()));
+        try {
+            return excuteMapperMethod(tableDataReq).insert(JSON.parseObject((String) tableDataReq.getData(), Class.forName("com.lee.gmall.bean." + beanName)));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
         }
-        return null;
+    }
+
+    public Mapper excuteMapperMethod(TableDataReq tableDataReq) {
+        String tableName =  NameUtils.lineToHump(tableDataReq.getTableName())+"Mapper";
+        return mapperMap.get(tableName);
     }
 }

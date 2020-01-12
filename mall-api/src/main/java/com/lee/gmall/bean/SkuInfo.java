@@ -17,6 +17,9 @@ public class SkuInfo implements Serializable {
   private String skuName;
   private String skuDesc;
   private String weight;
+  /**
+   * 品牌id
+   */
   private String tmId;
   private String catalog3Id;
   private String skuDefaultImg;

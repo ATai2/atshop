@@ -1,7 +1,7 @@
 package com.lee.gmall.manage.controller;
 
 
-import com.lee.gmall.bean.TableDataReq;
+import com.lee.gmall.entity.TableDataReq;
 import com.lee.gmall.resp.SysLog;
 import com.lee.gmall.service.TableInfoService;
 import io.swagger.annotations.Api;
