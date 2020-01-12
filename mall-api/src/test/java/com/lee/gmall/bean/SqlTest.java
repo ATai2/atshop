@@ -64,13 +64,26 @@ public class SqlTest {
                 if (Character.isUpperCase(cameCaseColumn.charAt(i)))
                     // 将javabean中小驼峰命名变量的“大写字母”转换为“_小写字母”
                     underScoreCaseColumn = cameCaseColumn.substring(0, i) + '_' + cameCaseColumn.substring(i, i + 1).toLowerCase() + cameCaseColumn.substring(i + 1, cameCaseColumn.length());
-            sql.append(underScoreCaseColumn).append(" ");
+//            sql.append(underScoreCaseColumn).append(" ");
             param = f.getType().getTypeName();
+            boolean flag = false;
             if (param.equals("java.lang.Integer")) {
+                sql.append(underScoreCaseColumn).append(" ");
                 sql.append("INTEGER");
+            } else if (param.contains("long")||param.contains("Long")) {
+                sql.append(underScoreCaseColumn).append(" ");
+                sql.append("bigint");
+            } else if (param.contains("date")
+                    || param.contains("Date")
+                    || param.contains("Timestamp")
+                    || param.contains("Time")
+                    || param.contains("time")) {
+                sql.append(underScoreCaseColumn).append(" ");
+                sql.append(" datetime ");
             } else if (param.equals("java.util.List")) {
-
+                flag = true;
             } else {
+                sql.append(underScoreCaseColumn).append(" ");
                 // 根据需要自行修改
                 sql.append("VARCHAR(64)");
             }
@@ -80,7 +93,9 @@ public class SqlTest {
                 sql.append(" PRIMARY KEY AUTO_INCREMENT");
                 firstId = false;
             }
-            sql.append(",\n");
+            if (!flag) {
+                sql.append(",\n");
+            }
         }
         sql.delete(sql.lastIndexOf(","), sql.length()).append("\n)ENGINE=INNODB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1;\r\n");
         System.out.println(sql);
