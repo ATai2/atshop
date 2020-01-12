@@ -136,19 +136,14 @@ public class CartServiceImpl implements CartService {
             cartInfos = cartInfoMapper.select(cartInfo);
 
         }
-
-
-
         return cartInfos;
     }
 
     @Override
     public void deleteCartById(List<CartInfo> cartInfos) {
-
         for (CartInfo cartInfo : cartInfos) {
             cartInfoMapper.deleteByPrimaryKey(cartInfo);
         }
-
         //同步缓存
         syncCache(cartInfos.get(0).getUserId());
 
