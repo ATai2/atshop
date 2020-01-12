@@ -2,6 +2,7 @@ package com.lee.gmall.list.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.lee.gmall.bean.*;
+import com.lee.gmall.entity.SkuLsParam;
 import com.lee.gmall.service.AttrService;
 import com.lee.gmall.service.SearchService;
 import org.apache.commons.lang3.StringUtils;
@@ -65,7 +66,7 @@ public class ListController {
         return "list";
     }
 
-    private String getUrlParam(SkuLsParam skuLsParam,String id) {
+    private String getUrlParam(SkuLsParam skuLsParam, String id) {
         String urlParam = "";
         String keyword = skuLsParam.getKeyword();
         String catalog3Id = skuLsParam.getCatalog3Id();

@@ -1,13 +1,11 @@
 package com.lee.gmall.manage.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.lee.gmall.bean.ColumnInfo;
-import com.lee.gmall.bean.SkuInfo;
-import com.lee.gmall.bean.SpuInfo;
+import com.lee.gmall.entity.ColumnInfo;
 import com.lee.gmall.entity.TableDataReq;
 import com.lee.gmall.manage.mapper.*;
 import com.lee.gmall.service.TableInfoService;
-import com.lee.gmall.utils.NameUtils;
+import com.lee.gmall.utils.NameChangeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 @Service
@@ -44,7 +41,7 @@ public class TableInfoServiceImpl implements TableInfoService {
         columnInfos.forEach(new Consumer<ColumnInfo>() {
             @Override
             public void accept(ColumnInfo columnInfo) {
-                columnInfo.setColumnName(NameUtils.lineToHump(columnInfo.getColumnName()));
+                columnInfo.setColumnName(NameChangeUtils.lineToHump(columnInfo.getColumnName()));
             }
         });
 
@@ -63,12 +60,18 @@ public class TableInfoServiceImpl implements TableInfoService {
 
     @Override
     public Object deleteData(TableDataReq tableDataReq) {
-        return excuteMapperMethod(tableDataReq).deleteByPrimaryKey(tableDataReq.getId());
+        String beanName = StringUtils.capitalize(NameChangeUtils.lineToHump(tableDataReq.getTableName()));
+        try {
+            return excuteMapperMethod(tableDataReq).delete(JSON.parseObject((String) tableDataReq.getData(), Class.forName("com.lee.gmall.bean." + beanName)));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
     public Object updateData(TableDataReq tableDataReq) {
-        String beanName = StringUtils.capitalize(NameUtils.lineToHump(tableDataReq.getTableName()));
+        String beanName = StringUtils.capitalize(NameChangeUtils.lineToHump(tableDataReq.getTableName()));
         try {
             return excuteMapperMethod(tableDataReq).updateByPrimaryKey(JSON.parseObject((String) tableDataReq.getData(), Class.forName("com.lee.gmall.bean." + beanName)));
         } catch (ClassNotFoundException e) {
@@ -79,7 +82,7 @@ public class TableInfoServiceImpl implements TableInfoService {
 
     @Override
     public Object addData(TableDataReq tableDataReq) {
-        String beanName = StringUtils.capitalize(NameUtils.lineToHump(tableDataReq.getTableName()));
+        String beanName = StringUtils.capitalize(NameChangeUtils.lineToHump(tableDataReq.getTableName()));
         try {
             return excuteMapperMethod(tableDataReq).insert(JSON.parseObject((String) tableDataReq.getData(), Class.forName("com.lee.gmall.bean." + beanName)));
         } catch (ClassNotFoundException e) {
@@ -89,7 +92,7 @@ public class TableInfoServiceImpl implements TableInfoService {
     }
 
     public Mapper excuteMapperMethod(TableDataReq tableDataReq) {
-        String tableName =  NameUtils.lineToHump(tableDataReq.getTableName())+"Mapper";
+        String tableName =  NameChangeUtils.lineToHump(tableDataReq.getTableName())+"Mapper";
         return mapperMap.get(tableName);
     }
 }

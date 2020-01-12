@@ -1,7 +1,7 @@
 package com.lee.gmall.service;
 
 import com.lee.gmall.bean.SkuLsInfo;
-import com.lee.gmall.bean.SkuLsParam;
+import com.lee.gmall.entity.SkuLsParam;
 
 import java.util.List;
 

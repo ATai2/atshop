@@ -3,7 +3,7 @@ package com.lee.gmall.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class NameUtils {
+public class NameChangeUtils {
 
     private static Pattern linePattern = Pattern.compile("_(\\w)");
 

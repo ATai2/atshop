@@ -1,4 +1,4 @@
-package com.lee.gmall.bean;
+package com.lee.gmall.entity;
 
 import lombok.Data;
 

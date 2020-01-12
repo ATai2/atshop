@@ -1,6 +1,6 @@
 package com.lee.gmall.manage.mapper;
 
-import com.lee.gmall.bean.ColumnInfo;
+import com.lee.gmall.entity.ColumnInfo;
 import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Select;
 

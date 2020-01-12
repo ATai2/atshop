@@ -1,12 +1,9 @@
 package com.lee.gmall.list.service.impl;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
-import com.lee.gmall.bean.SkuInfo;
 import com.lee.gmall.bean.SkuLsInfo;
-import com.lee.gmall.bean.SkuLsParam;
+import com.lee.gmall.entity.SkuLsParam;
 import com.lee.gmall.service.SearchService;
-import com.lee.gmall.service.SkuService;
 import io.searchbox.client.JestClient;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;

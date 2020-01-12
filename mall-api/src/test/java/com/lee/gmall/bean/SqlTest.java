@@ -1,6 +1,6 @@
 package com.lee.gmall.bean;
 
-import com.lee.gmall.utils.NameUtils;
+import com.lee.gmall.utils.NameChangeUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,9 +11,9 @@ public class SqlTest {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-        String path="D:\\code\\java\\atshop\\mall-api\\src\\main\\java\\com\\lee\\gmall\\bean";
-        String pathRef="com.lee.gmall.bean.";
-        File filePath=new File(path);
+        String path = "D:\\code\\java\\atshop\\mall-api\\src\\main\\java\\com\\lee\\gmall\\bean";
+        String pathRef = "com.lee.gmall.bean.";
+        File filePath = new File(path);
         File[] files = filePath.listFiles();
 
         for (int i = 0; i < files.length; i++) {
@@ -21,33 +21,33 @@ public class SqlTest {
                 continue;
             }
 
-            File file=files[i];
+            File file = files[i];
 //            System.out.println(file.getName());
 
             String name1 = file.getName();
-            String name= name1.substring(0,name1.indexOf("."));
+            String name = name1.substring(0, name1.indexOf("."));
 
 //            System.out.println(name);
 
-            generateSqlMapper(Class.forName(pathRef+name),null);
+            generateSqlMapper(Class.forName(pathRef + name), null);
 //            Class clazz=Class.forName()
         }
 
 //        generateSqlMapper(AdBanner.class,null);
     }
 
-    public static void generateSqlMapper(Class obj,String tableName) throws IOException {
+    public static void generateSqlMapper(Class obj, String tableName) throws IOException {
         Field[] fields = obj.getDeclaredFields();
         String param = null;
         String cameCaseColumn = null;
         String underScoreCaseColumn = null;
         StringBuilder sql = new StringBuilder();
-        if(tableName==null||tableName.equals("")){
+        if (tableName == null || tableName.equals("")) {
             // 未传表明默认用类名
-            tableName = obj.getName().substring(obj.getName().lastIndexOf(".")+1);
-            tableName= NameUtils.humpToLine2(tableName);
+            tableName = obj.getName().substring(obj.getName().lastIndexOf(".") + 1);
+            tableName = NameChangeUtils.humpToLine2(tableName);
             if (tableName.length() > 0 && '_' == tableName.charAt(0)) {
-                tableName=tableName.substring(1);
+                tableName = tableName.substring(1);
             }
         }
         /**
@@ -56,26 +56,28 @@ public class SqlTest {
         sql.append("drop table if exists ").append(tableName).append(";\r\n");
         sql.append("create table ").append(tableName).append("( \r\n");
         boolean firstId = true;
-        for(Field f : fields){
+        for (Field f : fields) {
             cameCaseColumn = f.getName();
-            cameCaseColumn = NameUtils.humpToLine2(cameCaseColumn);
+            cameCaseColumn = NameChangeUtils.humpToLine2(cameCaseColumn);
             underScoreCaseColumn = cameCaseColumn;
-            for(int i = 0; i < cameCaseColumn.length(); i++)
-                if(Character.isUpperCase(cameCaseColumn.charAt(i)))
+            for (int i = 0; i < cameCaseColumn.length(); i++)
+                if (Character.isUpperCase(cameCaseColumn.charAt(i)))
                     // 将javabean中小驼峰命名变量的“大写字母”转换为“_小写字母”
-                    underScoreCaseColumn = cameCaseColumn.substring(0, i) + '_' + cameCaseColumn.substring(i, i+1).toLowerCase() + cameCaseColumn.substring(i+1, cameCaseColumn.length());
+                    underScoreCaseColumn = cameCaseColumn.substring(0, i) + '_' + cameCaseColumn.substring(i, i + 1).toLowerCase() + cameCaseColumn.substring(i + 1, cameCaseColumn.length());
             sql.append(underScoreCaseColumn).append(" ");
             param = f.getType().getTypeName();
-            if(param.equals("java.lang.Integer")){
+            if (param.equals("java.lang.Integer")) {
                 sql.append("INTEGER");
-            }else{
+            } else if (param.equals("java.util.List")) {
+
+            } else {
                 // 根据需要自行修改
-                sql.append("VARCHAR(20)");
+                sql.append("VARCHAR(64)");
             }
-            if(firstId){
+            if (firstId) {
                 // 默认第一个字段为ID主键
-                sql.append(" PRIMARY KEY");
-//                sql.append(" PRIMARY KEY AUTO_INCREMENT");
+//                sql.append(" PRIMARY KEY");
+                sql.append(" PRIMARY KEY AUTO_INCREMENT");
                 firstId = false;
             }
             sql.append(",\n");
@@ -112,15 +114,15 @@ public class SqlTest {
         update.append("        UPDATE ").append(tableName.toLowerCase()).append(" SET ");
         delete.append("    <delete id=\"delete").append(tableName).append("\" parameterType=\"int\">\r\n");
         delete.append("        DELETE FROM ").append(tableName.toLowerCase());
-        for(Field f : fields){
+        for (Field f : fields) {
             cameCaseColumn = f.getName();
             underScoreCaseColumn = cameCaseColumn;
-            for(int i = 0; i < cameCaseColumn.length(); i++)
-                if(Character.isUpperCase(cameCaseColumn.charAt(i)))
+            for (int i = 0; i < cameCaseColumn.length(); i++)
+                if (Character.isUpperCase(cameCaseColumn.charAt(i)))
                     // 将javabean中小驼峰命名变量的“大写字母”转换为“_小写字母”
-                    underScoreCaseColumn = cameCaseColumn.substring(0, i) + '_' + cameCaseColumn.substring(i, i+1).toLowerCase() + cameCaseColumn.substring(i+1, cameCaseColumn.length());
+                    underScoreCaseColumn = cameCaseColumn.substring(0, i) + '_' + cameCaseColumn.substring(i, i + 1).toLowerCase() + cameCaseColumn.substring(i + 1, cameCaseColumn.length());
             resultMap.append("         ");
-            if(firstId){
+            if (firstId) {
                 resultMap.append("<id column=\"").append(underScoreCaseColumn).append("\" property=\"").append(cameCaseColumn).append("\" jdbcType=\"");
                 updateWhere.append("         WHERE ").append(underScoreCaseColumn).append(" = #{").append(cameCaseColumn).append("}\r\n");
                 deleteWhere.append(" WHERE ").append(underScoreCaseColumn).append(" = #{").append(cameCaseColumn).append("}\r\n");
@@ -132,9 +134,9 @@ public class SqlTest {
                 update.append(underScoreCaseColumn).append(" = #{").append(cameCaseColumn).append("}, ");
             }
             param = f.getType().getTypeName();
-            if(param.equals("java.lang.Integer")){
+            if (param.equals("java.lang.Integer")) {
                 resultMap.append("INTEGER\" />\r\n");
-            }else{
+            } else {
                 // 根据需要自行修改
                 resultMap.append("VARCHAR\" />\r\n");
             }

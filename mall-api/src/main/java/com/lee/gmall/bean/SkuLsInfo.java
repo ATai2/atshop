@@ -1,89 +1,36 @@
 package com.lee.gmall.bean;
 
+import lombok.Data;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
+@Data
 public class SkuLsInfo implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-        String id;
+    BigDecimal price;
 
-        BigDecimal price;
+    String skuName;
 
-        String skuName;
+    String skuDesc;
 
-        String skuDesc;
+    String catalog3Id;
 
-        String catalog3Id;
+    String skuDefaultImg;
 
-        String skuDefaultImg;
+    Long hotScore = 0L;
 
-        Long hotScore=0L;
+    @Transient
+    List<SkuLsAttrValue> skuAttrValueList;
 
-        List<SkuLsAttrValue> skuAttrValueList;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public String getSkuName() {
-        return skuName;
-    }
-
-    public void setSkuName(String skuName) {
-        this.skuName = skuName;
-    }
-
-    public String getSkuDesc() {
-        return skuDesc;
-    }
-
-    public void setSkuDesc(String skuDesc) {
-        this.skuDesc = skuDesc;
-    }
-
-    public String getCatalog3Id() {
-        return catalog3Id;
-    }
-
-    public void setCatalog3Id(String catalog3Id) {
-        this.catalog3Id = catalog3Id;
-    }
-
-    public String getSkuDefaultImg() {
-        return skuDefaultImg;
-    }
-
-    public void setSkuDefaultImg(String skuDefaultImg) {
-        this.skuDefaultImg = skuDefaultImg;
-    }
-
-    public Long getHotScore() {
-        return hotScore;
-    }
-
-    public void setHotScore(Long hotScore) {
-        this.hotScore = hotScore;
-    }
-
-    public List<SkuLsAttrValue> getSkuAttrValueList() {
-        return skuAttrValueList;
-    }
-
-    public void setSkuAttrValueList(List<SkuLsAttrValue> skuAttrValueList) {
-        this.skuAttrValueList = skuAttrValueList;
-    }
-}
+  }

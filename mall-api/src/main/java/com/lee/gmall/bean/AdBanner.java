@@ -2,8 +2,15 @@ package com.lee.gmall.bean;
 
 import lombok.Data;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.Date;
+
 @Data
 public class AdBanner {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String adDesc;
     private String fileName;

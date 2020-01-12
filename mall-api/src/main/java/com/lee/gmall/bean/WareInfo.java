@@ -1,6 +1,8 @@
 package com.lee.gmall.bean;
 
+import lombok.Data;
 
+@Data
 public class WareInfo {
 
   private long id;

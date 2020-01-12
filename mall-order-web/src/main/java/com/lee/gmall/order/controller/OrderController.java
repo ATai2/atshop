@@ -3,7 +3,7 @@ package com.lee.gmall.order.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.lee.gmall.annotation.LoginRequire;
 import com.lee.gmall.bean.*;
-import com.lee.gmall.bean.enums.PaymentWay;
+import com.lee.gmall.enums.PaymentWay;
 import com.lee.gmall.service.CartService;
 import com.lee.gmall.service.OrderService;
 import com.lee.gmall.service.SkuService;

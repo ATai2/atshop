@@ -1,4 +1,4 @@
-package com.lee.gmall.bean.enums;
+package com.lee.gmall.enums;
 
 /**
  * @param

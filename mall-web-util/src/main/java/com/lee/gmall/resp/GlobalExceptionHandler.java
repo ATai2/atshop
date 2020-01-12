@@ -1,12 +1,10 @@
 package com.lee.gmall.resp;
 
-import com.lee.gmall.bean.BaseResult;
-import io.netty.util.internal.StringUtil;
+import com.lee.gmall.entity.BaseResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;

@@ -1,11 +1,18 @@
 package com.lee.gmall.bean;
 
+import lombok.Data;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.io.Serializable;
-
+@Data
 public class SpuSaleAttrValue implements Serializable {
 
-  private String id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
   private String spuId;
   private String saleAttrId;
   private String saleAttrValueName;
@@ -13,48 +20,4 @@ public class SpuSaleAttrValue implements Serializable {
     @Transient
     private String isChecked;
 
-
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public String getSpuId() {
-    return spuId;
-  }
-
-  public void setSpuId(String spuId) {
-    this.spuId = spuId;
-  }
-
-
-  public String getSaleAttrId() {
-    return saleAttrId;
-  }
-
-  public void setSaleAttrId(String saleAttrId) {
-    this.saleAttrId = saleAttrId;
-  }
-
-
-  public String getSaleAttrValueName() {
-    return saleAttrValueName;
-  }
-
-  public void setSaleAttrValueName(String saleAttrValueName) {
-    this.saleAttrValueName = saleAttrValueName;
-  }
-
-    public String getIsChecked() {
-        return isChecked;
-    }
-
-    public void setIsChecked(String isChecked) {
-        this.isChecked = isChecked;
-    }
 }
