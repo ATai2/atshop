@@ -1,6 +1,5 @@
 package com.lee.gmall.passport.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
 import com.lee.gmall.bean.CartInfo;
 import com.lee.gmall.bean.UserInfo;
@@ -10,6 +9,7 @@ import com.lee.gmall.util.PassportUtil;
 import com.lee.gmall.service.UserService;
 import com.lee.gmall.util.JwtUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
