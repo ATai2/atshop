@@ -71,8 +71,29 @@ services:
       - admin.config-center=zookeeper://zoo1:2181
       - admin.metadata-report.address=zookeeper://zoo1:2181
 
-  fastdfs:
-    image: fastdfs
-    volumes:
-      - ./fdfs/storage:/var/fdfs
+#  fastdfs:
+#    image: fastdfs
+#    volumes:
+#      - ./fdfs/storage:/var/fdfs
+#    environment:
+
+
+  elasticsearch:
+    image: elasticsearch:7.2.0
+    container_name: elasticsearch
     environment:
+      - discovery.type=single-node
+    volumes:
+      - ./esdata:/usr/share/elasticsearch/data
+    #    networks:
+    #    - efknet
+    ports:
+      - "9200:9200"
+
+  kibana:
+    image: kibana:7.2.0
+    container_name: kibana
+    #    networks:
+    #    - efknet
+    ports:
+      - "5601:5601"

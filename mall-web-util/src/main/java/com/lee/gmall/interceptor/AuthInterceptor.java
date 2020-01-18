@@ -62,11 +62,11 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
                 //远程访问passport，验证token
                 success = HttpClientUtil.doGet("http://passport.gmall.com:8085/verify?token=" + token + "&salt=" + PassportUtil.getRequestAddr(request));
             }
-            if (!success.equals("success") && methodAnnotation.ifNeedSuccess()) {
+            if (!"success".equals(success) && methodAnnotation.ifNeedSuccess()) {
                 response.sendRedirect("http://passport.gmall.com:8085/index");
                 return false;
             }
-            if (success.equals("success")) {
+            if ("success".equals(success)) {
                 //cookie验证通过，重新刷新cookie的过期时间
                 CookieUtil.setCookie(request, response, "oldCookie", token, 60 * 60 * 2, true);
 
@@ -75,7 +75,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
                 request.setAttribute("userId", userMap.get("userId"));
                 request.setAttribute("nickName", userMap.get("nickName"));
             }
-            if (!success.equals("success") && !methodAnnotation.ifNeedSuccess()) {
+            if (!"success".equals(success) && !methodAnnotation.ifNeedSuccess()) {
                 return true;
             }
 
