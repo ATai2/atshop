@@ -1,6 +1,5 @@
 package com.lee.gmall.user.service.impl;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
 import com.lee.gmall.bean.UserAddress;
 import com.lee.gmall.bean.UserInfo;
@@ -8,6 +7,7 @@ import com.lee.gmall.service.UserService;
 import com.lee.gmall.user.mapper.UserAddressMapper;
 import com.lee.gmall.user.mapper.UserInfoMapper;
 import com.lee.gmall.util.RedisUtil;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.Jedis;
 
@@ -46,8 +46,6 @@ public class UserServiceImpl implements UserService {
         UserAddress userAddress = new UserAddress();
         userAddress.setUserId(userId);
         List<UserAddress> userAddressList = userAddressMapper.select(userAddress);
-
-
         return userAddressList;
     }
 }
