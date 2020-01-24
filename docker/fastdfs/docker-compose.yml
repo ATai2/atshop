@@ -4,8 +4,8 @@ services:
     image: season/fastdfs:1.2
     restart: always
     volumes:
-      - "./etc/timezone:/etc/timezone:ro"
-      - "./etc/localtime:/etc/localtime:ro"
+#      - "./etc/timezone:/etc/timezone:ro"
+#      - "./etc/localtime:/etc/localtime:ro"
       - "./tracker_data:/fastdfs/tracker/data"
 #    network_mode: "host"
     command: "tracker"
@@ -14,8 +14,8 @@ services:
     image: season/fastdfs:1.2
     restart: always
     volumes:
-      - "./etc/timezone:/etc/timezone:ro"
-      - "./etc/localtime:/etc/localtime:ro"
+#      - "./etc/timezone:/etc/timezone:ro"
+#      - "./etc/localtime:/etc/localtime:ro"
       - "./storage_base_path:/fastdfs/storage/data"
       - "./store_path0:/fastdfs/store_path"
     environment:
@@ -27,11 +27,13 @@ services:
     image: season/fastdfs:1.2
     restart: always
     volumes:
-      - "./etc/timezone:/etc/timezone:ro"
-      - "./etc/localtime:/etc/localtime:ro"
+#      - "./etc/timezone:/etc/timezone:ro"
+#      - "./etc/localtime:/etc/localtime:ro"
       - "./nginx.conf:/etc/nginx/conf/nginx.conf"
       - "./store_path0:/fastdfs/store_path"
     environment:
       - TRACKER_SERVER=tracker:22122
+    ports:
+      - "8088:8088"
 #    network_mode: "host"
     command: "nginx"
