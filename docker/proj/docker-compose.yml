@@ -1,0 +1,7 @@
+version: '3'
+services:
+  eureka:
+    image: atai2/at-eureka
+    restart: always
+    ports:
+      - 8761:8761
