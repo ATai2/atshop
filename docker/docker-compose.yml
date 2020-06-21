@@ -84,6 +84,7 @@ services:
     container_name: elasticsearch
     environment:
       - discovery.type=single-node
+      - ES_JAVA_OPTS="-Xms256m -Xmx256m"
     volumes:
       - ./esdata:/usr/share/elasticsearch/data
     #    networks:
