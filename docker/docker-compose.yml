@@ -3,7 +3,10 @@ services:
   redis:
     image: redis
     restart: always
-    mem_limit: 256m
+    deploy:
+      resources:
+        limits:
+          memory: 256m
     ports:
       - 16379:6379
     command: redis-server --requirepass rootatai  --notify-keyspace-events Egl
@@ -11,7 +14,10 @@ services:
   mysql:
     restart: always
     image: mysql:5.7
-    mem_limit: 256m
+    deploy:
+      resources:
+        limits:
+          memory: 256m
     container_name: mysqlmall
     ports:
       - 13306:3306
@@ -36,7 +42,10 @@ services:
     image: zookeeper:3.5
     restart: always
     hostname: zoo1
-    mem_limit: 256m
+    deploy:
+      resources:
+        limits:
+          memory: 256m
     ports:
       - 2181:2181
     environment:
@@ -97,7 +106,10 @@ services:
 
   kibana:
     image: kibana:7.2.0
-    mem_limit: 256m
+    deploy:
+      resources:
+        limits:
+          memory: 256m
     container_name: kibana
     #    networks:
     #    - efknet
