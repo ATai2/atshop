@@ -12,6 +12,7 @@
         <module>at-config</module>
         <module>at-common</module>
         <module>at-gateway</module>
+        <module>at-auth</module>
     </modules>
 
     <packaging>pom</packaging>
