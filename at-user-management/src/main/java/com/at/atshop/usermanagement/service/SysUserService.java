@@ -1,25 +1,42 @@
 package com.at.atshop.usermanagement.service;
 
-import com.at.atshop.usermanagement.entity.SysUser;
-import com.at.atshop.usermanagement.entity.SysUserExample;
-import com.at.atshop.usermanagement.mapper.SysUserMapper;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import java.io.File;
 import java.util.List;
+import java.util.Set;
 
-@Service
-public class SysUserService {
+import com.at.atshop.usermanagement.entity.SysUser;
+import com.at.atshop.usermanagement.entity.SysUserRole;
+import com.at.common.page.PageRequest;
+import com.at.common.service.CurdService;
 
-    @Autowired
-    SysUserMapper sysUserMapper;
-    public List<SysUser> findPage(Integer page, Integer size) {
-        PageHelper.startPage(page, size);
-        List<SysUser> sysUsers = sysUserMapper.selectAll();
-        PageInfo<SysUser> pageInfo=new PageInfo<>(sysUsers);
-        return pageInfo.getList();
-    }
+/**
+ * 用户管理
+ * @author Louis
+ * @date Jan 13, 2019
+ */
+public interface SysUserService extends CurdService<SysUser> {
+
+	SysUser findByName(String username);
+
+	/**
+	 * 查找用户的菜单权限标识集合
+	 * @param userName
+	 * @return
+	 */
+	Set<String> findPermissions(String userName);
+
+	/**
+	 * 查找用户的角色集合
+	 * @param userId
+	 * @return
+	 */
+	List<SysUserRole> findUserRoles(Long userId);
+
+	/**
+	 * 生成用户信息Excel文件
+	 * @param pageRequest 要导出的分页查询参数
+	 * @return
+	 */
+	File createUserExcelFile(PageRequest pageRequest);
 
 }
