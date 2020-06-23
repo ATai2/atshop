@@ -23,11 +23,11 @@ public class Result<T> {
         this.code = code;
     }
 
-    public Result<T> withSuccess(T data) {
+    public static <T> Result<T> withSuccess(T data) {
         return new Result<>(true, "", "", data);
     }
 
-    public Result<T> withError(String code, String msg) {
+    public static <T> Result<T> withError(String code, String msg) {
         return new Result<>(false, code, msg, null);
     }
 }
