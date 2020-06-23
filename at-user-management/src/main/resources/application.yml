@@ -28,4 +28,22 @@ spring:
       max-pool-prepared-statement-per-connection-size: 20
 
 
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  mappers: com.at.atshop.usermanagement.entity
 
+mapper:
+  mappers:
+    - tk.mybatis.springboot.util.MyMapper
+  not-empty: false
+  identity: MYSQL
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+logging:
+  level:
+    com.at.atshop.usermanagement.mapper: debug
