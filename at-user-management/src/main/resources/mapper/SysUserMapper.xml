@@ -124,6 +124,7 @@
     from sys_user
     where id = #{id,jdbcType=BIGINT}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     <!--
       WARNING - @mbggenerated
@@ -271,6 +272,12 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+
+<!--  <select id="selectAll" resultMap="BaseResultMap">-->
+<!--    select-->
+<!--    <include refid="Base_Column_List" />-->
+<!--    from sys_user-->
+<!--  </select>-->
   <update id="updateByExampleSelective" parameterType="map" >
     <!--
       WARNING - @mbggenerated
