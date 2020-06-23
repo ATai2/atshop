@@ -2,6 +2,7 @@ package com.at.atshop.usermanagement.mapper;
 
 import com.at.atshop.usermanagement.entity.SysUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author jobob
  * @since 2020-06-23
  */
+@Mapper
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
 }
