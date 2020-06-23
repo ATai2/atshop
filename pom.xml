@@ -13,6 +13,7 @@
         <module>at-common</module>
         <module>at-gateway</module>
         <module>at-auth</module>
+        <module>at-user-management</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -53,9 +54,7 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>2.9.2</version>
-
             </dependency>
-
 
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
@@ -68,9 +67,6 @@
                 <artifactId>curator-framework</artifactId>
                 <version>4.2.0</version>
             </dependency>
-
-
-
 
             <dependency>
                 <groupId>org.apache.commons</groupId>

@@ -7,6 +7,9 @@
     解决的主要问题是较为复杂业务情况，
 
 ## 系统架构
+
+    
+    
     数据架构采用mysql，
     分布式事务：alibaba-seata
     orm: mybatis,mybatis-plus
