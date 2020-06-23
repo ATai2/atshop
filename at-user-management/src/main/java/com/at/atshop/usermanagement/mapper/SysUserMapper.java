@@ -96,4 +96,6 @@ public interface SysUserMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(SysUser record);
+
+    List<SysUser> selectAll();
 }

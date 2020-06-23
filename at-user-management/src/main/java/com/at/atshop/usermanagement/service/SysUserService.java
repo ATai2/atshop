@@ -19,7 +19,6 @@ public class SysUserService {
         PageHelper.startPage(page, size);
         List<SysUser> sysUsers = sysUserMapper.selectAll();
         PageInfo<SysUser> pageInfo=new PageInfo<>(sysUsers);
-
         return pageInfo.getList();
     }
 
