@@ -127,6 +127,12 @@
             <artifactId>kaptcha</artifactId>
             <version>0.0.9</version>
         </dependency>
+
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-client</artifactId>
+            <version>2.2.3</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

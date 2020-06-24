@@ -8,15 +8,86 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <properties>
+        <docker.repostory>hub.docker.com</docker.repostory>
+        <docker.image.prefix>atai2</docker.image.prefix>
+    </properties>
     <artifactId>at-monitor</artifactId>
     <dependencies>
 
+
         <dependency>
-            <groupId>com.atshop</groupId>
-            <artifactId>at-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-server</artifactId>
+            <version>2.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-server-ui</artifactId>
+            <version>2.2.3</version>
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <!--使用docker插件需开启docker端口-->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.1.1</version>
+                <configuration>
+                    <imageTags>
+                        <imageTag>latest</imageTag>
+                        <imageTag>0.0.1</imageTag>
+                    </imageTags>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <baseImage>openjdk:8-jre-alpine</baseImage>
+                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                    <!-- copy the service's jar file from target into the root directory of the image -->
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                    <!--                    <baseImage>openjdk:8-jre-alpine</baseImage>-->
+                    <!--                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>-->
+                    <!--                    <dockerDirectory>${basedir}/docker</dockerDirectory>-->
+                    <!--                    <resources>-->
+                    <!--                        <resource>-->
+                    <!--                            <targetPath>/</targetPath>-->
+                    <!--                            <directory>${project.build.directory}</directory>-->
+                    <!--                            <include>${project.build.finalName}.jar</include>-->
+                    <!--                        </resource>-->
+                    <!--                    </resources>-->
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.0.1.RELEASE</version>
+                <configuration>
+                    <requiresUnpack>
+                        <dependency>
+                            <groupId>com.netflix.eureka</groupId>
+                            <artifactId>eureka-core</artifactId>
+                        </dependency>
+                        <dependency>
+                            <groupId>com.netflix.eureka</groupId>
+                            <artifactId>eureka-client</artifactId>
+                        </dependency>
+                    </requiresUnpack>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <!--skip deploy (this is just a test module) -->
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

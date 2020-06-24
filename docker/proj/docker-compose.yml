@@ -5,3 +5,9 @@ services:
     restart: always
     ports:
       - 8761:8761
+
+  monitor:
+    image: atai2/at-monitor
+    restart: always
+    ports:
+    - 8000:8000

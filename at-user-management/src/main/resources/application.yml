@@ -1,7 +1,17 @@
 server:
   port: 8091
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8000
   datasource:
     name: druidDataSource
     type: com.alibaba.druid.pool.DruidDataSource
