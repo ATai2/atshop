@@ -12,4 +12,4 @@ services:
     ports:
       - 8000:8000
     environment:
-      - eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka/
+      - "eureka.client.serviceUrl.defaultZone": "http://eureka:8761/eureka/"
