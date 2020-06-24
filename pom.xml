@@ -14,6 +14,8 @@
         <module>at-gateway</module>
         <module>at-auth</module>
         <module>at-user-management</module>
+        <module>at-backup</module>
+        <module>at-monitor</module>
     </modules>
 
     <packaging>pom</packaging>

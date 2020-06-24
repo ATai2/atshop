@@ -5,6 +5,7 @@ import java.util.List;
 import com.at.atshop.usermanagement.service.SysDictService;
 import com.at.common.page.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +27,9 @@ public class SysDictController {
 
 	@Autowired
 	private SysDictService sysDictService;
-	
+
+
+	@PreAuthorize("hasAuthority('sys:dict:add') AND hasAuthority('sys:dict:edit')")
 	@PostMapping(value="/save")
 	public HttpResult save(@RequestBody SysDict record) {
 		return HttpResult.ok(sysDictService.save(record));
