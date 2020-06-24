@@ -11,6 +11,7 @@
     <properties>
         <docker.repostory>hub.docker.com</docker.repostory>
         <docker.image.prefix>atai2</docker.image.prefix>
+        <spring-cloud.version>Hoxton.SR5</spring-cloud.version>
     </properties>
     <artifactId>at-monitor</artifactId>
     <dependencies>
@@ -25,6 +26,15 @@
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-server-ui</artifactId>
             <version>2.2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-actuator</artifactId>
         </dependency>
     </dependencies>
 

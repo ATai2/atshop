@@ -10,4 +10,4 @@ services:
     image: atai2/at-monitor
     restart: always
     ports:
-    - 8000:8000
+      - 8000:8000
