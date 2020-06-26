@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.louis.mango.admin.dao.SysDictMapper">
-  <resultMap id="BaseResultMap" type="com.at.atshop.usermanagement.entity.SysDict">
+<mapper namespace="com.at.atshop.usermanagement.mapper.SysConfigMapper">
+  <resultMap id="BaseResultMap" type="com.at.atshop.usermanagement.entity.SysConfig">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="value" jdbcType="VARCHAR" property="value" />
     <result column="label" jdbcType="VARCHAR" property="label" />
@@ -22,15 +22,15 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_dict
+    from sys_config
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from sys_dict
+    delete from sys_config
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.at.atshop.usermanagement.entity.SysDict">
-    insert into sys_dict (id, value, label, 
+  <insert id="insert" parameterType="com.at.atshop.usermanagement.entity.SysConfig">
+    insert into sys_config (id, value, label, 
       type, description, sort, 
       create_by, create_time, last_update_by, 
       last_update_time, remarks, del_flag
@@ -41,8 +41,8 @@
       #{lastUpdateTime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.at.atshop.usermanagement.entity.SysDict">
-    insert into sys_dict
+  <insert id="insertSelective" parameterType="com.at.atshop.usermanagement.entity.SysConfig">
+    insert into sys_config
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -120,8 +120,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.at.atshop.usermanagement.entity.SysDict">
-    update sys_dict
+  <update id="updateByPrimaryKeySelective" parameterType="com.at.atshop.usermanagement.entity.SysConfig">
+    update sys_config
     <set>
       <if test="value != null">
         value = #{value,jdbcType=VARCHAR},
@@ -159,8 +159,8 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.at.atshop.usermanagement.entity.SysDict">
-    update sys_dict
+  <update id="updateByPrimaryKey" parameterType="com.at.atshop.usermanagement.entity.SysConfig">
+    update sys_config
     set value = #{value,jdbcType=VARCHAR},
       label = #{label,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},
@@ -177,19 +177,19 @@
   <select id="findPage" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_dict
+    from sys_config
   </select>
   <select id="findPageByLabel" parameterType="java.lang.String" resultMap="BaseResultMap">
   	<bind name="pattern" value="'%' + _parameter.label + '%'" />
   	select 
     <include refid="Base_Column_List" />
-    from sys_dict
+    from sys_config
     where label like #{pattern}
   </select>
   <select id="findByLable" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_dict
+    from sys_config
     where label = #{label,jdbcType=VARCHAR}
   </select>
 </mapper>

@@ -1,48 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.louis.mango.admin.dao.SysRoleMapper">
-  <resultMap id="BaseResultMap" type="com.at.atshop.usermanagement.entity.SysRole">
+<mapper namespace="com.at.atshop.usermanagement.mapper.SysLoginLogMapper">
+  <resultMap id="BaseResultMap" type="com.at.atshop.usermanagement.entity.SysLoginLog">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
     <result column="create_by" jdbcType="VARCHAR" property="createBy" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
-    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, remark, create_by, create_time, last_update_by, last_update_time, del_flag
+    id, user_name, status, ip, create_by, create_time, last_update_by, last_update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_role
+    from sys_login_log
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from sys_role
+    delete from sys_login_log
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.at.atshop.usermanagement.entity.SysRole">
-    insert into sys_role (id, name, remark, 
-      create_by, create_time, last_update_by, 
-      last_update_time, del_flag)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, 
-      #{lastUpdateTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT})
+  <insert id="insert" parameterType="com.at.atshop.usermanagement.entity.SysLoginLog">
+    insert into sys_login_log (id, user_name, status, 
+      ip, create_by, create_time, 
+      last_update_by, last_update_time)
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{ip,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.at.atshop.usermanagement.entity.SysRole">
-    insert into sys_role
+  <insert id="insertSelective" parameterType="com.at.atshop.usermanagement.entity.SysLoginLog">
+    insert into sys_login_log
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="name != null">
-        name,
+      <if test="userName != null">
+        user_name,
       </if>
-      <if test="remark != null">
-        remark,
+      <if test="status != null">
+        status,
+      </if>
+      <if test="ip != null">
+        ip,
       </if>
       <if test="createBy != null">
         create_by,
@@ -56,19 +59,19 @@
       <if test="lastUpdateTime != null">
         last_update_time,
       </if>
-      <if test="delFlag != null">
-        del_flag,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null">
-        #{remark,jdbcType=VARCHAR},
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
       </if>
       <if test="createBy != null">
         #{createBy,jdbcType=VARCHAR},
@@ -82,19 +85,19 @@
       <if test="lastUpdateTime != null">
         #{lastUpdateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="delFlag != null">
-        #{delFlag,jdbcType=TINYINT},
-      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.at.atshop.usermanagement.entity.SysRole">
-    update sys_role
+  <update id="updateByPrimaryKeySelective" parameterType="com.at.atshop.usermanagement.entity.SysLoginLog">
+    update sys_login_log
     <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null">
-        remark = #{remark,jdbcType=VARCHAR},
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
       </if>
       <if test="createBy != null">
         create_by = #{createBy,jdbcType=VARCHAR},
@@ -108,44 +111,37 @@
       <if test="lastUpdateTime != null">
         last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="delFlag != null">
-        del_flag = #{delFlag,jdbcType=TINYINT},
-      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.at.atshop.usermanagement.entity.SysRole">
-    update sys_role
-    set name = #{name,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.at.atshop.usermanagement.entity.SysLoginLog">
+    update sys_login_log
+    set user_name = #{userName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
       create_by = #{createBy,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
-      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
-      del_flag = #{delFlag,jdbcType=TINYINT}
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="findPage" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_role
+    from sys_login_log
   </select>
-  <select id="findAll" resultMap="BaseResultMap">
+  <select id="findPageByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	<bind name="pattern" value="'%' + _parameter.userName + '%'" />
     select 
     <include refid="Base_Column_List" />
-    from sys_role
+    from sys_login_log
+    where user_name like #{pattern}
   </select>
-  <select id="findPageByName" parameterType="java.lang.String" resultMap="BaseResultMap">
-  	<bind name="pattern" value="'%' + _parameter.name + '%'" />
-  	select 
-    <include refid="Base_Column_List" />
-    from sys_role
-    where name like #{pattern}
-  </select>
-  <select id="findByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="findPageByStatus" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	<bind name="pattern" value="'%' + _parameter.status + '%'" />
     select 
     <include refid="Base_Column_List" />
-    from sys_role
-    where name = #{name,jdbcType=VARCHAR}
+    from sys_login_log
+    where status like #{pattern}
   </select>
 </mapper>

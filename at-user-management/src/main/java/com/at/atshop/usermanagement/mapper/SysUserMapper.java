@@ -2,10 +2,12 @@ package com.at.atshop.usermanagement.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.at.atshop.usermanagement.entity.SysUser;
 
+@Mapper
 public interface SysUserMapper {
     int deleteByPrimaryKey(Long id);
 
