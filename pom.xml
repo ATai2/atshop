@@ -16,6 +16,7 @@
         <module>at-user-management</module>
         <module>at-backup</module>
         <module>at-monitor</module>
+        <module>at-activiti</module>
     </modules>
 
     <packaging>pom</packaging>

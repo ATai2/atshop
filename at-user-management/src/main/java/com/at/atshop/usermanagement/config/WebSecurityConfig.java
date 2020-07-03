@@ -38,7 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 跨域预检请求
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 // web jars
-                .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/**").permitAll()
+//                .antMatchers("/webjars/**").permitAll()
                 // 查看SQL监控（druid）
                 .antMatchers("/druid/**").permitAll()
                 // 首页和登录页面
