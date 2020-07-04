@@ -34,7 +34,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.47</version>
+            <version>8.0.16</version>
         </dependency>
 
         <!--加入下面的引入,可以使用junit5的版本来测试; 如果想用junit4的测试, 把exclusioins去除-->
