@@ -1,15 +1,28 @@
 server:
-  port: 9100
+  port: 8796
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://94.191.68.209:8761/eureka/
+  instance:
+    prefer-ip-address: true
 
 spring:
+  application:
+    name: config
+  profiles:
+    active: native
   cloud:
     config:
       server:
-        git:
-          uri: file://${user.home}/config-repo
+        search-locations: classpath:/shared
+#        default:
+#          search-locations: classpath:/shared
+
+#        git:
+#          uri: https://github.com/ATai2/atshop
+#          searchPaths: config
+
+
 #          uri: file://${user.home}/config-repo

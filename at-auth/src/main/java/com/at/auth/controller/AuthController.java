@@ -1,5 +1,23 @@
 package com.at.auth.controller;
 
-//@RestController
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
 public class AuthController {
+
+    @Value("${foo}")
+    String name;
+
+    @GetMapping("/hello")
+    public String hello(){
+        return "hello";
+    }
+  @GetMapping("/name")
+    public String name(){
+        return name;
+    }
+
+
 }

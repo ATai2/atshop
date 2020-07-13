@@ -1,7 +1,20 @@
 server:
   port: 8091
 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://94.191.68.209:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
 spring:
+  application:
+    name: auth
+  cloud:
+    config:
+      uri: http://localhost:8796
+      fail-fast: true
   datasource:
     url: jdbc:mysql://94.191.68.209:13306/mall?useUnicode=true
     driver-class-name: com.mysql.jdbc.Driver
