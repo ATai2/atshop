@@ -1,0 +1,15 @@
+server:
+  port: 9100
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: file://${user.home}/config-repo
+#          uri: file://${user.home}/config-repo
