@@ -16,13 +16,11 @@ spring:
   cloud:
     config:
       server:
-        search-locations: classpath:/shared
-#        default:
-#          search-locations: classpath:/shared
+#        search-locations: classpath:/shared
 
-#        git:
-#          uri: https://github.com/ATai2/atshop
-#          searchPaths: config
+        git:
+          uri: https://github.com/ATai2/atshop
+          searchPaths: config
 
 
 #          uri: file://${user.home}/config-repo
