@@ -18,6 +18,7 @@
         <module>at-monitor</module>
         <module>at-kettle</module>
         <module>at-activiti</module>
+        <module>at-sqltrans</module>
     </modules>
 
     <packaging>pom</packaging>
