@@ -11,39 +11,48 @@ spring:
   boot:
     admin:
       client:
-        url: http://localhost:8000
-  datasource:
-    name: druidDataSource
-    type: com.alibaba.druid.pool.DruidDataSource
-    druid:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://94.191.68.209:13306/mall?useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
-      username: root
-      password: asdfF@1234
-      filters: stat,wall,log4j,config
-      max-active: 100
-      initial-size: 1
-      max-wait: 60000
-      min-idle: 1
-      time-between-eviction-runs-millis: 60000
-      min-evictable-idle-time-millis: 300000
-      validation-query: select 'x'
-      test-while-idle: true
-      test-on-borrow: false
-      test-on-return: false
-      pool-prepared-statements: true
-      max-open-prepared-statements: 50
-      max-pool-prepared-statement-per-connection-size: 20
-
+        url: http://94.191.68.209:8000
   zipkin:
     base-url: http://94.191.68.209:9411/  # zipkin服务器的地址
     # 关闭服务发现，否则Spring Cloud会把zipkin的url当做服务名称
     discoveryClientEnabled: false
     sender:
       type: web  # 设置使用http的方式传输数据
-  sleuth:
+    sleuth:
       sampler:
         probability: 1  # 设置抽样采集率为100%，默认为0.1，即10%
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://94.191.68.209:3306/mall?useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    #Spring Boot 默认是不注入这些属性值的，需要自己绑定
+    #druid 数据源专有配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    # 打开PSCache
+    poolPreparedStatements: true
+    #配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入
+    #如果运行时报错  java.lang.ClassNotFoundException: org.apache.log4j.Priority
+    #则导入 log4j 依赖即可，Maven 地址： https://mvnrepository.com/artifact/log4j/log4j
+    filters: stat,wall,log4j,config
+    #指定每个连接上PSCache的大小
+    maxPoolPreparedStatementPerConnectionSize: 20
+    #合并多个DruidDataSource的监控数据
+    useGlobalDataSourceStat: true
+    #通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+
 
 pagehelper:
   helperDialect: mysql
@@ -61,3 +70,8 @@ logging:
     com.at.atshop.usermanagement.mapper: debug
     org.springframework.cloud.openfeign: debug
     org.springframework.cloud.sleuth: debug
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://94.191.68.209:8761/eureka/
