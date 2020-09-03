@@ -5,29 +5,54 @@ services:
     restart: always
     ports:
       - 8761:8761
-
-  monitor:
-    image: atai2/at-monitor
+  mysql:
     restart: always
+    image: mysql:5.7
+    deploy:
+      resources:
+        limits:
+          memory: 256m
+    container_name: mysqlmall
     ports:
-      - 8000:8000
+      - 13306:3306
     environment:
-      eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka/
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mall
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - ./db:/var/lib/mysql
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1
+      --max_allowed_packet=128M
+      --sql-mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO"
 
-  usermanager:
-    image: atai2/at-user-management
-    restart: always
-    ports:
-    - 9000:9000
-    environment:
-      eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka/
-      spring.boot.adminc.lient.url: http://94.191.68.209:8000
-
-  zipkin:
-    image: openzipkin/zipkin
-    restart: always
+    monitor:
+      image: atai2/at-monitor
+      restart: always
       ports:
-        - 9411:9411
+        - 8000:8000
+      environment:
+        eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka/
+
+    usermanager:
+      image: atai2/at-user-management
+      restart: always
+      ports:
+      - 9000:9000
+      environment:
+        eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka/
+        spring.boot.adminc.lient.url: http://94.191.68.209:8000
+
+    zipkin:
+      image: openzipkin/zipkin
+      restart: always
+        ports:
+          - 9411:9411
 
 #  flowable:
 #    image: flowable/flowable-rest
