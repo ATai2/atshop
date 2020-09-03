@@ -35,6 +35,16 @@ spring:
       max-open-prepared-statements: 50
       max-pool-prepared-statement-per-connection-size: 20
 
+  zipkin:
+    base-url: http://94.191.68.209:9411/  # zipkin服务器的地址
+    # 关闭服务发现，否则Spring Cloud会把zipkin的url当做服务名称
+    discoveryClientEnabled: false
+    sender:
+      type: web  # 设置使用http的方式传输数据
+  sleuth:
+      sampler:
+        probability: 1  # 设置抽样采集率为100%，默认为0.1，即10%
+
 pagehelper:
   helperDialect: mysql
   reasonable: true
@@ -49,3 +59,5 @@ pagehelper:
 logging:
   level:
     com.at.atshop.usermanagement.mapper: debug
+    org.springframework.cloud.openfeign: debug
+    org.springframework.cloud.sleuth: debug

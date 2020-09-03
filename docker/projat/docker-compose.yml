@@ -12,7 +12,7 @@ services:
       resources:
         limits:
           memory: 256m
-    container_name: mysqlmall
+    container_name: mall
     ports:
       - 13306:3306
     environment:
