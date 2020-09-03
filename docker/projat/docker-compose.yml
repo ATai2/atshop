@@ -23,18 +23,24 @@ services:
       eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka/
       spring.boot.adminc.lient.url: http://94.191.68.209:8000
 
-  flowable:
-    image: flowable/flowable-rest
+  zipkin:
+    image: openzipkin/zipkin
     restart: always
-    ports:
-    - 9300:9300
-    environment:
-      SERVER_PORT: 9300
-      SPRING_DATASOURCE_DRIVER-CLASS-NAME: com.mysql.jdbc.Driver
-      SPRING_DATASOURCE_URL: jdbc:mysql://94.191.68.209:13306/activiti?useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-      FLOWABLE_REST_APP_ADMIN_USER-ID: rest-admin
-      FLOWABLE_REST_APP_ADMIN_PASSWORD: test
-      FLOWABLE_REST_APP_ADMIN_FIRST-NAME: Rest
-      FLOWABLE_REST_APP_ADMIN_LAST-NAME: Admin
+      ports:
+        - 9411:9411
+
+#  flowable:
+#    image: flowable/flowable-rest
+#    restart: always
+#    ports:
+#    - 9300:9300
+#    environment:
+#      SERVER_PORT: 9300
+#      SPRING_DATASOURCE_DRIVER-CLASS-NAME: com.mysql.jdbc.Driver
+#      SPRING_DATASOURCE_URL: jdbc:mysql://94.191.68.209:13306/activiti?useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: root
+#      FLOWABLE_REST_APP_ADMIN_USER-ID: rest-admin
+#      FLOWABLE_REST_APP_ADMIN_PASSWORD: test
+#      FLOWABLE_REST_APP_ADMIN_FIRST-NAME: Rest
+#      FLOWABLE_REST_APP_ADMIN_LAST-NAME: Admin
