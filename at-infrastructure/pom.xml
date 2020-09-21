@@ -14,6 +14,8 @@
     <modules>
         <module>at-cloud</module>
         <module>at-aliba</module>
+        <module>at-apm</module>
+        <module>at-appmonitor</module>
     </modules>
 
 

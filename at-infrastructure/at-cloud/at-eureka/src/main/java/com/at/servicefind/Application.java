@@ -1,4 +1,4 @@
-package com.at.config;
+package com.at.servicefind;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

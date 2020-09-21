@@ -9,11 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>at-cloud</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>at-eureka</module>
-    </modules>
+    <artifactId>at-apm</artifactId>
 
 
 </project>

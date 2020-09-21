@@ -3,17 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>atshop</artifactId>
+        <artifactId>at-cloud</artifactId>
         <groupId>com.atshop</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>at-eureka</artifactId>
-    <properties>
-        <docker.repostory>hub.docker.com</docker.repostory>
-        <docker.image.prefix>atai2</docker.image.prefix>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -26,10 +22,10 @@
             <scope>test</scope>
         </dependency>
         <!-- spring cloud 默认配置启动器 -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-config</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-config</artifactId>-->
+        <!--        </dependency>-->
         <!-- spring cloud Eureka Server 启动器 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -60,16 +56,16 @@
                             <include>${project.build.finalName}.jar</include>
                         </resource>
                     </resources>
-<!--                    <baseImage>openjdk:8-jre-alpine</baseImage>-->
-<!--                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>-->
-<!--                    <dockerDirectory>${basedir}/docker</dockerDirectory>-->
-<!--                    <resources>-->
-<!--                        <resource>-->
-<!--                            <targetPath>/</targetPath>-->
-<!--                            <directory>${project.build.directory}</directory>-->
-<!--                            <include>${project.build.finalName}.jar</include>-->
-<!--                        </resource>-->
-<!--                    </resources>-->
+                    <!--                    <baseImage>openjdk:8-jre-alpine</baseImage>-->
+                    <!--                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>-->
+                    <!--                    <dockerDirectory>${basedir}/docker</dockerDirectory>-->
+                    <!--                    <resources>-->
+                    <!--                        <resource>-->
+                    <!--                            <targetPath>/</targetPath>-->
+                    <!--                            <directory>${project.build.directory}</directory>-->
+                    <!--                            <include>${project.build.finalName}.jar</include>-->
+                    <!--                        </resource>-->
+                    <!--                    </resources>-->
                 </configuration>
             </plugin>
             <plugin>
