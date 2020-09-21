@@ -3,18 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>at-infrastructure</artifactId>
+        <artifactId>at-cloud</artifactId>
         <groupId>com.atshop</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>at-cloud</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>at-eureka</module>
-        <module>untitledat-config</module>
-    </modules>
+    <artifactId>untitledat-config</artifactId>
 
 
 </project>
