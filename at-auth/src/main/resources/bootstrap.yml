@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: auth
-  cloud:
-    config:
-      uri: http://localhost:8796
-      fail-fast: true
-  profiles:
-    active: dev

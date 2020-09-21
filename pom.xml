@@ -7,18 +7,19 @@
     <artifactId>atshop</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
-
         <module>at-eureka</module>
         <module>at-config</module>
         <module>at-common</module>
         <module>at-gateway</module>
-        <module>at-auth</module>
         <module>at-user-management</module>
         <module>at-backup</module>
         <module>at-monitor</module>
         <module>at-kettle</module>
-        <module>at-activiti</module>
         <module>at-nacos</module>
+        <module>at-siteauth</module>
+        <module>at-drool</module>
+        <module>at-web</module>
+        <module>at-infrastructure</module>
     </modules>
 
     <packaging>pom</packaging>
