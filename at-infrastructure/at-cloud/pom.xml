@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>at-eureka</module>
-        <module>untitledat-config</module>
+        <module>at-config</module>
     </modules>
 
 

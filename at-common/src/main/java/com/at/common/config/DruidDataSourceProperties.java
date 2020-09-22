@@ -3,6 +3,7 @@ package com.at.common.config;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+@Data
 public class DruidDataSourceProperties {
 
     // jdbc
