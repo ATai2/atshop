@@ -31,10 +31,12 @@ activeMQ
 
 # 前端部分
 ### 后台管理
-后台管理采用ng-admin2(ngx-admin),修改部分功能。
+后台管理采用vue-element-admin,修改部分功能。
 
 # 数据抓取
 数据源：
 
+
+服务发现切换到alibaba的nacos
 
 
