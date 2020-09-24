@@ -20,8 +20,8 @@ spring:
     # 服务注册和配置
     nacos:
       discovery:
-        server-addr: 94.191.68.209:8848
+        server-addr: 127.0.0.1:8848
       config:
-        server-addr: 94.191.68.209:8848
+        server-addr: 127.0.0.1:8848
         file-extension: yml
         group: atshop
