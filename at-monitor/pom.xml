@@ -11,7 +11,7 @@
     <properties>
         <docker.repostory>hub.docker.com</docker.repostory>
         <docker.image.prefix>atai2</docker.image.prefix>
-        <spring-cloud.version>Hoxton.SR5</spring-cloud.version>
+        <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
     </properties>
     <artifactId>at-monitor</artifactId>
     <dependencies>

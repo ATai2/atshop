@@ -1,0 +1,27 @@
+server:
+  port: 8100
+
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://10.110.87.202:8761/eureka/
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#
+spring:
+  # 应用程序名称
+  application:
+    name: at-gateway
+    # 服务注册和配置
+    nacos:
+      discovery:
+        server-addr: 94.191.68.209:8848
+      config:
+        server-addr: 94.191.68.209:8848
+        file-extension: yml
+        group: atshop
