@@ -22,3 +22,4 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+/at-frontend/admin/node_modules/
