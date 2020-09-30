@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>at-auth</module>
+        <module>at-sql</module>
     </modules>
 
     <dependencies>

@@ -1,22 +1,14 @@
 # atshop
 基于springcloud的商城类网站
+目前网上有很多快速开发平台，atshop目的在于开发解耦应用
 
 ## 2018-01-25
 初始化应用工程，添加注册中心，工作流模块，用户管理模块，
 
-项目规划：
-* 后台管理： ng-admin
-* 单点登录
-* 站内搜索
-* 电影信息网站
-* 商品详情
-* 用户管理
+
 
 部署：
 dockerfile 
-
-JMS:
-activeMQ
 
 打包后放置于应用文件夹，准备dockerfile。具体实现方式，请使用脚本，推荐groovy或者python
 
@@ -38,5 +30,8 @@ activeMQ
 
 
 服务发现切换到alibaba的nacos
+
+业务部分开发：
+参考at-web模块，基础设施建设在at-infrastructure
 
 
