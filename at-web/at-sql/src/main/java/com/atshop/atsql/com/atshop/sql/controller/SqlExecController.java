@@ -10,5 +10,12 @@ public class SqlExecController {
     public String hello(){
         return "ok";
     }
+    @GetMapping("sql")
+    public String sql(){
+
+
+
+        return "ok";
+    }
 
 }
