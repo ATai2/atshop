@@ -34,4 +34,9 @@ dockerfile
 业务部分开发：
 参考at-web模块，基础设施建设在at-infrastructure
 
-
+检索部分使用es
+如果是使用的云主机，开发配置较低，可以通过修改es的相关配置
+网上有说添加环境变量：-e ES_JAVA_OPTS="-Xms256m -Xmx256m"指定堆内存即可
+实测logs中有报错，不识别
+可以通过修改es的jvm.options文件，例如：vi /var/lib/docker/overlay2/05408c9d3929a4fba2679170ea59004fcad7b0ab810c992df41f6cdabf092935/diff/usr/share/elasticsearch/config/jvm.options
+亲测可用
