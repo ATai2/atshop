@@ -42,3 +42,16 @@ dockerfile
 亲测可用
 
 kibana
+
+# 结构
+对于后端管理类项目，业务并不是太复杂，而且往往有数据库类型的迁移问题，因此选用hibernate最为持久层框架，业务层选用mybatis分模块进行开发
+
+需要高效检索的数据同步es
+数据库选择对应的同步插件。可供选择的插件包括：
+1）mysql、oracle选择 logstash-input-jdbc 插件。
+2）mongo选择 mongo-connector工具
+
+代码生成器
+
+测试模块
+selenium 
