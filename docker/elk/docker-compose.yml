@@ -18,7 +18,7 @@ services:
           memory: 256m
     environment:
       - discovery.type=single-node
-      - ES_JAVA_OPTS="-Xms128m -Xmx128m"
+#      - ES_JAVA_OPTS="-Xms128m -Xmx128m"
     volumes:
       - ./esdata:/usr/share/elasticsearch/data
     #    networks:
@@ -43,7 +43,8 @@ services:
     container_name: logstash
     volumes:
   #    :ro 只读
-      - ./data/logstash/config/:/usr/share/logstash/config/:ro
+      - ./data/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./data/logstash/config/:/usr/share/logstash/conf.d/
   #    - /elk/config/logstash/pipeline/:/usr/share/logstash/pipeline/
     ports:
       - "5044:5044"
