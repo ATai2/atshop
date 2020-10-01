@@ -25,6 +25,7 @@
         <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
         <docker.repostory>hub.docker.com</docker.repostory>
         <docker.image.prefix>atai2</docker.image.prefix>
+        <spring-boot-admin.version>2.3.0</spring-boot-admin.version>
     </properties>
 
     <parent>

@@ -12,11 +12,11 @@ server:
 #      exposure:
 #        include: "*"
 #
-##spring:
-##  boot:
-##    admin:
-##      client:
-##        url: http://10.110.87.202:8000
+spring:
+  boot:
+    admin:
+      client:
+        url: http://10.110.87.202:8000
 #  zipkin:
 #    base-url: http://10.110.87.202:9411/  # zipkin服务器的地址
 #    # 关闭服务发现，否则Spring Cloud会把zipkin的url当做服务名称
