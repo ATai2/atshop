@@ -20,11 +20,13 @@ import com.atshop.auth.domain.Dept;
 import com.atshop.auth.service.dto.DeptDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
+import org.springframework.stereotype.Component;
 
 /**
 * @author Zheng Jie
 * @date 2019-03-25
 */
+@Component
 @Mapper(componentModel = "spring",unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface DeptMapper extends BaseMapper<DeptDto, Dept> {
 }

@@ -15,21 +15,20 @@
  */
 package com.atshop.auth.service.impl;
 
+import com.at.common.exception.EntityExistException;
+import com.at.common.exception.EntityNotFoundException;
+import com.atshop.auth.config.FileProperties;
+import com.atshop.auth.repository.UserRepository;
+import com.atshop.auth.utils.*;
 import lombok.RequiredArgsConstructor;
-import me.zhengjie.config.FileProperties;
-import me.zhengjie.exception.EntityExistException;
-import me.zhengjie.exception.EntityNotFoundException;
-import me.zhengjie.modules.security.service.OnlineUserService;
-import me.zhengjie.modules.security.service.UserCacheClean;
 import  com.atshop.auth.domain.User;
-import me.zhengjie.modules.system.repository.UserRepository;
 import com.atshop.auth.service.UserService;
 import com.atshop.auth.service.dto.JobSmallDto;
 import com.atshop.auth.service.dto.RoleSmallDto;
 import com.atshop.auth.service.dto.UserDto;
 import com.atshop.auth.service.dto.UserQueryCriteria;
 import com.atshop.auth.service.mapstruct.UserMapper;
-import me.zhengjie.utils.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -58,8 +57,8 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final FileProperties properties;
     private final RedisUtils redisUtils;
-    private final UserCacheClean userCacheClean;
-    private final OnlineUserService onlineUserService;
+//    private final UserCacheClean userCacheClean;
+//    private final OnlineUserService onlineUserService;
 
     @Override
     public Object queryAll(UserQueryCriteria criteria, Pageable pageable) {
@@ -121,7 +120,7 @@ public class UserServiceImpl implements UserService {
         }
         // 如果用户被禁用，则清除用户登录信息
         if(!resources.getEnabled()){
-            onlineUserService.kickOutForUsername(resources.getUsername());
+//            onlineUserService.kickOutForUsername(resources.getUsername());
         }
         user.setUsername(resources.getUsername());
         user.setEmail(resources.getEmail());
@@ -244,6 +243,6 @@ public class UserServiceImpl implements UserService {
      * @param username /
      */
     private void flushCache(String username) {
-        userCacheClean.cleanUserCache(username);
+//        userCacheClean.cleanUserCache(username);
     }
 }

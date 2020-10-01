@@ -50,12 +50,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @CacheConfig(cacheNames = "dept")
 public class DeptServiceImpl implements DeptService {
-
-    private final DeptRepository deptRepository;
-    private final DeptMapper deptMapper;
-    private final UserRepository userRepository;
-    private final RedisUtils redisUtils;
-    private final RoleRepository roleRepository;
+    DeptRepository deptRepository;
+    DeptMapper deptMapper;
+    UserRepository userRepository;
+    RedisUtils redisUtils;
+    RoleRepository roleRepository;
 
     @Override
     public List<DeptDto> queryAll(DeptQueryCriteria criteria, Boolean isQuery) throws Exception {

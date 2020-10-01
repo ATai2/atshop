@@ -15,14 +15,13 @@
  */
 package com.atshop.auth.service.impl;
 
-import lombok.RequiredArgsConstructor;
-import  com.atshop.auth.domain.Dept;
-import com.atshop.auth.service.DataService;
+import com.atshop.auth.domain.Dept;
 import com.atshop.auth.service.DeptService;
 import com.atshop.auth.service.RoleService;
 import com.atshop.auth.service.dto.RoleSmallDto;
 import com.atshop.auth.service.dto.UserDto;
-import me.zhengjie.utils.enums.DataScopeEnum;
+import com.atshop.auth.utils.DataScopeEnum;
+import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -41,10 +40,11 @@ import java.util.*;
 public class DataServiceImpl implements com.atshop.auth.service.DataService {
 
     private final RoleService roleService;
-    private final com.atshop.auth.service.DeptService deptService;
+    private final DeptService deptService;
 
     /**
      * 用户角色改变时需清理缓存
+     *
      * @param user /
      * @return /
      */
@@ -74,11 +74,12 @@ public class DataServiceImpl implements com.atshop.auth.service.DataService {
 
     /**
      * 获取自定义的数据权限
+     *
      * @param deptIds 部门ID
-     * @param role 角色
+     * @param role    角色
      * @return 数据权限ID
      */
-    public Set<Long> getCustomize(Set<Long> deptIds, RoleSmallDto role){
+    public Set<Long> getCustomize(Set<Long> deptIds, RoleSmallDto role) {
         Set<Dept> depts = deptService.findByRoleId(role.getId());
         for (Dept dept : depts) {
             deptIds.add(dept.getId());

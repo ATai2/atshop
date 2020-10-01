@@ -13,30 +13,33 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.atshop.auth.service;
+package com.atshop.auth.domain.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import com.atshop.auth.domain.vo.EmailVo;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 /**
- * @author Zheng Jie
- * @date 2018-12-26
+ * 发送邮件时，接收参数的类
+ * @author 郑杰
+ * @date 2018/09/28 12:02:14
  */
-public interface VerifyService {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class EmailVo {
 
-    /**
-     * 发送验证码
-     * @param email /
-     * @param key /
-     * @return /
-     */
-    EmailVo sendEmail(String email, String key);
+    /** 收件人，支持多个收件人 */
+    @NotEmpty
+    private List<String> tos;
 
+    @NotBlank
+    private String subject;
 
-    /**
-     * 验证
-     * @param code /
-     * @param key /
-     */
-    void validated(String key, String code);
+    @NotBlank
+    private String content;
 }

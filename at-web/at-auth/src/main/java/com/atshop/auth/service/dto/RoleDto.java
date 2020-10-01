@@ -15,9 +15,9 @@
  */
 package com.atshop.auth.service.dto;
 
+import com.at.common.base.BaseDTO;
 import lombok.Getter;
 import lombok.Setter;
-import me.zhengjie.base.BaseDTO;
 
 import java.io.Serializable;
 import java.util.Objects;

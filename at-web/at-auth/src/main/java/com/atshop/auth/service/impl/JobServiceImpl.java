@@ -15,7 +15,14 @@
  */
 package com.atshop.auth.service.impl;
 
+import com.at.common.exception.BadRequestException;
+import com.at.common.exception.EntityExistException;
+import com.atshop.auth.repository.JobRepository;
+import com.atshop.auth.repository.UserRepository;
 import com.atshop.auth.service.JobService;
+import com.atshop.auth.service.dto.JobDto;
+import com.atshop.auth.service.mapstruct.JobMapper;
+import com.atshop.auth.utils.*;
 import lombok.RequiredArgsConstructor;
 import  com.atshop.auth.domain.Job;
 import org.springframework.cache.annotation.CacheConfig;
@@ -25,7 +32,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import com.atshop.auth.service.dto.JobQueryCriteria;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;

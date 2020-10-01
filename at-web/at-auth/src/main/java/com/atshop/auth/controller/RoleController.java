@@ -16,17 +16,17 @@
 package com.atshop.auth.controller;
 
 import cn.hutool.core.lang.Dict;
+import com.at.common.exception.BadRequestException;
+import com.atshop.auth.utils.SecurityUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import me.zhengjie.annotation.Log;
-import me.zhengjie.exception.BadRequestException;
+import com.at.common.anno.Log;
 import  com.atshop.auth.domain.Role;
 import com.atshop.auth.service.RoleService;
 import com.atshop.auth.service.dto.RoleDto;
 import com.atshop.auth.service.dto.RoleQueryCriteria;
 import com.atshop.auth.service.dto.RoleSmallDto;
-import me.zhengjie.utils.SecurityUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

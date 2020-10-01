@@ -16,15 +16,15 @@
 package com.atshop.auth.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.at.common.exception.BadRequestException;
+import com.at.common.exception.EntityExistException;
+import com.atshop.auth.repository.RoleRepository;
+import com.atshop.auth.repository.UserRepository;
+import com.atshop.auth.utils.*;
 import lombok.RequiredArgsConstructor;
-import me.zhengjie.exception.BadRequestException;
-import me.zhengjie.exception.EntityExistException;
-import me.zhengjie.modules.security.service.UserCacheClean;
 import  com.atshop.auth.domain.Menu;
 import  com.atshop.auth.domain.Role;
 import  com.atshop.auth.domain.User;
-import me.zhengjie.modules.system.repository.RoleRepository;
-import me.zhengjie.modules.system.repository.UserRepository;
 import com.atshop.auth.service.RoleService;
 import com.atshop.auth.service.dto.RoleDto;
 import com.atshop.auth.service.dto.RoleQueryCriteria;
@@ -32,7 +32,7 @@ import com.atshop.auth.service.dto.RoleSmallDto;
 import com.atshop.auth.service.dto.UserDto;
 import com.atshop.auth.service.mapstruct.RoleMapper;
 import com.atshop.auth.service.mapstruct.RoleSmallMapper;
-import me.zhengjie.utils.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -62,11 +62,11 @@ public class RoleServiceImpl implements RoleService {
     private final RoleSmallMapper roleSmallMapper;
     private final RedisUtils redisUtils;
     private final UserRepository userRepository;
-    private final UserCacheClean userCacheClean;
+//    private final UserCacheClean userCacheClean;
 
     @Override
     public List<RoleDto> queryAll() {
-        Sort sort = new Sort(Sort.Direction.ASC, "level");
+        Sort sort =  Sort.by(Sort.Direction.ASC, "level");
         return roleMapper.toDto(roleRepository.findAll(sort));
     }
 
@@ -212,7 +212,7 @@ public class RoleServiceImpl implements RoleService {
     public void delCaches(Long id, List<User> users) {
         users = CollectionUtil.isEmpty(users) ? userRepository.findByRoleId(id) : users;
         if (CollectionUtil.isNotEmpty(users)) {
-            users.forEach(item -> userCacheClean.cleanUserCache(item.getUsername()));
+//            users.forEach(item -> userCacheClean.cleanUserCache(item.getUsername()));
             Set<Long> userIds = users.stream().map(User::getId).collect(Collectors.toSet());
             redisUtils.delByKeys(CacheKey.DATE_USER, userIds);
             redisUtils.delByKeys(CacheKey.MENU_USER, userIds);

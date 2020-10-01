@@ -16,18 +16,18 @@
 package com.atshop.auth.controller;
 
 import cn.hutool.core.collection.CollectionUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import lombok.RequiredArgsConstructor;
-import me.zhengjie.annotation.Log;
-import me.zhengjie.exception.BadRequestException;
-import  com.atshop.auth.domain.Menu;
+import com.at.common.anno.Log;
+import com.at.common.exception.BadRequestException;
+import com.atshop.auth.domain.Menu;
 import com.atshop.auth.service.MenuService;
 import com.atshop.auth.service.dto.MenuDto;
 import com.atshop.auth.service.dto.MenuQueryCriteria;
 import com.atshop.auth.service.mapstruct.MenuMapper;
-import me.zhengjie.utils.PageUtil;
-import me.zhengjie.utils.SecurityUtils;
+import com.atshop.auth.utils.PageUtil;
+import com.atshop.auth.utils.SecurityUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -62,7 +62,7 @@ public class MenuController {
 
     @GetMapping(value = "/build")
     @ApiOperation("获取前端所需菜单")
-    public ResponseEntity<Object> buildMenus(){
+    public ResponseEntity<Object> buildMenus() {
         List<MenuDto> menuDtoList = menuService.findByUser(SecurityUtils.getCurrentUserId());
         List<MenuDto> menuDtos = menuService.buildTree(menuDtoList);
         return new ResponseEntity<>(menuService.buildMenus(menuDtos), HttpStatus.OK);
@@ -71,7 +71,7 @@ public class MenuController {
     @ApiOperation("返回全部的菜单")
     @GetMapping(value = "/lazy")
     @PreAuthorize("@el.check('menu:list','roles:list')")
-    public ResponseEntity<Object> query(@RequestParam Long pid){
+    public ResponseEntity<Object> query(@RequestParam Long pid) {
         return new ResponseEntity<>(menuService.getMenus(pid), HttpStatus.OK);
     }
 
@@ -90,7 +90,7 @@ public class MenuController {
     @PreAuthorize("@el.check('menu:list')")
     public ResponseEntity<Object> getSuperior(@RequestBody List<Long> ids) {
         Set<MenuDto> menuDtos = new LinkedHashSet<>();
-        if(CollectionUtil.isNotEmpty(ids)){
+        if (CollectionUtil.isNotEmpty(ids)) {
             for (Long id : ids) {
                 MenuDto menuDto = menuService.findById(id);
                 menuDtos.addAll(menuService.getSuperior(menuDto, new ArrayList<>()));
@@ -104,9 +104,9 @@ public class MenuController {
     @ApiOperation("新增菜单")
     @PostMapping
     @PreAuthorize("@el.check('menu:add')")
-    public ResponseEntity<Object> create(@Validated @RequestBody Menu resources){
+    public ResponseEntity<Object> create(@Validated @RequestBody Menu resources) {
         if (resources.getId() != null) {
-            throw new BadRequestException("A new "+ ENTITY_NAME +" cannot already have an ID");
+            throw new BadRequestException("A new " + ENTITY_NAME + " cannot already have an ID");
         }
         menuService.create(resources);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -116,7 +116,7 @@ public class MenuController {
     @ApiOperation("修改菜单")
     @PutMapping
     @PreAuthorize("@el.check('menu:edit')")
-    public ResponseEntity<Object> update(@Validated(Menu.Update.class) @RequestBody Menu resources){
+    public ResponseEntity<Object> update(@Validated(Menu.Update.class) @RequestBody Menu resources) {
         menuService.update(resources);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -125,7 +125,7 @@ public class MenuController {
     @ApiOperation("删除菜单")
     @DeleteMapping
     @PreAuthorize("@el.check('menu:del')")
-    public ResponseEntity<Object> delete(@RequestBody Set<Long> ids){
+    public ResponseEntity<Object> delete(@RequestBody Set<Long> ids) {
         Set<Menu> menuSet = new HashSet<>();
         for (Long id : ids) {
             List<MenuDto> menuList = menuService.getMenus(id);
