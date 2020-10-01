@@ -6,17 +6,25 @@ server:
 #    serviceUrl:
 #      defaultZone: http://10.110.87.202:8761/eureka/
 #
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "*"
-#
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
 spring:
+  application:
+    name: at-auth
   boot:
     admin:
       client:
-        url: http://10.110.87.202:8000
+        url: http://127.0.0.1:8769
+#        instance:
+#          prefer-ip: true
 #  zipkin:
 #    base-url: http://10.110.87.202:9411/  # zipkin服务器的地址
 #    # 关闭服务发现，否则Spring Cloud会把zipkin的url当做服务名称
