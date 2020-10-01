@@ -13,6 +13,8 @@ management:
         include: "*"
 
 spring:
+  application:
+    name: at-sql
   boot:
     admin:
       client:

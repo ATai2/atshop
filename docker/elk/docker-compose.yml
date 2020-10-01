@@ -1,0 +1,52 @@
+version: '3'
+services:
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.9.2
+    container_name:  filebeat
+    environment:
+    -  setup.kibana.host=81.68.202.192:5601
+    -  output.elasticsearch.hosts=["81.68.202.192:9200"]
+#    volumes:
+#    -
+
+#  elasticsearch:
+#    image: elasticsearch:7.2.0
+#    container_name: elasticsearch
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 256m
+#    environment:
+#      - discovery.type=single-node
+#      - ES_JAVA_OPTS="-Xms128m -Xmx128m"
+#    volumes:
+#      - ./esdata:/usr/share/elasticsearch/data
+#    #    networks:
+#    #    - efknet
+#    ports:
+#      - "9200:9200"
+#
+#  kibana:
+#    image: kibana:7.2.0
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 256m
+#    container_name: kibana
+#    #    networks:
+#    #    - efknet
+#    ports:
+#      - "5601:5601"
+logstash_test:
+  image: logstash:7.2.0
+  container_name: logstash01
+  volumes:
+    - /elk/config/logstash/config/:/usr/share/logstash/config/:ro
+    - /elk/config/logstash/pipeline/:/usr/share/logstash/pipeline/
+  ports:
+    - "5044:5044"
+    - "9600:9600"
+  environment:
+    LS_JAVA_OPTS: "-Xmx128m -Xms128m"
+  depends_on: #标签解决了容器的依赖、启动先后的问题
+    - elasticsearch
