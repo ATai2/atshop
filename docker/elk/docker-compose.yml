@@ -20,7 +20,7 @@ services:
       - discovery.type=single-node
 #      - ES_JAVA_OPTS="-Xms128m -Xmx128m"
     volumes:
-      - ./esdata:/usr/share/elasticsearch/data
+      - ./data/esdata:/usr/share/elasticsearch/data
     #    networks:
     #    - efknet
     ports:
