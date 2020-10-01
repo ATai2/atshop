@@ -38,17 +38,17 @@ services:
     ports:
       - "5601:5601"
 
-logstash:
-  image: logstash:7.2.0
-  container_name: logstash
-  volumes:
-#    :ro 只读
-    - ./data/logstash/config/:/usr/share/logstash/config/:ro
-#    - /elk/config/logstash/pipeline/:/usr/share/logstash/pipeline/
-  ports:
-    - "5044:5044"
-    - "9600:9600"
-  environment:
-    LS_JAVA_OPTS: "-Xmx128m -Xms128m"
-  depends_on: #标签解决了容器的依赖、启动先后的问题
-    - elasticsearch
+  logstash:
+    image: logstash:7.2.0
+    container_name: logstash
+    volumes:
+  #    :ro 只读
+      - ./data/logstash/config/:/usr/share/logstash/config/:ro
+  #    - /elk/config/logstash/pipeline/:/usr/share/logstash/pipeline/
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    environment:
+      LS_JAVA_OPTS: "-Xmx128m -Xms128m"
+    depends_on: #标签解决了容器的依赖、启动先后的问题
+      - elasticsearch
