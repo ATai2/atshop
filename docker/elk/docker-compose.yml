@@ -10,7 +10,7 @@ services:
 ##    -
 
   elasticsearch:
-    image: elasticsearch:7.2.0
+    image: elasticsearch:7.9.2
     container_name: elasticsearch
     deploy:
       resources:
@@ -27,7 +27,7 @@ services:
       - "9200:9200"
 
   kibana:
-    image: kibana:7.2.0
+    image: kibana:7.9.2
     deploy:
       resources:
         limits:
@@ -39,7 +39,7 @@ services:
       - "5601:5601"
 
   logstash:
-    image: logstash:7.2.0
+    image: logstash:7.9.2
     container_name: logstash
     volumes:
   #    :ro 只读
