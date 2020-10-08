@@ -41,6 +41,14 @@ dockerfile
 可以通过修改es的jvm.options文件，例如：vi /var/lib/docker/overlay2/05408c9d3929a4fba2679170ea59004fcad7b0ab810c992df41f6cdabf092935/diff/usr/share/elasticsearch/config/jvm.options
 亲测可用
 
+
+at-auth
+用户和应用权限
+
+
+at-ws:
+websocket
+
 kibana
 
 # 结构
