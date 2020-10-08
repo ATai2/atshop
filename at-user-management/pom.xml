@@ -83,11 +83,7 @@
             <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.atshop</groupId>
-            <artifactId>at-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+
 
         <dependency>
             <groupId>com.github.axet</groupId>

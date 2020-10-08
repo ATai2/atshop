@@ -13,10 +13,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class WebSocketServer {
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
-    private static AtomicInteger onlineNum = new AtomicInteger();
+    private static final AtomicInteger onlineNum = new AtomicInteger();
 
     //concurrent包的线程安全Set，用来存放每个客户端对应的WebSocketServer对象。
-    private static ConcurrentHashMap<String, Session> sessionPools = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, Session> sessionPools = new ConcurrentHashMap<>();
 
     //发送消息
     public void sendMessage(Session session, String message) throws IOException {
