@@ -60,7 +60,7 @@ public class DeptController {
     @Log("查询部门")
     @ApiOperation("查询部门")
     @GetMapping
-    @PreAuthorize("@el.check('user:list','dept:list')")
+//    @PreAuthorize("@el.check('user:list','dept:list')")
     public ResponseEntity<Object> query(DeptQueryCriteria criteria) throws Exception {
         List<DeptDto> deptDtos = deptService.queryAll(criteria, true);
         return new ResponseEntity<>(PageUtil.toPage(deptDtos, deptDtos.size()), HttpStatus.OK);

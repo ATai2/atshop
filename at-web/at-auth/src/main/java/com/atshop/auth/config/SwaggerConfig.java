@@ -45,6 +45,7 @@ import static springfox.documentation.schema.AlternateTypeRules.newRule;
 
 /**
  * api页面 /doc.html
+ *
  * @author Zheng Jie
  * @date 2018-11-23
  */
@@ -52,21 +53,23 @@ import static springfox.documentation.schema.AlternateTypeRules.newRule;
 @EnableSwagger2
 public class SwaggerConfig {
 
-//    @Value("${jwt.header}")
+    @Value("${jwt.header}")
     private String tokenHeader;
 
-//    @Value("${jwt.token-start-with}")
+    @Value("${jwt.token-start-with}")
     private String tokenStartWith;
 
-//    @Value("${swagger.enabled}")
-    private Boolean enabled;
+    @Value("${swagger.enabled}")
+    private Boolean enabled = true;
 
     @Bean
     @SuppressWarnings("all")
     public Docket createRestApi() {
         ParameterBuilder ticketPar = new ParameterBuilder();
         List<Parameter> pars = new ArrayList<>();
-        ticketPar.name(tokenHeader).description("token")
+        ticketPar
+                .name(tokenHeader)
+                .description("token")
                 .modelRef(new ModelRef("string"))
                 .parameterType("header")
                 .defaultValue(tokenStartWith + " ")
@@ -93,7 +96,7 @@ public class SwaggerConfig {
 }
 
 /**
- *  将Pageable转换展示在swagger中
+ * 将Pageable转换展示在swagger中
  */
 @Configuration
 class SwaggerDataConfig {
