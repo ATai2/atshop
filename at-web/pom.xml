@@ -16,6 +16,7 @@
         <module>at-sql</module>
         <module>at-search</module>
         <module>at-ws</module>
+        <module>at-tools</module>
     </modules>
 
     <dependencies>
