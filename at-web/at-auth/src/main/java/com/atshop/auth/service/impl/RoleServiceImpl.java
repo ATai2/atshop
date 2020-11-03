@@ -22,9 +22,9 @@ import com.atshop.auth.repository.RoleRepository;
 import com.atshop.auth.repository.UserRepository;
 import com.atshop.auth.utils.*;
 import lombok.RequiredArgsConstructor;
-import  com.atshop.auth.domain.Menu;
-import  com.atshop.auth.domain.Role;
-import  com.atshop.auth.domain.User;
+import com.atshop.auth.domain.Menu;
+import com.atshop.auth.domain.Role;
+import com.atshop.auth.domain.User;
 import com.atshop.auth.service.RoleService;
 import com.atshop.auth.service.dto.RoleDto;
 import com.atshop.auth.service.dto.RoleQueryCriteria;
@@ -66,7 +66,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<RoleDto> queryAll() {
-        Sort sort =  Sort.by(Sort.Direction.ASC, "level");
+        Sort sort = Sort.by(Sort.Direction.ASC, "level");
         return roleMapper.toDto(roleRepository.findAll(sort));
     }
 
@@ -207,6 +207,7 @@ public class RoleServiceImpl implements RoleService {
 
     /**
      * 清理缓存
+     *
      * @param id /
      */
     public void delCaches(Long id, List<User> users) {

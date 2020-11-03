@@ -16,7 +16,7 @@
 package com.atshop.auth.service.mapstruct;
 
 import com.at.common.base.BaseMapper;
-import  com.atshop.auth.domain.Menu;
+import com.atshop.auth.domain.Menu;
 import com.atshop.auth.service.dto.MenuDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -25,6 +25,6 @@ import org.mapstruct.ReportingPolicy;
  * @author Zheng Jie
  * @date 2018-12-17
  */
-@Mapper(componentModel = "spring",unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface MenuMapper extends BaseMapper<MenuDto, Menu> {
 }
