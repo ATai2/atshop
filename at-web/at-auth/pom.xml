@@ -13,6 +13,7 @@
         <!-- oshi监控需要指定jna版本, 问题详见 https://github.com/oshi/oshi/issues/1040 -->
         <jna.version>5.5.0</jna.version>
         <mapstruct.version>1.3.1.Final</mapstruct.version>
+        <maven.install.skip>true</maven.install.skip>
     </properties>
 
     <artifactId>at-auth</artifactId>
@@ -122,6 +123,31 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <executable>true</executable>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.1.1</version>
+                <configuration>
+                    <imageTags>
+                        <imageTag>latest</imageTag>
+                        <imageTag>0.0.1</imageTag>
+                    </imageTags>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <baseImage>openjdk:8-jre-alpine</baseImage>
+                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
         </plugins>
     </build>

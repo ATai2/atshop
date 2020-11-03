@@ -18,6 +18,9 @@
         <module>at-ws</module>
         <module>at-tools</module>
     </modules>
+    <properties>
+        <maven.install.skip>true</maven.install.skip>
+    </properties>
 
     <dependencies>
 
