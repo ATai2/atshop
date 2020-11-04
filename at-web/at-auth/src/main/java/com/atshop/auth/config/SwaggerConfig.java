@@ -65,31 +65,31 @@ public class SwaggerConfig {
     @Bean
     @SuppressWarnings("all")
     public Docket createRestApi() {
-        ParameterBuilder ticketPar = new ParameterBuilder();
-        List<Parameter> pars = new ArrayList<>();
-        ticketPar
-                .name(tokenHeader)
-                .description("token")
-                .modelRef(new ModelRef("string"))
-                .parameterType("header")
-                .defaultValue(tokenStartWith + " ")
-                .required(true)
-                .build();
-        pars.add(ticketPar.build());
+//        ParameterBuilder ticketPar = new ParameterBuilder();
+//        List<Parameter> pars = new ArrayList<>();
+//        ticketPar
+//                .name(tokenHeader)
+//                .description("token")
+//                .modelRef(new ModelRef("string"))
+//                .parameterType("header")
+//                .defaultValue(tokenStartWith + " ")
+//                .required(true)
+//                .build();
+//        pars.add(ticketPar.build());
         return new Docket(DocumentationType.SWAGGER_2)
                 .enable(enabled)
                 .apiInfo(apiInfo())
                 .select()
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
-                .build()
-                .globalOperationParameters(pars);
+                .build();
+//                .globalOperationParameters(pars);
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .description("一个简单且易上手的 Spring boot 后台管理框架")
-                .title("EL-ADMIN 接口文档")
-                .version("2.4")
+                .title("atshop 接口文档")
+                .version("0.1")
                 .build();
     }
 
