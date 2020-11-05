@@ -1,0 +1,17 @@
+version: '3'
+services:
+
+  monitor:
+    image: atai2/at-monitor
+    restart: always
+    ports:
+      - 8000:8000
+    environment:
+      eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka/
+
+
+  zipkin:
+    image: openzipkin/zipkin
+    restart: always
+    ports:
+      - 9411:9411
