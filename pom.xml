@@ -11,6 +11,7 @@
         <module>at-monitor</module>
         <module>at-web</module>
         <module>at-infrastructure</module>
+        <module>at-security</module>
     </modules>
 
     <packaging>pom</packaging>
