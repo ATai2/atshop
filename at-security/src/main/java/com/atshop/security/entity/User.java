@@ -3,10 +3,7 @@ package com.atshop.security.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Table(name = "s_user")
@@ -14,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "用户名不能为null")
     @Column(unique = true)
