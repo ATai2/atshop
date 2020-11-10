@@ -18,17 +18,18 @@ import java.io.IOException;
 @Component
 public class RateLimitFilter extends OncePerRequestFilter {
 
-    private RateLimiter rateLimiter = RateLimiter.create(1);
+    private RateLimiter rateLimiter = RateLimiter.create(100);
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        if (rateLimiter.tryAcquire()) {
-            filterChain.doFilter(httpServletRequest,httpServletResponse);
-        }else{
-            httpServletResponse.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
-            httpServletResponse.getWriter().write("to many requests!!!");
-            httpServletResponse.getWriter().flush();
-            return;
-        }
+        filterChain.doFilter(httpServletRequest,httpServletResponse);
+//        if (rateLimiter.tryAcquire()) {
+//            filterChain.doFilter(httpServletRequest,httpServletResponse);
+//        }else{
+//            httpServletResponse.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
+//            httpServletResponse.getWriter().write("to many requests!!!");
+//            httpServletResponse.getWriter().flush();
+//            return;
+//        }
     }
 }
