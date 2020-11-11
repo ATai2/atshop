@@ -5,6 +5,7 @@ import com.atshop.security.entity.UserInfo;
 import com.atshop.security.repository.UserRepository;
 import com.atshop.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,7 @@ public class UserController {
         return userService.findAll();
     }
     @PostMapping
-    public UserInfo create(@RequestBody UserInfo user) {
+    public UserInfo create(@RequestBody @Validated UserInfo user) {
         return userService.create(user);
     }
 

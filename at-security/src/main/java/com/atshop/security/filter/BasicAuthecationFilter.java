@@ -1,4 +1,4 @@
-package com.atshop.security.config;
+package com.atshop.security.filter;
 
 import com.atshop.security.entity.User;
 import com.atshop.security.repository.UserRepository;
