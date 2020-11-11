@@ -13,6 +13,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
     @NotBlank(message = "用户名不能为null")
     @Column(unique = true)
     private String userName;
