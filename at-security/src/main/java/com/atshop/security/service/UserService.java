@@ -18,4 +18,6 @@ public interface UserService {
     List<UserInfo> findAll();
 
     UserInfo get(Long id);
+
+    UserInfo login(UserInfo user);
 }

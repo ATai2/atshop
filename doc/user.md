@@ -55,3 +55,16 @@ intercepter
 aop
 
 ![](medie/audit.PNG)
+
+# 认证
+
+![](medie/1.PNG)
+![](medie/2.PNG)
+
+
+
+
+
+
+
+

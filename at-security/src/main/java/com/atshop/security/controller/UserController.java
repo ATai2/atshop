@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,6 +20,16 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @GetMapping("/login")
+    public void login(@Validated UserInfo user, HttpServletRequest request) {
+        UserInfo info = userService.login(user);
+//        防止cookie哄骗
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        request.getSession(true).setAttribute("user",info);
+    }
 
     @GetMapping
     public List<UserInfo> getUsers() {

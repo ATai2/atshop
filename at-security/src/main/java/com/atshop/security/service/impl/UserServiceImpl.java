@@ -59,4 +59,10 @@ public class UserServiceImpl implements UserService {
         Optional<User> user = userRepository.findById(id);
         return user.get().buildInfo();
     }
+
+    @Override
+    public UserInfo login(UserInfo user) {
+
+        return null;
+    }
 }
