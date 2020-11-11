@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     public UserInfo create(UserInfo user) {
         User entity = new User();
         BeanUtils.copyProperties(user, entity);
-        entity.setPassword(SCryptUtil.scrypt(user.getPassword(),32871,8,1));
+        entity.setPassword(SCryptUtil.scrypt(user.getPassword(),32768,8,1));
         User bean = userRepository.save(entity);
         user.setId(bean.getId());
         return user;

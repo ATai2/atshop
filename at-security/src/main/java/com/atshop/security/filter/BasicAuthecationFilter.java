@@ -2,8 +2,10 @@ package com.atshop.security.filter;
 
 import com.atshop.security.entity.User;
 import com.atshop.security.repository.UserRepository;
+import com.lambdaworks.crypto.SCryptUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -17,6 +19,7 @@ import java.util.Base64;
 import java.util.List;
 
 @Component
+@Order(2)
 public class BasicAuthecationFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -34,7 +37,8 @@ public class BasicAuthecationFilter extends OncePerRequestFilter {
             String password = items[1];
             User user = userRepository.findByUserName(username);
 
-            if (user != null && StringUtils.equals(password, user.getPassword())) {
+            if (user != null && SCryptUtil.check(password,user.getPassword())) {
+//            if (user != null && StringUtils.equals(password, user.getPassword())) {
                 httpServletRequest.setAttribute("user",user);
             }
 

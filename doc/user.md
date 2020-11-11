@@ -15,7 +15,11 @@ api访问控制：
 
 流控 认证 审计  授权  业务逻辑
 
-认证：
+# 流控
+流量控制
+sentinel或者自定义guava
+
+# 认证：
 
 认证信息：
 username:jojo
@@ -32,3 +36,16 @@ AES---对称加密
 盐---为了解决相同密码，加密结果是一样的
 
 
+https:
+keytool -genkeypair -alias jojo -keyalg RSA -keystore jojo.key 
+
+``` yaml
+server:
+  port: 9010
+  ssl:
+    key-store: classpath:jojo.key
+    key-store-password: asdfasdf
+    key-password: asdfasdf
+```
+
+# 审计
