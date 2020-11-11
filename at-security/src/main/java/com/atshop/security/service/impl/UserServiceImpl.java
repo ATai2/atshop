@@ -4,6 +4,7 @@ import com.atshop.security.entity.User;
 import com.atshop.security.entity.UserInfo;
 import com.atshop.security.repository.UserRepository;
 import com.atshop.security.service.UserService;
+import com.lambdaworks.crypto.SCryptUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class UserServiceImpl implements UserService {
     public UserInfo create(UserInfo user) {
         User entity = new User();
         BeanUtils.copyProperties(user, entity);
+        entity.setPassword(SCryptUtil.scrypt(user.getPassword(),32871,8,1));
         User bean = userRepository.save(entity);
         user.setId(bean.getId());
         return user;
