@@ -49,3 +49,9 @@ server:
 ```
 
 # 审计
+
+进出都做
+intercepter
+aop
+
+![](medie/audit.PNG)
