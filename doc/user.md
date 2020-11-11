@@ -25,5 +25,10 @@ Base64加密： lakdfjaldjfla
 放入请求头：Authorization: Basic lakdfjaldjfla
 
 
+密码加密：
+MD5属于指纹摘要---不安全
+AES---对称加密
+
+盐---为了解决相同密码，加密结果是一样的
 
 
