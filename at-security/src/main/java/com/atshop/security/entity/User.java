@@ -2,6 +2,7 @@ package com.atshop.security.entity;
 
 
 import lombok.Data;
+import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -22,4 +23,9 @@ public class User {
 
     private String permissions;
 
+    public UserInfo buildInfo(){
+        UserInfo userInfo=new UserInfo();
+        BeanUtils.copyProperties(this, userInfo);
+        return userInfo;
+    }
 }

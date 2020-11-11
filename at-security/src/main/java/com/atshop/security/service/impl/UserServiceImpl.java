@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 @Service
@@ -49,5 +50,11 @@ public class UserServiceImpl implements UserService {
             userInfos.add(userInfo);
         });
         return userInfos;
+    }
+
+    @Override
+    public UserInfo get(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        return user.get().buildInfo();
     }
 }

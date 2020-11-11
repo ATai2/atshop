@@ -7,7 +7,9 @@ import com.atshop.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/users")
@@ -31,10 +33,20 @@ public class UserController {
         return user;
     }
 
-    @DeleteMapping
-    public UserInfo delete(@RequestBody Long id) {
+    @DeleteMapping("/{id}")
+    public UserInfo delete(@PathVariable Long id) {
 //        userRepository.
         return null;
     }
 
+    @GetMapping("{id}")
+    public UserInfo get(@PathVariable Long id, HttpServletRequest request) {
+
+        User user = (User) request.getAttribute("user");
+
+        if (Objects.isNull(user) || !user.getId().equals(id)) {
+            throw new RuntimeException("身份认证信息异常，获取用户信息失败");
+        }
+        return userService.get(id);
+    }
 }

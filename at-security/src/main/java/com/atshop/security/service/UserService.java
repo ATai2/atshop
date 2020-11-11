@@ -16,4 +16,6 @@ public interface UserService {
     public UserInfo delete( Long id) ;
 
     List<UserInfo> findAll();
+
+    UserInfo get(Long id);
 }
