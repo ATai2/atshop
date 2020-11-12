@@ -14,6 +14,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
@@ -40,8 +41,18 @@ public class BasicAuthecationFilter extends OncePerRequestFilter {
             if (user != null && SCryptUtil.check(password,user.getPassword())) {
 //            if (user != null && StringUtils.equals(password, user.getPassword())) {
                 httpServletRequest.setAttribute("user",user);
+                httpServletRequest.setAttribute("temp","yes");
             }
 
+        }
+//  支持basic方法和login访问
+        try {
+
+        }finally {
+            HttpSession session=httpServletRequest.getSession();
+            if (session.getAttribute("temp") != null) {
+                session.invalidate();
+            }
         }
 
         filterChain.doFilter(httpServletRequest,httpServletResponse);

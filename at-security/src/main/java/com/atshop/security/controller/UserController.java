@@ -29,6 +29,8 @@ public class UserController {
             session.invalidate();
         }
         request.getSession(true).setAttribute("user",info);
+
+
     }
 
     @GetMapping

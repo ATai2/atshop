@@ -1,4 +1,4 @@
-package com.atshop.security.config;
+package com.atshop.security.filter;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
