@@ -1,4 +1,4 @@
-package com.atshop.oauth.config;
+package com.atshop.order.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
