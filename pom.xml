@@ -12,6 +12,7 @@
         <module>at-web</module>
         <module>at-infrastructure</module>
         <module>at-security</module>
+        <module>at-goods</module>
     </modules>
 
     <packaging>pom</packaging>

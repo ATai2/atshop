@@ -17,6 +17,8 @@
         <module>at-search</module>
         <module>at-ws</module>
         <module>at-tools</module>
+        <module>at-goods</module>
+        <module>at-goods</module>
     </modules>
     <properties>
         <maven.install.skip>true</maven.install.skip>
