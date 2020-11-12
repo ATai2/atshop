@@ -19,6 +19,7 @@
         <module>at-tools</module>
         <module>at-goods</module>
         <module>at-goods</module>
+        <module>at-authserver</module>
     </modules>
     <properties>
         <maven.install.skip>true</maven.install.skip>
