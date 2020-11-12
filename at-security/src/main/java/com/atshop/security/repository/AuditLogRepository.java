@@ -1,6 +1,6 @@
 package com.atshop.security.repository;
 
-import com.atshop.security.log.AuditLog;
+import com.atshop.security.entity.AuditLog;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 

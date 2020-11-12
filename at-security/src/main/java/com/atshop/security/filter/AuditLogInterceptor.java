@@ -1,11 +1,10 @@
 package com.atshop.security.filter;
 
 import com.atshop.security.entity.User;
-import com.atshop.security.log.AuditLog;
+import com.atshop.security.entity.AuditLog;
 import com.atshop.security.repository.AuditLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;

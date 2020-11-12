@@ -1,4 +1,4 @@
-package com.atshop.security.log;
+package com.atshop.security.entity;
 
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
