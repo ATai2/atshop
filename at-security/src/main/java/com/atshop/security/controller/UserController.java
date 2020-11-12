@@ -28,15 +28,21 @@ public class UserController {
         if (session != null) {
             session.invalidate();
         }
-        request.getSession(true).setAttribute("user",info);
+        request.getSession(true).setAttribute("user", info);
 
 
+    }
+
+    @GetMapping("/logout")
+    public void logout(HttpServletRequest request) {
+        request.getSession().invalidate();
     }
 
     @GetMapping
     public List<UserInfo> getUsers() {
         return userService.findAll();
     }
+
     @PostMapping
     public UserInfo create(@RequestBody @Validated UserInfo user) {
         return userService.create(user);

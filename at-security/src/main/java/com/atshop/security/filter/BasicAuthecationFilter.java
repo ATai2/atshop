@@ -38,24 +38,22 @@ public class BasicAuthecationFilter extends OncePerRequestFilter {
             String password = items[1];
             User user = userRepository.findByUserName(username);
 
-            if (user != null && SCryptUtil.check(password,user.getPassword())) {
+            if (user != null && SCryptUtil.check(password, user.getPassword())) {
 //            if (user != null && StringUtils.equals(password, user.getPassword())) {
-                httpServletRequest.setAttribute("user",user);
-                httpServletRequest.setAttribute("temp","yes");
+                httpServletRequest.setAttribute("user", user.buildInfo());
+                httpServletRequest.setAttribute("temp", "yes");
             }
-
         }
 //  支持basic方法和login访问
         try {
-
-        }finally {
-            HttpSession session=httpServletRequest.getSession();
+            filterChain.doFilter(httpServletRequest, httpServletResponse);
+        } finally {
+            HttpSession session = httpServletRequest.getSession();
             if (session.getAttribute("temp") != null) {
                 session.invalidate();
             }
         }
 
-        filterChain.doFilter(httpServletRequest,httpServletResponse);
 
     }
 }
