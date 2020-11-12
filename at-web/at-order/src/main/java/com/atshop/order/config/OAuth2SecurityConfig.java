@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationManager;
 import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
 import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
 
@@ -25,7 +26,11 @@ public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
         return tokenServices;
     }
 
-
-
-
+    @Bean
+    @Override
+    protected AuthenticationManager authenticationManager() throws Exception {
+        OAuth2AuthenticationManager auth2AuthenticationManager=new OAuth2AuthenticationManager();
+        auth2AuthenticationManager.setTokenServices(tokenServices());
+        return auth2AuthenticationManager;
+    }
 }
