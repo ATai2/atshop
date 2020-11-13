@@ -2,6 +2,7 @@ package com.atshop.security.filter;
 
 import com.atshop.security.entity.User;
 import com.atshop.security.entity.AuditLog;
+import com.atshop.security.entity.UserInfo;
 import com.atshop.security.repository.AuditLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,7 +25,7 @@ public class AuditLogInterceptor extends HandlerInterceptorAdapter {
         auditLog.setMethod(request.getMethod());
         auditLog.setPath(request.getRequestURI());
 
-        User user = (User) request.getAttribute("user");
+        UserInfo user = (UserInfo) request.getAttribute("user");
         if (null != user) {
             auditLog.setUsername(user.getUserName());
         }
