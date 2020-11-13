@@ -10,12 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationManager;
-import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
-import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
+import org.springframework.security.oauth2.provider.token.*;
 
 @Configuration
 @EnableWebSecurity
 public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private UserDetailsService userDetailServiceImpl;
 
     @Bean
     public ResourceServerTokenServices tokenServices() {
@@ -23,7 +24,17 @@ public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
         tokenServices.setClientId("orderService");
         tokenServices.setClientSecret("123456");
         tokenServices.setCheckTokenEndpointUrl("http://localhost:9030/oauth/token");
+        tokenServices.setAccessTokenConverter(getAccessTokenConverter());
         return tokenServices;
+    }
+
+//    设置userService   @AuthenticationPrincipal User user
+    private AccessTokenConverter getAccessTokenConverter() {
+        DefaultAccessTokenConverter accessTokenConverter=new DefaultAccessTokenConverter();
+        DefaultUserAuthenticationConverter userAuthenticationConverter=new DefaultUserAuthenticationConverter();
+        userAuthenticationConverter.setUserDetailsService(userDetailServiceImpl);
+        accessTokenConverter.setUserTokenConverter(userAuthenticationConverter);
+        return accessTokenConverter;
     }
 
     @Bean

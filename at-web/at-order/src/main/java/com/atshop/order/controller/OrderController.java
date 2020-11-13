@@ -1,6 +1,7 @@
 package com.atshop.order.controller;
 
 import com.atshop.order.entity.OrderInfo;
+import com.atshop.order.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +18,9 @@ public class OrderController {
     private RestTemplate restTemplate=new RestTemplate();
 
     @PostMapping
-    public OrderInfo create(@RequestBody OrderInfo info, @AuthenticationPrincipal String username) {
-        log.info("user is "+username);
+//    public OrderInfo create(@RequestBody OrderInfo info, @AuthenticationPrincipal User user) {
+    public OrderInfo create(@RequestBody OrderInfo info, @AuthenticationPrincipal(expression = "#this.id") Long userId) {
+        log.info("user is "+userId);
 
         return info;
     }
