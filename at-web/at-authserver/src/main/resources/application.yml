@@ -20,7 +20,7 @@ management:
 
 spring:
   application:
-    name: at-goods
+    name: at-auth-server
   data:
     redis:
       repositories:
