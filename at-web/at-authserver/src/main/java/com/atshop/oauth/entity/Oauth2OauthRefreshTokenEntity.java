@@ -1,9 +1,6 @@
 package com.atshop.oauth.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Arrays;
 
 @Entity
@@ -12,7 +9,7 @@ public class Oauth2OauthRefreshTokenEntity {
     private String tokenId;
     private byte[] token;
     private byte[] authentication;
-
+@Id
     @Basic
     @Column(name = "token_id")
     public String getTokenId() {

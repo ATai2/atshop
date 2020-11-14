@@ -1,9 +1,6 @@
 package com.atshop.oauth.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Arrays;
 
 @Entity
@@ -11,7 +8,7 @@ import java.util.Arrays;
 public class Oauth2OauthCodeEntity {
     private String code;
     private byte[] authentication;
-
+@Id
     @Basic
     @Column(name = "code")
     public String getCode() {

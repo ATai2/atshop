@@ -1,9 +1,6 @@
 package com.atshop.oauth.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -16,6 +13,7 @@ public class Oauth2OauthApprovalsEntity {
     private Timestamp expiresAt;
     private Timestamp lastModifiedAt;
 
+    @Id
     @Basic
     @Column(name = "userId")
     public String getUserId() {

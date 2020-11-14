@@ -39,6 +39,7 @@ spring:
         ddl-auto: none
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: true
+    show-sql: true
   datasource:
     druid:
       db-type: com.alibaba.druid.pool.DruidDataSource
