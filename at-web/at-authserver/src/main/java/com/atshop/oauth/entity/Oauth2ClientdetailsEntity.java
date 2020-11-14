@@ -3,7 +3,7 @@ package com.atshop.oauth.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "oauth2_clientdetails", schema = "dmp", catalog = "")
+@Table(name = "clientdetails", schema = "dmp", catalog = "")
 public class Oauth2ClientdetailsEntity {
     private String appId;
     private String resourceIds;
