@@ -46,7 +46,7 @@ public class AuthorizationFilter extends ZuulFilter {
                     log.info("audit log update fail 403");
                     handleError(403, currentContext);
                 }
-
+                currentContext.addZuulRequestHeader("username",tokenInfo.getUserName());
 
             } else {
                 if (!StringUtils.startsWithIgnoreCase(request.getRequestURI(), "/token")) {
