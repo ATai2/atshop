@@ -11,6 +11,25 @@ zuul:
       url: http://localhost:9020
 # 是否向后转发header头
   sensitive-headers:
+  ratelimit:
+    enabled: true
+    repository: jpa
+    default-policy-list:
+      - limit: 2
+        quota: 1
+        refresh-interval: 1
+        type:
+          - url
+          - httpmethod
+    policy-list:
+      token:
+        - limit: 2
+          quota: 1
+          refresh-interval: 1
+          type:
+            - url
+            - httpmethod
+
 
 
 management:
