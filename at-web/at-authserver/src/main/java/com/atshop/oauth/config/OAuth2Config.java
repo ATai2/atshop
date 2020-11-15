@@ -38,28 +38,28 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
-//                .tokenStore(tokenStore())
+                .tokenStore(tokenStore())
                 .authenticationManager(authenticationManager);
     }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-//        clients.jdbc(dataSource);
-        clients.inMemory()
-                .withClient("orderApp")
-                .secret(passwordEncoder.encode("123456"))
-                .scopes("read", "write")
-                .accessTokenValiditySeconds(3600)
-                .resourceIds("order-server")
-                .authorizedGrantTypes("password")
-
-                .and()
-                .withClient("orderService")
-                .secret(passwordEncoder.encode("123456"))
-                .scopes("read", "write")
-                .accessTokenValiditySeconds(3600)
-                .resourceIds("order-server")
-                .authorizedGrantTypes("password")
+        clients.jdbc(dataSource);
+//        clients.inMemory()
+//                .withClient("orderApp")
+//                .secret(passwordEncoder.encode("123456"))
+//                .scopes("read", "write")
+//                .accessTokenValiditySeconds(3600)
+//                .resourceIds("order-server")
+//                .authorizedGrantTypes("password")
+//
+//                .and()
+//                .withClient("orderService")
+//                .secret(passwordEncoder.encode("123456"))
+//                .scopes("read", "write")
+//                .accessTokenValiditySeconds(3600)
+//                .resourceIds("order-server")
+//                .authorizedGrantTypes("password")
         ;
     }
 
