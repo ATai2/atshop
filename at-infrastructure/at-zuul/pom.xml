@@ -3,22 +3,19 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>atshop</artifactId>
+        <artifactId>at-infrastructure</artifactId>
         <groupId>com.atshop</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>at-infrastructure</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>at-cloud</module>
-        <module>at-apm</module>
-        <module>at-appmonitor</module>
-        <module>at-gateway</module>
-        <module>at-zuulgateway</module>
-        <module>at-zuul</module>
-    </modules>
+    <artifactId>at-zuul</artifactId>
 
-
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+<!--        <version></version>-->
+    </dependency>
+</dependencies>
 </project>

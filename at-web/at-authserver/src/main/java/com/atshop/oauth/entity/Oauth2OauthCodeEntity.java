@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Arrays;
 
 @Entity
-@Table(name = "oauth_code", schema = "dmp", catalog = "")
+@Table(name = "oauth_code")
 public class Oauth2OauthCodeEntity {
     private String code;
     private byte[] authentication;

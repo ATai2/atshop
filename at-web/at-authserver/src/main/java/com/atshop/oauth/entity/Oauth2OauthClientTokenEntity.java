@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Arrays;
 
 @Entity
-@Table(name = "oauth_client_token", schema = "dmp", catalog = "")
+@Table(name = "oauth_client_token")
 public class Oauth2OauthClientTokenEntity {
     private String tokenId;
     private byte[] token;

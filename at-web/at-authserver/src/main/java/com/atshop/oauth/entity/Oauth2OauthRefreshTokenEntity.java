@@ -2,9 +2,10 @@ package com.atshop.oauth.entity;
 
 import javax.persistence.*;
 import java.util.Arrays;
+import java.util.Objects;
 
 @Entity
-@Table(name = "oauth_refresh_token", schema = "dmp", catalog = "")
+@Table(name = "oauth_refresh_token")
 public class Oauth2OauthRefreshTokenEntity {
     private String tokenId;
     private byte[] token;
@@ -47,7 +48,7 @@ public class Oauth2OauthRefreshTokenEntity {
 
         Oauth2OauthRefreshTokenEntity that = (Oauth2OauthRefreshTokenEntity) o;
 
-        if (tokenId != null ? !tokenId.equals(that.tokenId) : that.tokenId != null) return false;
+        if (!Objects.equals(tokenId, that.tokenId)) return false;
         if (!Arrays.equals(token, that.token)) return false;
         if (!Arrays.equals(authentication, that.authentication)) return false;
 

@@ -13,6 +13,7 @@
         <module>at-infrastructure</module>
         <module>at-security</module>
         <module>at-goods</module>
+        <module>at-zuul</module>
     </modules>
 
     <packaging>pom</packaging>

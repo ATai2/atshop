@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "oauth_approvals", schema = "dmp", catalog = "")
+@Table(name = "oauth_approvals")
 public class Oauth2OauthApprovalsEntity {
     private String userId;
     private String clientId;
