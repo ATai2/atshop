@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ssodemo';
+  authenticated = false;
+  credentials = {username: "aaa", password: "ddd"}
+
+
+  constructor(private http:HttpClient) {
+  }
+
+  login() {
+    this.http.post("login")
+  }
 }
