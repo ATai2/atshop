@@ -70,7 +70,7 @@ public class AuthorizationFilter extends ZuulFilter {
 
     private boolean hasPermission(TokenInfo tokenInfo, HttpServletRequest request) {
 //        mock
-        return RandomUtils.nextInt() % 2 == 0;
+        return true;
     }
 
     private boolean isNeedAuth(HttpServletRequest request) {
