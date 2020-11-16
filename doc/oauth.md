@@ -12,7 +12,9 @@ web授权
 隐式授权，把令牌交给浏览器
 ![](medie/11.PNG)
 
-
+http://authserver.com:9030/oauth/authorize?client_id=admin&redirect_uri=http://admin.com:8080/oauth/callback&
+response_type=code&
+state=aaa
 
 
 
