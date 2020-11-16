@@ -11,10 +11,10 @@ export class AppComponent {
   credentials = {username: "aaa", password: "ddd"}
 
 
-  constructor(private http:HttpClient) {
-  }
+  // constructor(private http:HttpClient) {
+  // }
 
   login() {
-    this.http.post("login")
+    // this.http.post("login")
   }
 }
