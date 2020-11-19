@@ -16,5 +16,19 @@ http://authserver.com:9030/oauth/authorize?client_id=admin&redirect_uri=http://a
 response_type=code&
 state=aaa
 
+admin服务校验请求和令牌请求
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

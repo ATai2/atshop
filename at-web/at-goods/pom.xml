@@ -32,5 +32,15 @@
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.1.1</version>
         </dependency>
+
+<!--        prometheus-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -10,10 +10,13 @@ server:
 management:
   security:
     enabled: false
+
   endpoints:
     web:
       exposure:
         include: '*'
+    prometheus:
+      enabled: true
   endpoint:
     health:
       show-details: ALWAYS

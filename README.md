@@ -64,3 +64,33 @@ kibana
 
 测试模块
 selenium 
+
+
+# metrics  tracing  logging
+## metrics
+时间上聚合，每分钟，小时，天等维度进行数据聚合
+## tracing
+一次请求的链路溯源
+## logging
+离散的文字信息
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
