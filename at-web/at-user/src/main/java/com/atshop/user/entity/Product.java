@@ -1,11 +1,13 @@
 package com.atshop.user.entity;
 
+import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.Nationalized;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@ToString
+@Data
 @Entity(name = "Product")
 public class Product {
 
@@ -14,9 +16,14 @@ public class Product {
 
     private String sku;
 
-    @org.hibernate.annotations.Type( type = "nstring" )
+//    @org.hibernate.annotations.Type( type = "nstring" )
     private String name;
 
-    @org.hibernate.annotations.Type( type = "materialized_nclob" )
+//    @org.hibernate.annotations.Type( type = "materialized_nclob" )
     private String description;
+
+//    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "phone_type")
+    private String phoneType;
+
 }

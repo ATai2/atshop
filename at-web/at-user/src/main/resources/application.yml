@@ -18,6 +18,9 @@ management:
     health:
       show-details: ALWAYS
 
+hibernate:
+  globally_quoted_identifiers: true
+
 spring:
   application:
     name: at-user
@@ -33,6 +36,8 @@ spring:
   jpa:
     properties:
       hibernate:
+        hibernate:
+          globally_quoted_identifiers: true
         hbm2ddl:
           # 配置开启自动更新表结构
           auto: update
