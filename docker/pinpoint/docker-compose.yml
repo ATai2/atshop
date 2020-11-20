@@ -1,0 +1,294 @@
+version: "3.6"
+
+services:
+  pinpoint-hbase:
+    build:
+      context: ./pinpoint-hbase/
+      dockerfile: Dockerfile
+      args:
+        - PINPOINT_VERSION=${PINPOINT_VERSION}
+
+    container_name: "${PINPOINT_HBASE_NAME}"
+    image: "pinpointdocker/pinpoint-hbase:${PINPOINT_VERSION}"
+    networks:
+      - pinpoint
+
+    volumes:
+      - /home/pinpoint/hbase
+      - /home/pinpoint/zookeeper
+    expose:
+      # HBase Master API port
+      - "60000"
+      # HBase Master Web UI
+      - "16010"
+      # Regionserver API port
+      - "60020"
+      # HBase Regionserver web UI
+      - "16030"
+    ports:
+      - "60000:60000"
+      - "16010:16010"
+      - "60020:60020"
+      - "16030:16030"
+    restart: always
+    depends_on:
+      - zoo1
+
+  pinpoint-mysql:
+    build:
+      context: ./pinpoint-mysql/
+      dockerfile: Dockerfile
+      args:
+        - PINPOINT_VERSION=${PINPOINT_VERSION}
+    
+    container_name: pinpoint-mysql
+    restart: always
+    image: "pinpointdocker/pinpoint-mysql:${PINPOINT_VERSION}"
+    hostname: pinpoint-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - pinpoint
+
+  pinpoint-web:
+    build:
+      context: ./pinpoint-web/
+      dockerfile: Dockerfile
+      args:
+        - PINPOINT_VERSION=${PINPOINT_VERSION}
+
+    container_name: "${PINPOINT_WEB_NAME}"
+    image: "pinpointdocker/pinpoint-web:${PINPOINT_VERSION}"
+
+    depends_on:
+      - pinpoint-hbase
+      - pinpoint-mysql
+      - zoo1
+    restart: always
+    expose:
+      - "9997"
+    ports:
+      - "9997:9997"
+      - "${SERVER_PORT:-8080}:${SERVER_PORT:-8080}"
+    environment:
+      - SERVER_PORT=${SERVER_PORT}
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES},batch
+      - PINPOINT_ZOOKEEPER_ADDRESS=${PINPOINT_ZOOKEEPER_ADDRESS}
+      - CLUSTER_ENABLE=${CLUSTER_ENABLE}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - CONFIG_SENDUSAGE=${CONFIG_SENDUSAGE}
+      - LOGGING_LEVEL_ROOT=${WEB_LOGGING_LEVEL_ROOT}
+      - CONFIG_SHOW_APPLICATIONSTAT=${CONFIG_SHOW_APPLICATIONSTAT}
+      - BATCH_ENABLE=${BATCH_ENABLE}
+      - BATCH_SERVER_IP=${BATCH_SERVER_IP}
+      - BATCH_FLINK_SERVER=${BATCH_FLINK_SERVER}
+      - JDBC_DRIVERCLASSNAME=${JDBC_DRIVERCLASSNAME}
+      - JDBC_URL=${JDBC_URL}
+      - JDBC_USERNAME=${JDBC_USERNAME}
+      - JDBC_PASSWORD=${JDBC_PASSWORD}
+      - ALARM_MAIL_SERVER_URL=${ALARM_MAIL_SERVER_URL}
+      - ALARM_MAIL_SERVER_PORT=${ALARM_MAIL_SERVER_PORT}
+      - ALARM_MAIL_SERVER_USERNAME=${ALARM_MAIL_SERVER_USERNAME}
+      - ALARM_MAIL_SERVER_PASSWORD=${ALARM_MAIL_SERVER_PASSWORD}
+      - ALARM_MAIL_SENDER_ADDRESS=${ALARM_MAIL_SENDER_ADDRESS}
+      - ALARM_MAIL_TRANSPORT_PROTOCOL=${ALARM_MAIL_TRANSPORT_PROTOCOL}
+      - ALARM_MAIL_SMTP_PORT=${ALARM_MAIL_SMTP_PORT}
+      - ALARM_MAIL_SMTP_AUTH=${ALARM_MAIL_SMTP_AUTH}
+      - ALARM_MAIL_SMTP_STARTTLS_ENABLE=${ALARM_MAIL_SMTP_STARTTLS_ENABLE}
+      - ALARM_MAIL_SMTP_STARTTLS_REQUIRED=${ALARM_MAIL_SMTP_STARTTLS_REQUIRED}
+      - ALARM_MAIL_DEBUG=${ALARM_MAIL_DEBUG}
+    links:
+      - "pinpoint-mysql:pinpoint-mysql"
+    networks:
+      - pinpoint
+
+  pinpoint-collector:
+    build:
+      context: ./pinpoint-collector/
+      dockerfile: Dockerfile
+      args:
+        - PINPOINT_VERSION=${PINPOINT_VERSION}
+
+    container_name: "${PINPOINT_COLLECTOR_NAME}"
+    image: "pinpointdocker/pinpoint-collector:${PINPOINT_VERSION}"
+
+    depends_on:
+      - pinpoint-hbase
+      - zoo1
+    restart: always
+    expose:
+      - "9991"
+      - "9992"
+      - "9993"
+      - "9994"
+      - "9995"
+      - "9996"
+    ports:
+      - "${COLLECTOR_RECEIVER_GRPC_AGENT_PORT:-9991}:9991/tcp"
+      - "${COLLECTOR_RECEIVER_GRPC_STAT_PORT:-9992}:9992/tcp"
+      - "${COLLECTOR_RECEIVER_GRPC_SPAN_PORT:-9993}:9993/tcp"
+      - "${COLLECTOR_RECEIVER_BASE_PORT:-9994}:9994"
+      - "${COLLECTOR_RECEIVER_STAT_UDP_PORT:-9995}:9995/tcp"
+      - "${COLLECTOR_RECEIVER_SPAN_UDP_PORT:-9996}:9996/tcp"
+      - "${COLLECTOR_RECEIVER_STAT_UDP_PORT:-9995}:9995/udp"
+      - "${COLLECTOR_RECEIVER_SPAN_UDP_PORT:-9996}:9996/udp"
+
+    networks:
+      - pinpoint
+    environment:
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES}
+      - PINPOINT_ZOOKEEPER_ADDRESS=${PINPOINT_ZOOKEEPER_ADDRESS}
+      - CLUSTER_ENABLE=${CLUSTER_ENABLE}
+      - LOGGING_LEVEL_ROOT=${COLLECTOR_LOGGING_LEVEL_ROOT}
+      - FLINK_CLUSTER_ENABLE=${FLINK_CLUSTER_ENABLE}
+      - FLINK_CLUSTER_ZOOKEEPER_ADDRESS=${FLINK_CLUSTER_ZOOKEEPER_ADDRESS}
+
+  pinpoint-quickstart:
+    build:
+      context: ./pinpoint-quickstart/
+      dockerfile: Dockerfile
+
+    container_name: "pinpoint-quickstart"
+    image: "pinpointdocker/pinpoint-quickstart"
+    ports:
+      - "${APP_PORT:-8080}:8080"
+    volumes:
+      - data-volume:/pinpoint-agent
+    environment:
+      JAVA_OPTS: "-javaagent:/pinpoint-agent/pinpoint-bootstrap-${PINPOINT_VERSION}.jar -Dpinpoint.agentId=${AGENT_ID} -Dpinpoint.applicationName=${APP_NAME} -Dpinpoint.profiler.profiles.active=${SPRING_PROFILES}"
+    networks:
+      - pinpoint
+    depends_on:
+      - pinpoint-agent
+
+  pinpoint-agent:
+    build:
+      context: ./pinpoint-agent/
+      dockerfile: Dockerfile
+      args:
+        - PINPOINT_VERSION=${PINPOINT_VERSION}
+
+    container_name: "${PINPOINT_AGENT_NAME}"
+    image: "pinpointdocker/pinpoint-agent:${PINPOINT_VERSION}"
+
+    restart: unless-stopped
+
+    networks:
+      - pinpoint
+    volumes:
+      - data-volume:/pinpoint-agent
+    environment:
+      - SPRING_PROFILES=${SPRING_PROFILES}
+      - COLLECTOR_IP=${COLLECTOR_IP}
+      - PROFILER_TRANSPORT_AGENT_COLLECTOR_PORT=${PROFILER_TRANSPORT_AGENT_COLLECTOR_PORT}
+      - PROFILER_TRANSPORT_METADATA_COLLECTOR_PORT=${PROFILER_TRANSPORT_METADATA_COLLECTOR_PORT}
+      - PROFILER_TRANSPORT_STAT_COLLECTOR_PORT=${PROFILER_TRANSPORT_STAT_COLLECTOR_PORT}
+      - PROFILER_TRANSPORT_SPAN_COLLECTOR_PORT=${PROFILER_TRANSPORT_SPAN_COLLECTOR_PORT}
+      - PROFILER_SAMPLING_RATE=${PROFILER_SAMPLING_RATE}
+      - DEBUG_LEVEL=${AGENT_DEBUG_LEVEL}
+      - PROFILER_TRANSPORT_MODULE=${PROFILER_TRANSPORT_MODULE}
+    depends_on:
+      - pinpoint-collector
+
+  #zookeepers
+  zoo1:
+    image: zookeeper:3.4
+    restart: always
+    hostname: zoo1
+    expose:
+      - "2181"
+      - "2888"
+      - "3888"
+    ports:
+      - "2181"
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=0.0.0.0:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+    networks:
+      - pinpoint
+
+  zoo2:
+    image: zookeeper:3.4
+    restart: always
+    hostname: zoo2
+    expose:
+      - "2181"
+      - "2888"
+      - "3888"
+    ports:
+      - "2181"
+    environment:
+      ZOO_MY_ID: 2
+      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=0.0.0.0:2888:3888 server.3=zoo3:2888:3888
+    networks:
+      - pinpoint
+
+  zoo3:
+    image: zookeeper:3.4
+    restart: always
+    hostname: zoo3
+    expose:
+      - "2181"
+      - "2888"
+      - "3888"
+    ports:
+      - "2181"
+    environment:
+      ZOO_MY_ID: 3
+      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=0.0.0.0:2888:3888
+    networks:
+      - pinpoint
+
+  ##flink
+  jobmanager:
+    container_name: "${PINPOINT_FLINK_NAME}-jobmanager"
+    image: flink:1.3.1
+    expose:
+      - "6123"
+    ports:
+      - "${FLINK_WEB_PORT:-8081}:8081"
+    command: jobmanager
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+    networks:
+      - pinpoint
+    depends_on:
+      - zoo1
+
+  taskmanager:
+    container_name: "${PINPOINT_FLINK_NAME}-taskmanager"
+    image: flink:1.3.1
+    expose:
+      - "6121"
+      - "6122"
+      - "19994"
+    ports:
+      - "6121:6121"
+      - "6122:6122"
+      - "19994:19994"
+    depends_on:
+      - zoo1
+      - jobmanager
+    command: taskmanager
+    links:
+      - "jobmanager:jobmanager"
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+    networks:
+      - pinpoint
+
+volumes:
+  data-volume:
+  mysql_data:
+
+networks:
+  pinpoint:
+    driver: bridge
