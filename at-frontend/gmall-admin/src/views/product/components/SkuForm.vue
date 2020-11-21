@@ -282,6 +282,7 @@ export default {
       // console.log(this.skuForm)
 
       sku.saveSkuInfo(this.skuForm).then(response => {
+
         // 调用父组件监听函数
         this.$emit('listenOnSave')
       })

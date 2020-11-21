@@ -140,6 +140,9 @@ export default {
 
     // 保存spu后刷新列表
     onSpuSave() {
+
+
+
       // 刷新Spu列表
       this.getSpuList(this.catalogId)
 

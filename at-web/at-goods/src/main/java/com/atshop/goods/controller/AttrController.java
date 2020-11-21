@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+@CrossOrigin
 @Controller
 public class AttrController  {
 
