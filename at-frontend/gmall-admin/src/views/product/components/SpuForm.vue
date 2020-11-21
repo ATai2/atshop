@@ -300,6 +300,8 @@ export default {
 
       row.saleAttrValue = ''
       row.edit = false
+
+
     },
 
     // 删除销售属性值
