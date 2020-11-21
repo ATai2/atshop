@@ -16,7 +16,6 @@
         <module>at-apm</module>
         <module>at-appmonitor</module>
         <module>at-gateway</module>
-        <module>at-zuulgateway</module>
         <module>at-zuul</module>
     </modules>
 
