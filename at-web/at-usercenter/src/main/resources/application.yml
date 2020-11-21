@@ -1,11 +1,11 @@
 server:
   port: 9020
 
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: http://10.110.87.202:8761/eureka/
-#
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://94.191.68.209:8761/eureka/
+
 
 management:
   security:
@@ -23,7 +23,7 @@ management:
 
 spring:
   application:
-    name: at-goods
+    name: at-user
   data:
     redis:
       repositories:
@@ -32,16 +32,16 @@ spring:
     admin:
       client:
         url: http://127.0.0.1:8769
-  #配置 Jpa
-  jpa:
-    properties:
-      hibernate:
-        hbm2ddl:
-          # 配置开启自动更新表结构
-          auto: update
-        ddl-auto: none
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-    open-in-view: true
+#  #配置 Jpa
+#  jpa:
+#    properties:
+#      hibernate:
+#        hbm2ddl:
+#          # 配置开启自动更新表结构
+#          auto: update
+#        ddl-auto: none
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+#    open-in-view: true
   datasource:
     druid:
       db-type: com.alibaba.druid.pool.DruidDataSource
@@ -94,10 +94,17 @@ spring:
     #连接超时时间
     timeout: 5000
 
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+
 logging:
   level:
     org.springframework.cloud.openfeign: debug
     org.springframework.cloud.sleuth: debug
+
 
 #邮箱验证码有效时间/秒
 code:
