@@ -17,6 +17,13 @@ spring:
   # 应用程序名称
   application:
     name: at-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: user
+          uri: http://localhost:9120
+          predicates:
+            - Method=GET,POST,PUT,DELETE
     # 服务注册和配置
 #    nacos:
 #      discovery:
