@@ -15,6 +15,7 @@
         <module>at-goods</module>
         <module>at-zuul</module>
         <module>at-admin</module>
+        <module>at-user</module>
     </modules>
 
     <packaging>pom</packaging>
