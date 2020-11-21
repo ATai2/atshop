@@ -21,9 +21,18 @@ spring:
     gateway:
       routes:
         - id: user
-          uri: http://localhost:9120
+          uri: lb://at_user
           predicates:
-            - Method=GET,POST,PUT,DELETE
+            - Path=/user/**
+          filters:
+            - StripPrefix=1
+        - id: goods
+#          uri: http://localhost:9020
+          uri: lb://at-goods
+          predicates:
+            - Path=/goods/**
+          filters:
+            - StripPrefix=1
     # 服务注册和配置
 #    nacos:
 #      discovery:

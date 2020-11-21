@@ -5,7 +5,7 @@ export default {
   // 保存Sku
   saveSkuInfo(skuForm) {
     return request({
-      url: 'saveSkuInfo',
+      url: 'goods/saveSkuInfo',
       method: 'post',
       data: skuForm
     })

@@ -2,6 +2,7 @@ package com.atshop.goods.controller;
 
 import com.atshop.goods.entity.PmsBaseAttrInfo;
 import com.atshop.goods.service.AttrService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import java.util.List;
 @CrossOrigin
 public class AttrController  {
 
+    @Autowired
     AttrService attrService;
 
     @RequestMapping("saveAttrInfo")
