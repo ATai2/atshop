@@ -18,10 +18,8 @@
         <module>at-ws</module>
         <module>at-tools</module>
         <module>at-goods</module>
-        <module>at-goods</module>
         <module>at-authserver</module>
         <module>at-order</module>
-        <module>at-adminfe</module>
         <module>at-usercenter</module>
     </modules>
     <properties>
