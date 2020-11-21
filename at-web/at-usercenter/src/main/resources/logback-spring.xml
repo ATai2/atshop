@@ -21,7 +21,7 @@
 
     <!-- logstash 远程日志配置 -->
     <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>localhost:5000</destination>
+        <destination>81.68.202.192:5044</destination>
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder" />
     </appender>
 
