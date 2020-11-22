@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.atguigu.gmall.manage.mapper.PmsProductSaleAttrMapper">
+<mapper namespace="com.atshop.goods.entity.PmsProductSaleAttrMapper">
 
     <select id="selectSpuSaleAttrListCheckBySku" resultMap="selectSpuSaleAttrListCheckBySkuMap">
         SELECT
@@ -17,9 +17,9 @@
 
     </select>
 
-    <resultMap id="selectSpuSaleAttrListCheckBySkuMap" type="com.atguigu.gmall.bean.PmsProductSaleAttr" autoMapping="true">
+    <resultMap id="selectSpuSaleAttrListCheckBySkuMap" type="com.atshop.goods.entity.PmsProductSaleAttr" autoMapping="true">
         <result column="sa_id" property="id"></result>
-        <collection property="spuSaleAttrValueList" ofType="com.atguigu.gmall.bean.PmsProductSaleAttrValue" autoMapping="true">
+        <collection property="spuSaleAttrValueList" ofType="com.atshop.goods.entity.PmsProductSaleAttrValue" autoMapping="true">
             <result column="sav_id" property="id"></result>
         </collection>
     </resultMap>

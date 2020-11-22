@@ -18,7 +18,7 @@ public class SkuController {
 
     @GetMapping("getSkuById")
     PmsSkuInfo getSkuById(@RequestParam String skuId) {
-        return null;
+        return skuService.getSkuById(skuId);
     }
 
     @GetMapping("spuSaleAttrListCheckBySku")
@@ -28,6 +28,6 @@ public class SkuController {
 
     @GetMapping("getSkuSaleAttrValueListBySpu")
     List<PmsSkuInfo> getSkuSaleAttrValueListBySpu(@RequestParam String productId) {
-        return null;
+        return skuService.getSkuSaleAttrValueListBySpu(productId);
     }
 }

@@ -16,7 +16,7 @@ public interface ProductsService {
     List<PmsProductInfo> spuList(@RequestParam String catalog3Id);
 
     @RequestMapping("getSkuById")
-    PmsSkuInfo getSkuById(String skuId);
+    PmsSkuInfo getSkuById(@RequestParam String skuId);
 
     @RequestMapping("spuSaleAttrListCheckBySku")
     List<PmsProductSaleAttr> spuSaleAttrListCheckBySku(@RequestParam String productId, @RequestParam String id);
