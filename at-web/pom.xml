@@ -20,6 +20,7 @@
         <module>at-authserver</module>
         <module>at-order</module>
         <module>at-usercenter</module>
+        <module>at-item</module>
     </modules>
     <properties>
         <maven.install.skip>true</maven.install.skip>

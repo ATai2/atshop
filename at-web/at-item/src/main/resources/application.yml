@@ -1,0 +1,104 @@
+server:
+  port: 9130
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://94.191.68.209:8761/eureka/
+
+management:
+  security:
+    enabled: false
+
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    prometheus:
+      enabled: true
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+spring:
+  application:
+    name: at-items
+#  data:
+#    redis:
+#      repositories:
+#        enabled: false
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:8769
+  #配置 Jpa
+#  jpa:
+#    properties:
+#      hibernate:
+#        hbm2ddl:
+#          # 配置开启自动更新表结构
+#          auto: update
+#        ddl-auto: none
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+#    open-in-view: true
+  datasource:
+    druid:
+      db-type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://bj-cynosdbmysql-grp-05gf7ek0.sql.tencentcdb.com:21682/at_products?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
+      username: ${DB_USER:root}
+      password: ${DB_PWD:asdf@1234}
+      # 初始连接数
+      initial-size: 5
+      # 最小连接数
+      min-idle: 10
+      # 最大连接数
+      max-active: 20
+      # 获取连接超时时间
+      max-wait: 5000
+      # 连接有效性检测时间
+      time-between-eviction-runs-millis: 60000
+      # 连接在池中最小生存的时间
+      min-evictable-idle-time-millis: 300000
+      # 连接在池中最大生存的时间
+      max-evictable-idle-time-millis: 900000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 检测连接是否有效
+      validation-query: select 1
+      # 配置监控统计
+      webStatFilter:
+        enabled: true
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: false
+      filter:
+        stat:
+          enabled: true
+          # 记录慢SQL
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+  redis:
+    #数据库索引
+    database: 0
+    host: 94.191.68.209
+    port: 16379
+    password: rootatai
+    #连接超时时间
+    timeout: 5000
+
+logging:
+  level:
+    org.springframework.cloud.openfeign: debug
+    org.springframework.cloud.sleuth: debug
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
