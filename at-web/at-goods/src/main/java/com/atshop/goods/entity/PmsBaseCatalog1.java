@@ -12,20 +12,16 @@ import java.util.List;
 public class PmsBaseCatalog1 implements Serializable {
     @Id
     @Column
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     @Column
     private String name;
+
     @Transient
     private List<PmsBaseCatalog2> catalog2s;
 
-    public PmsBaseCatalog1() {
-    }
-
     public List<PmsBaseCatalog2> getCatalog2s() {
-        return this.catalog2s;
+        return catalog2s;
     }
 
     public void setCatalog2s(List<PmsBaseCatalog2> catalog2s) {
@@ -33,7 +29,7 @@ public class PmsBaseCatalog1 implements Serializable {
     }
 
     public String getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(String id) {
@@ -41,12 +37,11 @@ public class PmsBaseCatalog1 implements Serializable {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 }
-
 

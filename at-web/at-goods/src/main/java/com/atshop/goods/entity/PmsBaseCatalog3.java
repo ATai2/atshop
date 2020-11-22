@@ -1,20 +1,18 @@
 package com.atshop.goods.entity;
 
-
 import javax.persistence.Id;
 import java.io.Serializable;
 
 public class PmsBaseCatalog3 implements Serializable {
+
     @Id
     private String id;
     private String name;
     private String catalog2Id;
 
-    public PmsBaseCatalog3() {
-    }
 
     public String getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(String id) {
@@ -22,7 +20,7 @@ public class PmsBaseCatalog3 implements Serializable {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -30,7 +28,7 @@ public class PmsBaseCatalog3 implements Serializable {
     }
 
     public String getCatalog2Id() {
-        return this.catalog2Id;
+        return catalog2Id;
     }
 
     public void setCatalog2Id(String catalog2Id) {
