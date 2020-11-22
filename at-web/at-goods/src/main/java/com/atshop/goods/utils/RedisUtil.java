@@ -15,7 +15,7 @@ public class RedisUtil {
         poolConfig.setMaxIdle(30);
         poolConfig.setBlockWhenExhausted(true);
         poolConfig.setMaxWaitMillis(10*1000);
-        poolConfig.setTestOnBorrow(true);
+        poolConfig.setTestOnBorrow(false);
         jedisPool=new JedisPool(poolConfig,host,port,20*1000,password);
     }
 
