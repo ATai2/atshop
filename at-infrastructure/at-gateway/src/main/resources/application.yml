@@ -33,6 +33,14 @@ spring:
             - Path=/goods/**
           filters:
             - StripPrefix=1
+        - id: item
+#          uri: http://localhost:9020
+          uri: lb://at-items
+          predicates:
+            - Path=/items/**
+          filters:
+            - StripPrefix=1
+
     # 服务注册和配置
 #    nacos:
 #      discovery:

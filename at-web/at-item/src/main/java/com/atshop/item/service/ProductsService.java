@@ -5,22 +5,23 @@ import com.atshop.item.entity.PmsProductSaleAttr;
 import com.atshop.item.entity.PmsSkuInfo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 @FeignClient(name = "at-goods")
 public interface ProductsService {
-    @GetMapping("spuList")
-    List<PmsProductInfo> spuList(String catalog3Id);
+    @RequestMapping("spuList")
+    List<PmsProductInfo> spuList(@RequestParam String catalog3Id);
 
-    @GetMapping("getSkuById")
+    @RequestMapping("getSkuById")
     PmsSkuInfo getSkuById(String skuId);
 
-    @GetMapping("spuSaleAttrListCheckBySku")
+    @RequestMapping("spuSaleAttrListCheckBySku")
     List<PmsProductSaleAttr> spuSaleAttrListCheckBySku(@RequestParam String productId, @RequestParam String id);
 
-    @GetMapping("getSkuSaleAttrValueListBySpu")
-    List<PmsSkuInfo> getSkuSaleAttrValueListBySpu(String productId);
+    @RequestMapping("getSkuSaleAttrValueListBySpu")
+    List<PmsSkuInfo> getSkuSaleAttrValueListBySpu(@RequestParam String productId);
 
 }

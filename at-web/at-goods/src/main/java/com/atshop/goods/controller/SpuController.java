@@ -35,7 +35,7 @@ public class SpuController {
 
     @RequestMapping("spuList")
     @ResponseBody
-    public List<PmsProductInfo> spuList(String catalog3Id) {
+    public List<PmsProductInfo> spuList(@RequestParam String catalog3Id) {
 
         List<PmsProductInfo> pmsProductInfos = spuService.spuList(catalog3Id);
 

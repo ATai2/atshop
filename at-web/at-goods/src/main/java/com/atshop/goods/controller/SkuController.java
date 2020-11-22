@@ -6,6 +6,7 @@ import com.atshop.goods.service.SkuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -16,17 +17,17 @@ public class SkuController {
     private SkuService skuService;
 
     @GetMapping("getSkuById")
-    PmsSkuInfo getSkuById(String skuId) {
+    PmsSkuInfo getSkuById(@RequestParam String skuId) {
         return null;
     }
 
     @GetMapping("spuSaleAttrListCheckBySku")
-    List<PmsProductSaleAttr> spuSaleAttrListCheckBySku(String productId, String id) {
+    List<PmsProductSaleAttr> spuSaleAttrListCheckBySku(@RequestParam String productId,@RequestParam  String id) {
         return null;
     }
 
     @GetMapping("getSkuSaleAttrValueListBySpu")
-    List<PmsSkuInfo> getSkuSaleAttrValueListBySpu(String productId) {
+    List<PmsSkuInfo> getSkuSaleAttrValueListBySpu(@RequestParam String productId) {
         return null;
     }
 }
