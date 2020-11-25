@@ -1,0 +1,20 @@
+version: '3'
+services:
+  skywalking:
+    restart: always
+    image: apache/skywalking-oap-server
+    container_name: skywalking
+    ports:
+      - 1234:1234
+      - 11800:11800
+      - 12800:12800
+
+  skywalking-ui:
+    image: apache/skywalking-ui
+    restart: always
+    depends_on:
+      - skywalking
+    ports:
+      - 8080:8080
+    environment:
+      - SW_OAP_ADDRESS=skywalking:12800

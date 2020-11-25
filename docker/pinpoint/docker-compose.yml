@@ -2,17 +2,10 @@ version: "3.6"
 
 services:
   pinpoint-hbase:
-    build:
-      context: ./pinpoint-hbase/
-      dockerfile: Dockerfile
-      args:
-        - PINPOINT_VERSION=${PINPOINT_VERSION}
-
     container_name: "${PINPOINT_HBASE_NAME}"
-    image: "pinpointdocker/pinpoint-hbase:${PINPOINT_VERSION}"
+    image: pinpointdocker/pinpoint-hbase:2.1.0
     networks:
       - pinpoint
-
     volumes:
       - /home/pinpoint/hbase
       - /home/pinpoint/zookeeper
@@ -35,15 +28,15 @@ services:
       - zoo1
 
   pinpoint-mysql:
-    build:
-      context: ./pinpoint-mysql/
-      dockerfile: Dockerfile
-      args:
-        - PINPOINT_VERSION=${PINPOINT_VERSION}
+#    build:
+#      context: ./pinpoint-mysql/
+#      dockerfile: Dockerfile
+#      args:
+#        - PINPOINT_VERSION=${PINPOINT_VERSION}
     
     container_name: pinpoint-mysql
     restart: always
-    image: "pinpointdocker/pinpoint-mysql:${PINPOINT_VERSION}"
+    image: pinpointdocker/pinpoint-mysql:2.1.0
     hostname: pinpoint-mysql
     ports:
       - "3306:3306"
@@ -59,14 +52,14 @@ services:
       - pinpoint
 
   pinpoint-web:
-    build:
-      context: ./pinpoint-web/
-      dockerfile: Dockerfile
-      args:
-        - PINPOINT_VERSION=${PINPOINT_VERSION}
+#    build:
+#      context: ./pinpoint-web/
+#      dockerfile: Dockerfile
+#      args:
+#        - PINPOINT_VERSION=${PINPOINT_VERSION}
 
     container_name: "${PINPOINT_WEB_NAME}"
-    image: "pinpointdocker/pinpoint-web:${PINPOINT_VERSION}"
+    image: pinpointdocker/pinpoint-web:2.1.0
 
     depends_on:
       - pinpoint-hbase
@@ -111,14 +104,14 @@ services:
       - pinpoint
 
   pinpoint-collector:
-    build:
-      context: ./pinpoint-collector/
-      dockerfile: Dockerfile
-      args:
-        - PINPOINT_VERSION=${PINPOINT_VERSION}
+#    build:
+#      context: ./pinpoint-collector/
+#      dockerfile: Dockerfile
+#      args:
+#        - PINPOINT_VERSION=${PINPOINT_VERSION}
 
     container_name: "${PINPOINT_COLLECTOR_NAME}"
-    image: "pinpointdocker/pinpoint-collector:${PINPOINT_VERSION}"
+    image: pinpointdocker/pinpoint-collector:2.1.0
 
     depends_on:
       - pinpoint-hbase
@@ -152,12 +145,12 @@ services:
       - FLINK_CLUSTER_ZOOKEEPER_ADDRESS=${FLINK_CLUSTER_ZOOKEEPER_ADDRESS}
 
   pinpoint-quickstart:
-    build:
-      context: ./pinpoint-quickstart/
-      dockerfile: Dockerfile
+#    build:
+#      context: ./pinpoint-quickstart/
+#      dockerfile: Dockerfile
 
     container_name: "pinpoint-quickstart"
-    image: "pinpointdocker/pinpoint-quickstart"
+    image: pinpointdocker/pinpoint-quickstart
     ports:
       - "${APP_PORT:-8080}:8080"
     volumes:
@@ -170,14 +163,14 @@ services:
       - pinpoint-agent
 
   pinpoint-agent:
-    build:
-      context: ./pinpoint-agent/
-      dockerfile: Dockerfile
-      args:
-        - PINPOINT_VERSION=${PINPOINT_VERSION}
+#    build:
+#      context: ./pinpoint-agent/
+#      dockerfile: Dockerfile
+#      args:
+#        - PINPOINT_VERSION=${PINPOINT_VERSION}
 
     container_name: "${PINPOINT_AGENT_NAME}"
-    image: "pinpointdocker/pinpoint-agent:${PINPOINT_VERSION}"
+    image: pinpointdocker/pinpoint-agent:2.1.0
 
     restart: unless-stopped
 
@@ -200,7 +193,7 @@ services:
 
   #zookeepers
   zoo1:
-    image: zookeeper:3.4
+    image: zookeeper:3.5
     restart: always
     hostname: zoo1
     expose:
@@ -216,7 +209,7 @@ services:
       - pinpoint
 
   zoo2:
-    image: zookeeper:3.4
+    image: zookeeper:3.5
     restart: always
     hostname: zoo2
     expose:
@@ -232,7 +225,7 @@ services:
       - pinpoint
 
   zoo3:
-    image: zookeeper:3.4
+    image: zookeeper:3.5
     restart: always
     hostname: zoo3
     expose:
