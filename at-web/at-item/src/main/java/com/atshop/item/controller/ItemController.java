@@ -5,6 +5,7 @@ import com.atshop.item.entity.PmsProductSaleAttr;
 import com.atshop.item.entity.PmsSkuInfo;
 import com.atshop.item.entity.PmsSkuSaleAttrValue;
 import com.atshop.item.service.ProductsService;
+import org.bouncycastle.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,9 +26,7 @@ public class ItemController {
 
     @RequestMapping("{skuId}.html")
     public String item(@PathVariable String skuId, ModelMap map) {
-
         PmsSkuInfo pmsSkuInfo = productsService.getSkuById(skuId);
-
         //sku对象
         map.put("skuInfo", pmsSkuInfo);
         //销售属性列表
@@ -42,6 +41,9 @@ public class ItemController {
             String k = "";
             String v = skuInfo.getId();
             List<PmsSkuSaleAttrValue> skuSaleAttrValueList = skuInfo.getPmsSkuSaleAttrValueList();
+            if (skuSaleAttrValueList == null || skuSaleAttrValueList.size() == 0) {
+                continue;
+            }
             for (PmsSkuSaleAttrValue pmsSkuSaleAttrValue : skuSaleAttrValueList) {
                 k += pmsSkuSaleAttrValue.getSaleAttrValueId() + "|";// "239|245"
             }
@@ -51,25 +53,18 @@ public class ItemController {
         // 将sku的销售属性hash表放到页面
         String skuSaleAttrHashJsonStr = JSON.toJSONString(skuSaleAttrHash);
         map.put("skuSaleAttrHashJsonStr", skuSaleAttrHashJsonStr);
-
-
         return "item";
     }
 
     @RequestMapping("index")
     public String index(ModelMap modelMap) {
-
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             list.add("循环数据" + i);
         }
-
         modelMap.put("list", list);
         modelMap.put("hello", "hello thymeleaf !!");
-
         modelMap.put("check", "0");
-
-
         return "index";
     }
 }

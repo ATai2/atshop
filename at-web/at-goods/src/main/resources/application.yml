@@ -23,24 +23,24 @@ management:
 spring:
   application:
     name: at-goods
-#  data:
-#    redis:
-#      repositories:
-#        enabled: false
+  #  data:
+  #    redis:
+  #      repositories:
+  #        enabled: false
   boot:
     admin:
       client:
         url: http://127.0.0.1:8769
   #配置 Jpa
-#  jpa:
-#    properties:
-#      hibernate:
-#        hbm2ddl:
-#          # 配置开启自动更新表结构
-#          auto: update
-#        ddl-auto: none
-#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-#    open-in-view: true
+  #  jpa:
+  #    properties:
+  #      hibernate:
+  #        hbm2ddl:
+  #          # 配置开启自动更新表结构
+  #          auto: update
+  #        ddl-auto: none
+  #        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  #    open-in-view: true
   datasource:
     druid:
       db-type: com.alibaba.druid.pool.DruidDataSource
@@ -97,8 +97,10 @@ logging:
   level:
     org.springframework.cloud.openfeign: debug
     org.springframework.cloud.sleuth: debug
+    com.atshop.goods.mapper.mapper: debug
 
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   configuration:
     map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

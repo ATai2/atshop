@@ -19,6 +19,7 @@
         <result column="si_id" property="id"></result>
         <collection property="skuSaleAttrValueList" ofType="com.atshop.goods.entity.PmsSkuSaleAttrValue" autoMapping="true">
             <result column="ssav_id" property="id"></result>
+<!--            <result column="ssav_id" property="id"></result>-->
         </collection>
     </resultMap>
 
