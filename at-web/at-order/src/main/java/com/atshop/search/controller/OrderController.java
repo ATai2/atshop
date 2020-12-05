@@ -1,9 +1,7 @@
-package com.atshop.order.controller;
+package com.atshop.search.controller;
 
-import com.atshop.order.entity.OrderInfo;
-import com.atshop.order.entity.User;
+import com.atshop.search.entity.OrderInfo;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 

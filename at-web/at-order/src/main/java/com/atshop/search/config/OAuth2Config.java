@@ -1,4 +1,4 @@
-package com.atshop.order.config;
+package com.atshop.search.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

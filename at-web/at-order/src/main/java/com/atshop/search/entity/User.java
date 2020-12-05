@@ -1,4 +1,4 @@
-package com.atshop.order.entity;
+package com.atshop.search.entity;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,7 +1,7 @@
-package com.atshop.order.service;
+package com.atshop.search.service;
 
 
-import com.atshop.order.entity.User;
+import com.atshop.search.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
