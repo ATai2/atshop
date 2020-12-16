@@ -15,6 +15,7 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -28,13 +29,13 @@ public class SearchController {
     @Autowired
     JestClient jestClient;
 
-    //    @Override
+    @GetMapping("list")
     public List<PmsSearchSkuInfo> list(PmsSearchParam pmsSearchParam) {
         String dslStr = getSearchDsl(pmsSearchParam);
         System.err.println(dslStr);
         // 用api执行复杂查询
         List<PmsSearchSkuInfo> pmsSearchSkuInfos = new ArrayList<>();
-        Search search = new Search.Builder(dslStr).addIndex("gmall0105").addType("PmsSkuInfo").build();
+        Search search = new Search.Builder(dslStr).addIndex("gmall").addType("PmsSkuInfo").build();
         SearchResult execute = null;
         try {
             execute = jestClient.execute(search);
@@ -94,7 +95,7 @@ public class SearchController {
         highlightBuilder.preTags("<span style='color:red;'>");
         highlightBuilder.field("skuName");
         highlightBuilder.postTags("</span>");
-        searchSourceBuilder.highlight(highlightBuilder);
+        searchSourceBuilder.highlighter(highlightBuilder);
         // sort
         searchSourceBuilder.sort("id", SortOrder.DESC);
         // from
