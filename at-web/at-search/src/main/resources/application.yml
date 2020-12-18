@@ -24,6 +24,11 @@ spring:
     redis:
       repositories:
         enabled: false
+    elasticsearch:
+      cluster-name: "docker-cluster"
+      cluster-nodes: 81.68.202.192:9200
+      repositories:
+        enabled: true
   boot:
     admin:
       client:
@@ -90,6 +95,7 @@ spring:
     password: rootatai
     #连接超时时间
     timeout: 5000
+
 
 logging:
   level:
