@@ -15,7 +15,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - data01:/usr/share/elasticsearch/data
+      - ./data01:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
 #    networks:
@@ -35,7 +35,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - data02:/usr/share/elasticsearch/data
+      - ./data02:/usr/share/elasticsearch/data
 #    networks:
 #      - elastic
   es03:
@@ -53,7 +53,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - data03:/usr/share/elasticsearch/data
+      - ./data03:/usr/share/elasticsearch/data
 #    networks:
 #      - elastic
   kibana:
@@ -63,23 +63,40 @@ services:
         limits:
           memory: 256m
     container_name: kibana
+    volumes:
+      - type: bind
+        source: ./kibana/config/kibana.yml
+        target: /usr/share/kibana/config/kibana.yml
+        read_only: true
+    environment:
+      SERVER_NAME: kibana.example.org
+      ELASTICSEARCH_URL: "http://es01:9200"
+
     #    networks:
     #    - efknet
     ports:
       - "5601:5601"
 
-  logstash:
-    image: logstash:7.10.1
-    container_name: logstash
-    volumes:
-  #    :ro 只读
-      - ./data/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
-      - ./data/logstash/config/:/usr/share/logstash/conf.d/
-  #    - /elk/config/logstash/pipeline/:/usr/share/logstash/pipeline/
-    ports:
-      - "5044:5044"
-      - "9600:9600"
-    environment:
-      LS_JAVA_OPTS: "-Xmx128m -Xms128m"
-    depends_on: #标签解决了容器的依赖、启动先后的问题
-      - elasticsearch
+#  logstash:
+#    image: logstash:7.10.1
+#    container_name: logstash
+#    volumes:
+#  #    :ro 只读
+#      - ./data/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+#      - ./data/logstash/config/:/usr/share/logstash/conf.d/
+#  #    - /elk/config/logstash/pipeline/:/usr/share/logstash/pipeline/
+#    ports:
+#      - "5044:5044"
+#      - "9600:9600"
+#    environment:
+#      LS_JAVA_OPTS: "-Xmx128m -Xms128m"
+#    depends_on: #标签解决了容器的依赖、启动先后的问题
+#      - es01
+
+#  volumes:
+#    data01:
+#      driver: local
+#    data02:
+#      driver: local
+#    data03:
+#      driver: local
