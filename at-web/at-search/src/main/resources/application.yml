@@ -17,7 +17,14 @@ management:
     health:
       show-details: ALWAYS
 
+
+
+
+
 spring:
+  elasticsearch:
+    jest:
+      uris: 81.68.202.192:9200
   application:
     name: at-search
   data:
@@ -25,7 +32,7 @@ spring:
       repositories:
         enabled: false
     elasticsearch:
-      cluster-name: "docker-cluster"
+      cluster-name: docker-cluster
       cluster-nodes: 81.68.202.192:9200
       repositories:
         enabled: true
