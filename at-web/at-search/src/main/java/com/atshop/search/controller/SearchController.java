@@ -39,22 +39,21 @@ public class SearchController {
         SearchResult execute = null;
         try {
             execute = jestClient.execute(search);
-        } catch (IOException e) {
+            if (execute != null) {
+                List<SearchResult.Hit<PmsSearchSkuInfo, Void>> hits = execute.getHits(PmsSearchSkuInfo.class);
+                for (SearchResult.Hit<PmsSearchSkuInfo, Void> hit : hits) {
+                    PmsSearchSkuInfo source = hit.source;
+                    Map<String, List<String>> highlight = hit.highlight;
+                    if (highlight != null) {
+                        String skuName = highlight.get("skuName").get(0);
+                        source.setSkuName(skuName);
+                    }
+                    pmsSearchSkuInfos.add(source);
+                }
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        List<SearchResult.Hit<PmsSearchSkuInfo, Void>> hits = execute.getHits(PmsSearchSkuInfo.class);
-        for (SearchResult.Hit<PmsSearchSkuInfo, Void> hit : hits) {
-            PmsSearchSkuInfo source = hit.source;
-
-            Map<String, List<String>> highlight = hit.highlight;
-            if (highlight != null) {
-                String skuName = highlight.get("skuName").get(0);
-                source.setSkuName(skuName);
-            }
-            pmsSearchSkuInfos.add(source);
-        }
-
-        System.out.println(pmsSearchSkuInfos.size());
         return pmsSearchSkuInfos;
     }
 
@@ -102,14 +101,9 @@ public class SearchController {
         searchSourceBuilder.from(0);
         // size
         searchSourceBuilder.size(20);
-
-
         // aggs
         TermsAggregationBuilder groupby_attr = AggregationBuilders.terms("groupby_attr").field("skuAttrValueList.valueId");
         searchSourceBuilder.aggregation(groupby_attr);
-
-
         return searchSourceBuilder.toString();
-
     }
 }
