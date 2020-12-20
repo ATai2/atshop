@@ -311,9 +311,42 @@ public class ElasticSearchUtil {
         }
     }
 
-
+    /**
+     * 修饰bean
+     *
+     * @param o
+     * @param index
+     * @param type
+     * @param <T>
+     * @return
+     */
     public <T> JestResult createIndex(T o, String index, String type) {
         Index index1 = new Index.Builder(o).index(index).type(type).build();
+        JestResult jestResult = null;
+        try {
+            jestResult = jestClient.execute(index1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jestResult;
+    }
+
+    /**
+     * 外面设置id
+     *
+     * @param o
+     * @param index
+     * @param type
+     * @param id
+     * @param <T>
+     * @return
+     */
+    public <T> JestResult createIndex(T o, String index, String type, String id) {
+        Index index1 = new Index.Builder(o)
+                .index(index)
+                .type(type)
+                .id(id)
+                .build();
         JestResult jestResult = null;
         try {
             jestResult = jestClient.execute(index1);

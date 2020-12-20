@@ -1,5 +1,7 @@
 package com.atshop.search.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.atshop.search.dto.SaveBean;
 import com.atshop.search.entity.PmsSearchParam;
 import com.atshop.search.entity.PmsSearchSkuInfo;
 import com.atshop.search.utils.ElasticSearchUtil;
@@ -18,6 +20,7 @@ import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -110,7 +113,11 @@ public class SearchController {
     }
 
     @PostMapping("save")
-    public Object saveObject(String json) {
+    public Object saveObject(@RequestBody SaveBean esSaveBean) {
+
+        String dataJson = esSaveBean.getDataJson();
+        Map map = JSON.parseObject(dataJson, Map.class);
+        elasticSearchUtil.createIndex(map, esSaveBean.getIndex(), esSaveBean.getType(),esSaveBean.getId());
         return null;
     }
 }

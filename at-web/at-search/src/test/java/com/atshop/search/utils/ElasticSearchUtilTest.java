@@ -52,10 +52,15 @@ public class ElasticSearchUtilTest {
 
     @Test
     public void health() {
+        JestResult health = elasticSearchUtil.health();
+        System.out.println(health.getJsonString());
+
     }
 
     @Test
     public void nodesStats() {
+        JestResult jestResult = elasticSearchUtil.nodesStats();
+        System.out.println(jestResult.getJsonString());
     }
 
     @Test
