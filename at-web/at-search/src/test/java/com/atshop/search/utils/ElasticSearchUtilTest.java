@@ -96,7 +96,7 @@ public class ElasticSearchUtilTest {
         pmsSearchCrumb.setUrlParam("haha");
         pmsSearchCrumb.setValueId("products");
         pmsSearchCrumb.setValueName("dms");
-        JestResult result = elasticSearchUtil.createIndex(pmsSearchCrumb, "utils-test", "");
+        JestResult result = elasticSearchUtil.createIndex(pmsSearchCrumb, "utils-test", "ss");
         System.out.println(result);
 
     }

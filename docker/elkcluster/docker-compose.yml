@@ -18,8 +18,8 @@ services:
       - ./data01:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
-#    networks:
-#      - elastic
+  #    networks:
+  #      - elastic
   es02:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
     container_name: es02
@@ -36,8 +36,8 @@ services:
         hard: -1
     volumes:
       - ./data02:/usr/share/elasticsearch/data
-#    networks:
-#      - elastic
+  #    networks:
+  #      - elastic
   es03:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
     container_name: es03
@@ -54,8 +54,8 @@ services:
         hard: -1
     volumes:
       - ./data03:/usr/share/elasticsearch/data
-#    networks:
-#      - elastic
+  #    networks:
+  #      - elastic
   kibana:
     image: kibana:7.10.1
     deploy:
@@ -76,6 +76,15 @@ services:
     #    - efknet
     ports:
       - "5601:5601"
+
+  cerebro:
+    image: lmenezes/cerebro:0.8.4
+    container_name: cerebro
+    ports:
+      - "9000:9000"
+    command:
+      - -Dhosts.0.host=http://es01:9200
+
 
 #  logstash:
 #    image: logstash:7.10.1

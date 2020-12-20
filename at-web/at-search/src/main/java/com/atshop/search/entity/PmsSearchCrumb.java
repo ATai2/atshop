@@ -1,7 +1,10 @@
 package com.atshop.search.entity;
 
+import io.searchbox.annotations.JestId;
+
 public class PmsSearchCrumb {
 
+    @JestId
     private String valueId;
     private String valueName;
     private String urlParam;
