@@ -1,0 +1,37 @@
+{
+  "mappings": {
+    "skuInfo": {
+      "properties": {
+        "id": {
+          "type": "keyword",
+          "index": false
+        },
+        "price": {
+          "type": "double"
+        },
+        "skuName": {
+          "type": "text",
+          "analyzer": "ik_max_word"
+        },
+        "skuDesc": {
+          "type": "text",
+          "analyzer": "ik_smart"
+        },
+        "catalog3Id": {
+          "type": "keyword"
+        },
+        "skuDefaultImg": {
+          "type": "keyword",
+          "index": false
+        },
+        "skuAttrValueList": {
+          "properties": {
+            "valueId": {
+              "type": "keyword"
+            }
+          }
+        }
+      }
+    }
+  }
+}

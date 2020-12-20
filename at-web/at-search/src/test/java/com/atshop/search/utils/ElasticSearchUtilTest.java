@@ -6,12 +6,19 @@ import com.atshop.search.SearchApplication;
 import com.atshop.search.entity.OrderInfo;
 import com.atshop.search.entity.PmsSearchCrumb;
 import io.searchbox.client.JestResult;
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.json.JsonbTester;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -62,6 +69,15 @@ public class ElasticSearchUtilTest {
         JestResult jestResult = elasticSearchUtil.nodesStats();
         System.out.println(jestResult.getJsonString());
     }
+
+    @Test
+    public void createMapping() throws IOException {
+        String file = this.getClass().getClassLoader().getResource("gmall.json").getFile();
+        String s = FileUtils.readFileToString(new File(file), StandardCharsets.UTF_8.name());
+        JestResult jestResult = elasticSearchUtil.createMapping(s,"gmall","skuInfo");
+        System.out.println(jestResult.getJsonString());
+    }
+
 
     @Test
     public void updateDocument() {
