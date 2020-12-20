@@ -10,7 +10,10 @@ import io.searchbox.cluster.NodesInfo;
 import io.searchbox.cluster.NodesStats;
 import io.searchbox.core.*;
 import io.searchbox.indices.*;
+import io.searchbox.indices.mapping.PutMapping;
 import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
@@ -311,6 +314,42 @@ public class ElasticSearchUtil {
         }
     }
 
+    /**
+     *  创建mapping
+     * @param settings
+     * @param index
+     * @param type
+     * @return
+     */
+    public JestResult createMapping(String settings, String index, String type) {
+        CreateIndex.Builder builder = new CreateIndex.Builder(index);
+        builder.settings(Settings.builder().loadFromSource(settings, XContentType.JSON).build());
+        Index createIndex = new Index.Builder(builder).index(index).type(type).build();
+        JestResult jestResult = null;
+        try {
+            jestResult = jestClient.execute(createIndex);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jestResult;
+    }
+
+    private boolean checkRes(JestResult jestResult) {
+        if (!jestResult.isSucceeded()) {
+            log.error(jestResult.getResponseCode() + jestResult.getJsonString());
+            throw new RuntimeException(jestResult.getJsonString());
+        }
+        return true;
+    }
+
+    public boolean createIndexMapping(String indexName, String typeName, String mappingString) {
+        try {
+            JestResult jestResult = jestClient.execute(new PutMapping.Builder(indexName, typeName, mappingString).build());
+            return checkRes(jestResult);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     /**
      * 修饰bean
      *
