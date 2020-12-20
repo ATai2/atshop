@@ -6,6 +6,7 @@ import com.atshop.search.entity.PmsSearchParam;
 import com.atshop.search.entity.PmsSearchSkuInfo;
 import com.atshop.search.utils.ElasticSearchUtil;
 import io.searchbox.client.JestClient;
+import io.searchbox.client.JestResult;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
 import org.apache.commons.lang.StringUtils;
@@ -23,7 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -113,11 +113,10 @@ public class SearchController {
     }
 
     @PostMapping("save")
-    public Object saveObject(@RequestBody SaveBean esSaveBean) {
-
+    public String saveObject(@RequestBody SaveBean esSaveBean) {
         String dataJson = esSaveBean.getDataJson();
         Map map = JSON.parseObject(dataJson, Map.class);
-        elasticSearchUtil.createIndex(map, esSaveBean.getIndex(), esSaveBean.getType(),esSaveBean.getId());
-        return null;
+        JestResult index = elasticSearchUtil.createIndex(map, esSaveBean.getIndex(), esSaveBean.getType(), esSaveBean.getId());
+        return index.getJsonString();
     }
 }
