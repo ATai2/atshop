@@ -2,6 +2,7 @@ package com.atshop.search.controller;
 
 import com.atshop.search.entity.PmsSearchParam;
 import com.atshop.search.entity.PmsSearchSkuInfo;
+import com.atshop.search.utils.ElasticSearchUtil;
 import io.searchbox.client.JestClient;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
@@ -16,6 +17,7 @@ import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -28,6 +30,9 @@ public class SearchController {
 
     @Autowired
     JestClient jestClient;
+
+    @Autowired
+    private ElasticSearchUtil elasticSearchUtil;
 
     @GetMapping("list")
     public List<PmsSearchSkuInfo> list(PmsSearchParam pmsSearchParam) {
@@ -58,16 +63,13 @@ public class SearchController {
     }
 
     private String getSearchDsl(PmsSearchParam pmsSearchParam) {
-
         String[] skuAttrValueList = pmsSearchParam.getValueId();
         String keyword = pmsSearchParam.getKeyword();
         String catalog3Id = pmsSearchParam.getCatalog3Id();
-
         // jest的dsl工具
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         // bool
         BoolQueryBuilder boolQueryBuilder = new BoolQueryBuilder();
-
         // filter
         if (StringUtils.isNotBlank(catalog3Id)) {
             TermQueryBuilder termQueryBuilder = new TermQueryBuilder("catalog3Id", catalog3Id);
@@ -105,5 +107,10 @@ public class SearchController {
         TermsAggregationBuilder groupby_attr = AggregationBuilders.terms("groupby_attr").field("skuAttrValueList.valueId");
         searchSourceBuilder.aggregation(groupby_attr);
         return searchSourceBuilder.toString();
+    }
+
+    @PostMapping("save")
+    public Object saveObject(String json) {
+        return null;
     }
 }
