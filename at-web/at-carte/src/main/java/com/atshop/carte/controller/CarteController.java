@@ -9,7 +9,9 @@ import com.atshop.carte.rest.SkuRestService;
 import com.atshop.carte.service.CartServiceImpl;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@RestController
+@Controller
 public class CarteController {
 
     @Autowired
@@ -30,7 +32,7 @@ public class CarteController {
     @Autowired
     private CartServiceImpl cartService;
 
-    @RequestMapping("toTrade")
+    @GetMapping("toTrade")
 //    @LoginRequired(loginSuccess = true)
     public String toTrade(HttpServletRequest request, HttpServletResponse response, HttpSession session, ModelMap modelMap) {
         String memberId = (String) request.getAttribute("memberId");
@@ -38,8 +40,7 @@ public class CarteController {
         return "toTrade";
     }
 
-
-    @RequestMapping("checkCart")
+    @GetMapping("checkCart")
 //    @LoginRequired(loginSuccess = false)
     public String checkCart(String isChecked, String skuId, HttpServletRequest request, HttpServletResponse response, HttpSession session, ModelMap modelMap) {
 
@@ -63,8 +64,7 @@ public class CarteController {
         return "cartListInner";
     }
 
-
-    @RequestMapping("cartList")
+    @GetMapping("cartList")
 //    @LoginRequired(loginSuccess = false)
     public String cartList(HttpServletRequest request, HttpServletResponse response, HttpSession session, ModelMap modelMap) {
 
