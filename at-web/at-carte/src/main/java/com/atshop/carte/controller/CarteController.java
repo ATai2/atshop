@@ -1,10 +1,13 @@
 package com.atshop.carte.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.atshop.carte.bean.OmsCartItem;
-import com.atshop.carte.rest.SkuService;
+import com.at.common.bean.OmsCartItem;
+import com.at.common.bean.PmsSkuInfo;
+import com.at.common.utils.CookieUtil;
+import com.atshop.carte.rest.SkuRestService;
+
 import com.atshop.carte.service.CartServiceImpl;
-import com.netflix.discovery.converters.Auto;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +24,8 @@ import java.util.List;
 @RestController
 public class CarteController {
 
-
-    SkuService skuService;
+    @Autowired
+    SkuRestService skuRestService;
 
     @Autowired
     private CartServiceImpl cartService;
@@ -113,7 +116,7 @@ public class CarteController {
         List<OmsCartItem> omsCartItems = new ArrayList<>();
 
         // 调用商品服务查询商品信息
-        PmsSkuInfo skuInfo = skuService.getSkuById(skuId, "");
+        PmsSkuInfo skuInfo = skuRestService.getSkuById(skuId, "");
 
         // 将商品信息封装成购物车信息
         OmsCartItem omsCartItem = new OmsCartItem();

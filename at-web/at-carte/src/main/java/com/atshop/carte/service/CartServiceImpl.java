@@ -2,7 +2,7 @@ package com.atshop.carte.service;
 
 
 import com.alibaba.fastjson.JSON;
-import com.atshop.carte.bean.OmsCartItem;
+import com.at.common.bean.OmsCartItem;
 import com.atshop.carte.mapper.OmsCartItemMapper;
 import com.atshop.carte.utils.RedisUtil;
 import org.apache.commons.lang.StringUtils;

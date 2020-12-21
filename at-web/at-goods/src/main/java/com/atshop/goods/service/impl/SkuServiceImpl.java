@@ -131,4 +131,9 @@ public class SkuServiceImpl implements SkuService {
 
         return pmsSkuInfos;
     }
+
+    @Override
+    public List<PmsSkuInfo> getAllSku(String catalog3Id) {
+        return null;
+    }
 }
