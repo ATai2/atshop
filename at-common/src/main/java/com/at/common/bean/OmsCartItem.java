@@ -1,4 +1,4 @@
-package com.atshop.carte.bean;
+package com.at.common.bean;
 
 import javax.persistence.Id;
 import javax.persistence.Transient;
