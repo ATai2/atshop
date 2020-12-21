@@ -17,9 +17,9 @@
 
     </select>
 
-    <resultMap id="selectSpuSaleAttrListCheckBySkuMap" type="com.atshop.goods.entity.PmsProductSaleAttr" autoMapping="true">
+    <resultMap id="selectSpuSaleAttrListCheckBySkuMap" type="com.at.common.bean.PmsProductSaleAttr" autoMapping="true">
         <result column="sa_id" property="id"></result>
-        <collection property="spuSaleAttrValueList" ofType="com.atshop.goods.entity.PmsProductSaleAttrValue" autoMapping="true">
+        <collection property="spuSaleAttrValueList" ofType="com.at.common.bean.PmsProductSaleAttrValue" autoMapping="true">
             <result column="sav_id" property="id"></result>
         </collection>
     </resultMap>

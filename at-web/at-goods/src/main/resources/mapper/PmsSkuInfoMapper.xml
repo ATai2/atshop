@@ -15,9 +15,9 @@
         AND si.id = ssav.sku_id
     </select>
 
-    <resultMap id="selectSkuSaleAttrValueListBySpuMap" type="com.atshop.goods.entity.PmsSkuInfo" autoMapping="true">
+    <resultMap id="selectSkuSaleAttrValueListBySpuMap" type="com.at.common.bean.PmsSkuInfo" autoMapping="true">
         <result column="si_id" property="id"></result>
-        <collection property="skuSaleAttrValueList" ofType="com.atshop.goods.entity.PmsSkuSaleAttrValue" autoMapping="true">
+        <collection property="skuSaleAttrValueList" ofType="com.at.common.bean.PmsSkuSaleAttrValue" autoMapping="true">
             <result column="ssav_id" property="id"></result>
 <!--            <result column="ssav_id" property="id"></result>-->
         </collection>
