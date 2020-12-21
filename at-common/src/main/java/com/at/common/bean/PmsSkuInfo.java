@@ -1,7 +1,6 @@
 package com.at.common.bean;
 
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -17,26 +16,37 @@ public class PmsSkuInfo implements Serializable {
     @Id
     @Column
     String id;
+
     @Column
     String productId;
+
     @Transient
     String spuId;
+
     @Column
     BigDecimal price;
+
     @Column
     String skuName;
+
     @Column
     BigDecimal weight;
+
     @Column
     String skuDesc;
+
     @Column
     String catalog3Id;
+
     @Column
     String skuDefaultImg;
+
     @Transient
     List<PmsSkuImage> skuImageList;
+
     @Transient
     List<PmsSkuAttrValue> skuAttrValueList;
+
     @Transient
     List<PmsSkuSaleAttrValue> skuSaleAttrValueList;
 

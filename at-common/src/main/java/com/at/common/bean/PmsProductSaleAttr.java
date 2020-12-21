@@ -1,5 +1,6 @@
 package com.at.common.bean;
 
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Transient;
