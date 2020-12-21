@@ -1,6 +1,7 @@
 package com.atshop.goods.controller;
 
-import com.atshop.goods.entity.PmsProductInfo;
+
+import com.at.common.bean.PmsProductInfo;
 import com.atshop.goods.service.SpuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

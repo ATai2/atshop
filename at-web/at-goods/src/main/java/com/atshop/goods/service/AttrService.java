@@ -1,9 +1,11 @@
 package com.atshop.goods.service;
 
 
-import com.atshop.goods.entity.PmsBaseAttrInfo;
-import com.atshop.goods.entity.PmsBaseAttrValue;
-import com.atshop.goods.entity.PmsBaseSaleAttr;
+
+
+import com.at.common.bean.PmsBaseAttrInfo;
+import com.at.common.bean.PmsBaseAttrValue;
+import com.at.common.bean.PmsBaseSaleAttr;
 
 import java.util.List;
 

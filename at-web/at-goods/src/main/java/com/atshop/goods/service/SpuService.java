@@ -1,9 +1,11 @@
 package com.atshop.goods.service;
 
 
-import com.atshop.goods.entity.PmsProductImage;
-import com.atshop.goods.entity.PmsProductInfo;
-import com.atshop.goods.entity.PmsProductSaleAttr;
+
+
+import com.at.common.bean.PmsProductImage;
+import com.at.common.bean.PmsProductInfo;
+import com.at.common.bean.PmsProductSaleAttr;
 
 import java.util.List;
 

@@ -1,7 +1,8 @@
 package com.atshop.goods.service;
 
 
-import com.atshop.goods.entity.PmsSkuInfo;
+
+import com.at.common.bean.PmsSkuInfo;
 
 import java.util.List;
 

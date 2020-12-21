@@ -1,6 +1,6 @@
 package com.atshop.goods.mapper;
 
-import com.atshop.goods.entity.PmsProductSaleAttr;
+import com.at.common.bean.PmsProductSaleAttr;
 import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 

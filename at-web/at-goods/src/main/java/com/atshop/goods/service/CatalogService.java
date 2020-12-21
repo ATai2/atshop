@@ -1,9 +1,10 @@
 package com.atshop.goods.service;
 
 
-import com.atshop.goods.entity.PmsBaseCatalog1;
-import com.atshop.goods.entity.PmsBaseCatalog2;
-import com.atshop.goods.entity.PmsBaseCatalog3;
+
+import com.at.common.bean.PmsBaseCatalog1;
+import com.at.common.bean.PmsBaseCatalog2;
+import com.at.common.bean.PmsBaseCatalog3;
 
 import java.util.List;
 

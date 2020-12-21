@@ -1,9 +1,10 @@
 package com.atshop.goods.service.impl;
 
-import com.atshop.goods.entity.PmsProductImage;
-import com.atshop.goods.entity.PmsProductInfo;
-import com.atshop.goods.entity.PmsProductSaleAttr;
-import com.atshop.goods.entity.PmsProductSaleAttrValue;
+
+import com.at.common.bean.PmsProductImage;
+import com.at.common.bean.PmsProductInfo;
+import com.at.common.bean.PmsProductSaleAttr;
+import com.at.common.bean.PmsProductSaleAttrValue;
 import com.atshop.goods.mapper.PmsProductImageMapper;
 import com.atshop.goods.mapper.PmsProductInfoMapper;
 import com.atshop.goods.mapper.PmsProductSaleAttrMapper;

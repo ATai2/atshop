@@ -1,10 +1,11 @@
 package com.atshop.goods.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.atshop.goods.entity.PmsSkuAttrValue;
-import com.atshop.goods.entity.PmsSkuImage;
-import com.atshop.goods.entity.PmsSkuInfo;
-import com.atshop.goods.entity.PmsSkuSaleAttrValue;
+
+import com.at.common.bean.PmsSkuAttrValue;
+import com.at.common.bean.PmsSkuImage;
+import com.at.common.bean.PmsSkuInfo;
+import com.at.common.bean.PmsSkuSaleAttrValue;
 import com.atshop.goods.mapper.PmsSkuAttrValueMapper;
 import com.atshop.goods.mapper.PmsSkuImageMapper;
 import com.atshop.goods.mapper.PmsSkuInfoMapper;
