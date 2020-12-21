@@ -36,10 +36,8 @@ public class SkuServiceImpl implements SkuService {
     @Autowired
     RedisUtil redisUtil;
 
-
     @Override
     public void saveSkuInfo(PmsSkuInfo pmsSkuInfo) {
-
         // 插入skuInfo
         int i = pmsSkuInfoMapper.insertSelective(pmsSkuInfo);
         String skuId = pmsSkuInfo.getId();
@@ -64,8 +62,6 @@ public class SkuServiceImpl implements SkuService {
             pmsSkuImage.setSkuId(skuId);
             pmsSkuImageMapper.insertSelective(pmsSkuImage);
         }
-
-
     }
 
 
@@ -126,9 +122,7 @@ public class SkuServiceImpl implements SkuService {
 
     @Override
     public List<PmsSkuInfo> getSkuSaleAttrValueListBySpu(String productId) {
-
         List<PmsSkuInfo> pmsSkuInfos = pmsSkuInfoMapper.selectSkuSaleAttrValueListBySpu(productId);
-
         return pmsSkuInfos;
     }
 
