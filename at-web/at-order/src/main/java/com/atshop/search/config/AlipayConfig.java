@@ -1,4 +1,4 @@
-package com.atshop.search;
+package com.atshop.search.config;
 
 public class AlipayConfig {
     private String appkey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp2FiJrGlJkw1NEhRJb4KzSoK4dkybvxU2Gg8/tJBNK3snq3IIVFF0pfnJhYIh/cWHIyPoq6sFicJEhWbe50zlWmD93qP/4JjR6gOibVcKjj1GbE7nD6T4sxMp1N1dwAshasdqWJuUdJ1WBehRqBXlgKa7ghPLrTdJY6gTdV8+cCq6YUVJffaWSJTVj3fvfTRHNeq+t+BWcnd+nMgPQ0qA/+i8EQmzhkZCNsQeh4LFYXOIRJK2+6MbOe/CjvQoyQZ7c8Ta8FdR49iZZmzkqUbIKohxIaJ7VXUVGzdXcUEMtiYoN0PNCE+yIZi9mTJfsWJf6suc9bW039PLO5mJXSYvwIDAQAB";
