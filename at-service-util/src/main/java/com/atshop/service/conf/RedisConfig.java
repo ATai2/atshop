@@ -4,8 +4,10 @@ package com.atshop.service.conf;
 import com.atshop.service.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+@ComponentScan("com.atshop.service.conf.**")
 @Configuration
 public class RedisConfig {
     //读取配置文件中的redis的ip地址
