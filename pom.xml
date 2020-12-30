@@ -13,6 +13,7 @@
         <module>at-infrastructure</module>
         <module>at-security</module>
         <module>at-dmp</module>
+        <module>at-service-util</module>
     </modules>
 
     <packaging>pom</packaging>
