@@ -17,10 +17,8 @@ import java.util.Map;
 @RestController
 public class PassportController {
 
-
     @Autowired
     RestUserService userService;
-
 
     @RequestMapping("verify")
     @ResponseBody
