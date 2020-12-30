@@ -12,6 +12,9 @@
 
     <artifactId>at-common</artifactId>
 
+    <properties>
+        <jjwt.version>0.11.1</jjwt.version>
+    </properties>
 
     <dependencies>
         <!-- web -->
@@ -49,6 +52,23 @@
 <!--            <artifactId>pagehelper-spring-boot-starter</artifactId>-->
 <!--            <version>1.2.5</version>-->
 <!--        </dependency>-->
+        <!-- jwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

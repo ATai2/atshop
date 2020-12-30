@@ -1,13 +1,12 @@
 package com.atshop.user.service.impl;
 
-import com.atshop.user.bean.UmsMember;
-import com.atshop.user.bean.UmsMemberReceiveAddress;
+import com.at.common.bean.UmsMember;
+import com.at.common.bean.UmsMemberReceiveAddress;
+import com.at.common.service.UserService;
 import com.atshop.user.mapper.UmsMemberReceiveAddressMapper;
 import com.atshop.user.mapper.UserMapper;
-import com.atshop.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -42,5 +41,15 @@ public class UserServiceImpl implements UserService {
 //        List<UmsMemberReceiveAddress> umsMemberReceiveAddresses = umsMemberReceiveAddressMapper.selectByExample(example);
 
         return umsMemberReceiveAddresses;
+    }
+
+    @Override
+    public  UmsMember login( UmsMember umsMember) {
+        return null;
+    }
+
+    @Override
+    public void addUserToken(String token, String memberId) {
+
     }
 }

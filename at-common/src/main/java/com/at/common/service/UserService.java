@@ -1,7 +1,5 @@
 package com.at.common.service;
 
-
-
 import com.at.common.bean.UmsMember;
 import com.at.common.bean.UmsMemberReceiveAddress;
 

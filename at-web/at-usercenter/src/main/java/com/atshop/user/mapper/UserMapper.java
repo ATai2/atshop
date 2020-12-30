@@ -1,6 +1,6 @@
 package com.atshop.user.mapper;
 
-import com.atshop.user.bean.UmsMember;
+import com.at.common.bean.UmsMember;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;

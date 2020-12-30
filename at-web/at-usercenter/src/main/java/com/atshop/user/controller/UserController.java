@@ -1,8 +1,8 @@
 package com.atshop.user.controller;
 
-import com.atshop.user.bean.UmsMember;
-import com.atshop.user.bean.UmsMemberReceiveAddress;
-import com.atshop.user.service.UserService;
+import com.at.common.bean.UmsMember;
+import com.at.common.bean.UmsMemberReceiveAddress;
+import com.at.common.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
