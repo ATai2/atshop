@@ -4,6 +4,9 @@ import com.at.common.bean.UmsMember;
 import com.at.common.bean.UmsMemberReceiveAddress;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -13,12 +16,15 @@ public interface RestUserService {
 //    @Override
     List<UmsMember> getAllUser();
 
+    @GetMapping("getReceiveAddressByMemberId")
     //    @Override
-    List<UmsMemberReceiveAddress> getReceiveAddressByMemberId(String memberId);
+    List<UmsMemberReceiveAddress> getReceiveAddressByMemberId(@RequestParam String memberId);
+    //
+    @PostMapping("login")
+//    @Override
+    UmsMember login(@RequestBody UmsMember umsMember);
     //
 //    @Override
-    UmsMember login(UmsMember umsMember);
-    //
-//    @Override
-    void addUserToken(String token, String memberId);
+    @PostMapping("addUserToken")
+    void addUserToken(@RequestParam String token, @RequestParam String memberId);
 }
