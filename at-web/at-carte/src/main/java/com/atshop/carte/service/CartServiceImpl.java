@@ -101,15 +101,10 @@ public class CartServiceImpl {
     }
 
     public void checkCart(OmsCartItem omsCartItem) {
-
         Example e = new Example(OmsCartItem.class);
-
         e.createCriteria().andEqualTo("memberId", omsCartItem.getMemberId()).andEqualTo("productSkuId", omsCartItem.getProductSkuId());
-
         omsCartItemMapper.updateByExampleSelective(omsCartItem, e);
-
         // 缓存同步
         flushCartCache(omsCartItem.getMemberId());
-
     }
 }

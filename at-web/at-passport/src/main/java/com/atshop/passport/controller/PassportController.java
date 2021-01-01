@@ -6,9 +6,7 @@ import com.at.common.utils.JWTUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -20,7 +18,7 @@ public class PassportController {
     @Autowired
     RestUserService userService;
 
-    @RequestMapping("verify")
+    @GetMapping("verify")
     @ResponseBody
     public String verify(String token, String currentIp, HttpServletRequest request) {
         // 通过jwt校验token真假
@@ -37,9 +35,9 @@ public class PassportController {
     }
 
 
-    @RequestMapping("login")
+    @PostMapping("login")
     @ResponseBody
-    public String login(UmsMember umsMember, HttpServletRequest request) {
+    public String login(@RequestBody UmsMember umsMember, HttpServletRequest request) {
         String token = "";
         // 调用用户服务验证用户名和密码
         UmsMember umsMemberLogin = userService.login(umsMember);
@@ -70,7 +68,7 @@ public class PassportController {
         return token;
     }
 
-    @RequestMapping("index")
+    @GetMapping("index")
     public String index(String ReturnUrl, ModelMap map) {
         map.put("ReturnUrl", ReturnUrl);
         return "index";

@@ -25,6 +25,6 @@ public interface RestUserService {
     UmsMember login(@RequestBody UmsMember umsMember);
     //
 //    @Override
-    @PostMapping("addUserToken")
+    @GetMapping("addUserToken")
     void addUserToken(@RequestParam String token, @RequestParam String memberId);
 }

@@ -1,6 +1,7 @@
 package com.atshop.carte.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.at.common.anno.LoginRequired;
 import com.at.common.bean.OmsCartItem;
 import com.at.common.bean.PmsSkuInfo;
 import com.at.common.utils.CookieUtil;
@@ -33,7 +34,7 @@ public class CarteController {
     private CartServiceImpl cartService;
 
     @GetMapping("toTrade")
-//    @LoginRequired(loginSuccess = true)
+    @LoginRequired(loginSuccess = true)
     public String toTrade(HttpServletRequest request, HttpServletResponse response, HttpSession session, ModelMap modelMap) {
         String memberId = (String) request.getAttribute("memberId");
         String nickname = (String) request.getAttribute("nickname");
@@ -41,7 +42,7 @@ public class CarteController {
     }
 
     @GetMapping("checkCart")
-//    @LoginRequired(loginSuccess = false)
+    @LoginRequired(loginSuccess = false)
     public String checkCart(String isChecked, String skuId, HttpServletRequest request, HttpServletResponse response, HttpSession session, ModelMap modelMap) {
 
         String memberId = (String) request.getAttribute("memberId");
@@ -65,7 +66,7 @@ public class CarteController {
     }
 
     @GetMapping("cartList")
-//    @LoginRequired(loginSuccess = false)
+    @LoginRequired(loginSuccess = false)
     public String cartList(HttpServletRequest request, HttpServletResponse response, HttpSession session, ModelMap modelMap) {
 
         List<OmsCartItem> omsCartItems = new ArrayList<>();
@@ -109,7 +110,7 @@ public class CarteController {
     }
 
     @RequestMapping("addToCart")
-//    @LoginRequired(loginSuccess = false)
+    @LoginRequired(loginSuccess = false)
     public String addToCart(String skuId, int quantity, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         List<OmsCartItem> omsCartItems = new ArrayList<>();
 
