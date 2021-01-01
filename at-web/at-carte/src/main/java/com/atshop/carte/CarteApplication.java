@@ -1,8 +1,7 @@
 package com.atshop.carte;
 
 
-
-import com.at.common.interceptors.AuthInterceptor;
+import com.at.common.BaseConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -14,7 +13,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @MapperScan(basePackages = "com.atshop.carte.mapper")
 @EnableDiscoveryClient
 @EnableFeignClients
-@SpringBootApplication(scanBasePackageClasses={CarteApplication.class, AuthInterceptor.class})
+@SpringBootApplication(scanBasePackages = {"com.at.common","com.atshop.carte"})
 public class CarteApplication {
     public static void main(String[] args) {
         SpringApplication.run(CarteApplication.class, args);
