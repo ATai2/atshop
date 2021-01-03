@@ -60,11 +60,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
                 }
             }
             String successJson  = HttpclientUtil.doGet("http://127.0.0.1:9140/verify?token=" + token+"&currentIp="+ip);
-
             successMap = JSON.parseObject(successJson,Map.class);
-
             success = successMap.get("status");
-
         }
 
         if (loginSuccess) {
@@ -72,7 +69,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             if (!success.equals("success")) {
                 //重定向会passport登录
                 StringBuffer requestURL = request.getRequestURL();
-                response.sendRedirect("http://passport.gmall.com:8085/index?ReturnUrl="+requestURL);
+                response.sendRedirect("http://127.0.0.1:9140/index?ReturnUrl="+requestURL);
                 return false;
             }
 
