@@ -7,11 +7,15 @@ import com.at.common.service.CartService;
 import com.at.common.service.OrderService;
 import com.atshop.order.mapper.OmsOrderItemMapper;
 import com.atshop.order.mapper.OmsOrderMapper;
+import com.atshop.order.mq.ActiveMQUtil;
+import org.apache.activemq.command.ActiveMQTextMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.Jedis;
 import tk.mybatis.mapper.entity.Example;
+import com.atshop.order.utils.RedisUtil;
 
-
+import javax.jms.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;

@@ -91,6 +91,12 @@ spring:
     password: rootatai
     #连接超时时间
     timeout: 5000
+  activemq:
+    broker-url: tcp://localhost:61616
+
+activemq:
+  listener:
+    enble: true
 
 logging:
   level:
