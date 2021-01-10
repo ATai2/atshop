@@ -7,7 +7,7 @@ import com.at.common.service.CartService;
 import com.at.common.service.OrderService;
 import com.atshop.order.mapper.OmsOrderItemMapper;
 import com.atshop.order.mapper.OmsOrderMapper;
-import com.atshop.order.mq.ActiveMQUtil;
+import com.atshop.order.utils.ActiveMQUtil;
 import org.apache.activemq.command.ActiveMQTextMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

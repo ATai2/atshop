@@ -1,6 +1,6 @@
 package com.atshop.order.config;
 
-import com.atshop.order.mq.ActiveMQUtil;
+import com.atshop.order.utils.ActiveMQUtil;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -33,9 +33,9 @@ public class ActiveMQConfig {
     @Bean(name = "jmsQueueListener")
     public DefaultJmsListenerContainerFactory jmsQueueListenerContainerFactory(ActiveMQConnectionFactory activeMQConnectionFactory ) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
-        if(!listenerEnable.equals("true")){
-            return null;
-        }
+//        if(!listenerEnable.equals("true")){
+//            return null;
+//        }
 
         factory.setConnectionFactory(activeMQConnectionFactory);
         //设置并发数

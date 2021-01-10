@@ -1,11 +1,11 @@
 server:
   port: 9050
 
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: http://10.110.87.202:8761/eureka/
-#
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://94.191.68.209:8761/eureka/
+
 
 management:
   security:
