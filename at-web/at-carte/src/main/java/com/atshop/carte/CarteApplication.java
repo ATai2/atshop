@@ -10,10 +10,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @EnableSwagger2
-@MapperScan(basePackages = "com.atshop.carte.mapper")
-@EnableDiscoveryClient
 @EnableFeignClients
-@SpringBootApplication(scanBasePackages = {"com.at.common","com.atshop.carte"})
+@EnableDiscoveryClient
+@MapperScan(basePackages = "com.atshop.carte.mapper")
+@SpringBootApplication(scanBasePackages = {"com.at.common", "com.atshop.carte"})
 public class CarteApplication {
     public static void main(String[] args) {
         SpringApplication.run(CarteApplication.class, args);
