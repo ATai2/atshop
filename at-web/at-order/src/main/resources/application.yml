@@ -92,7 +92,7 @@ spring:
     #连接超时时间
     timeout: 5000
   activemq:
-    broker-url: tcp://94.191.68.209:61616
+    broker-url: tcp://94.191.68.209:61617
 
 activemq:
   listener:
