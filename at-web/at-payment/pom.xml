@@ -16,12 +16,19 @@
             <artifactId>at-common</artifactId>
             <version>${common.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.atshop</groupId>
+            <artifactId>at-service-util</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
 
         <dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-core</artifactId>
             <version>1.8.0</version>
         </dependency>
+
         <dependency>
             <groupId>com.alipay.sdk</groupId>
             <artifactId>alipay-easysdk</artifactId>

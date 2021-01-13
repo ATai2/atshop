@@ -1,4 +1,4 @@
-package com.atshop.order.utils;
+package com.atshop.service.util;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.pool.PooledConnectionFactory;
