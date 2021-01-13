@@ -7,7 +7,7 @@ import com.at.common.service.CartService;
 import com.at.common.service.OrderService;
 import com.atshop.order.mapper.OmsOrderItemMapper;
 import com.atshop.order.mapper.OmsOrderMapper;
-import com.atshop.order.utils.ActiveMQUtil;
+import com.atshop.service.util.ActiveMQUtil;
 import org.apache.activemq.command.ActiveMQTextMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,8 +44,6 @@ public class OrderServiceImpl implements OrderService {
         try {
             jedis = redisUtil.getJedis();
             String tradeKey = "user:" + memberId + ":tradeCode";
-
-
             //String tradeCodeFromCache = jedis.get(tradeKey);// 使用lua脚本在发现key的同时将key删除，防止并发订单攻击
             //对比防重删令牌
            String script = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";

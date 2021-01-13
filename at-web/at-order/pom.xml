@@ -18,6 +18,11 @@
             <artifactId>at-common</artifactId>
             <version>${common.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.atshop</groupId>
+            <artifactId>at-service-util</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
 
         <dependency>
