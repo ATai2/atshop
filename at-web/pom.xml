@@ -23,6 +23,7 @@
         <module>at-item</module>
         <module>at-carte</module>
         <module>at-passport</module>
+        <module>at-payment</module>
     </modules>
     <properties>
         <maven.install.skip>true</maven.install.skip>
