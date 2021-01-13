@@ -1,6 +1,6 @@
-package com.atshop.order.config;
+package com.atshop.service.conf;
 
-import com.atshop.order.utils.ActiveMQUtil;
+import com.atshop.service.util.ActiveMQUtil;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +10,7 @@ import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import javax.jms.JMSException;
 import javax.jms.Session;
 
-@Configuration
+//@Configuration
 public class ActiveMQConfig {
 
     @Value("${spring.activemq.broker-url:disabled}")
