@@ -12,7 +12,6 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @Configuration
 @Import(ActiveMQConfig.class)
-
 @EnableJms
 @EnableDiscoveryClient
 @EnableFeignClients
