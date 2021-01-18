@@ -14,6 +14,7 @@
         <module>at-security</module>
         <module>at-dmp</module>
         <module>at-service-util</module>
+        <module>at-bigdata</module>
     </modules>
 
     <packaging>pom</packaging>

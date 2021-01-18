@@ -110,7 +110,6 @@ public class OrderServiceImpl implements OrderService {
         e.createCriteria().andEqualTo("orderSn",omsOrder.getOrderSn());
 
         OmsOrder omsOrderUpdate = new OmsOrder();
-
         omsOrderUpdate.setStatus("1");
 
         // 发送一个订单已支付的队列，提供给库存消费

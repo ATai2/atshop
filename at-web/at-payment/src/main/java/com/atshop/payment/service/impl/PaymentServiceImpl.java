@@ -1,7 +1,5 @@
-package com.atshop.payment.impl;
+package com.atshop.payment.service.impl;
 
-import com.alibaba.fastjson.JSON;
-import com.alipay.easysdk.payment.common.models.AlipayTradeQueryResponse;
 import com.at.common.bean.PaymentInfo;
 import com.at.common.service.PaymentService;
 import com.atshop.payment.mapper.PaymentInfoMapper;
@@ -46,9 +44,7 @@ public class PaymentServiceImpl implements PaymentService {
         if(StringUtils.isNotBlank(paymentInfoResult.getPaymentStatus())&&paymentInfoResult.getPaymentStatus().equals("已支付")){
             return;
         }else{
-
             String orderSn = paymentInfo.getOrderSn();
-
             Example e = new Example(PaymentInfo.class);
             e.createCriteria().andEqualTo("orderSn",orderSn);
 
@@ -60,7 +56,6 @@ public class PaymentServiceImpl implements PaymentService {
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-
             try{
                 paymentInfoMapper.updateByExampleSelective(paymentInfo,e);
                 // 支付成功后，引起的系统服务-》订单服务的更新-》库存服务-》物流服务
@@ -69,13 +64,9 @@ public class PaymentServiceImpl implements PaymentService {
                 MessageProducer producer = session.createProducer(payhment_success_queue);
 
                 //TextMessage textMessage=new ActiveMQTextMessage();//字符串文本
-
                 MapMessage mapMessage = new ActiveMQMapMessage();// hash结构
-
                 mapMessage.setString("out_trade_no",paymentInfo.getOrderSn());
-
                 producer.send(mapMessage);
-
                 session.commit();
             }catch (Exception ex){
                 // 消息回滚
