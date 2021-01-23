@@ -35,6 +35,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     ActiveMQUtil activeMQUtil;
 
+    @Autowired
     CartService cartService;
 
     @Override
@@ -65,22 +66,15 @@ public class OrderServiceImpl implements OrderService {
     public String genTradeCode(String memberId) {
 
         Jedis jedis = redisUtil.getJedis();
-
         String tradeKey = "user:"+memberId+":tradeCode";
-
         String tradeCode = UUID.randomUUID().toString();
-
         jedis.setex(tradeKey,60*15,tradeCode);
-
         jedis.close();
-
         return tradeCode;
     }
 
     @Override
     public void saveOrder(OmsOrder omsOrder) {
-
-
         // 保存订单表
         omsOrderMapper.insertSelective(omsOrder);
         String orderId = omsOrder.getId();
