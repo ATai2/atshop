@@ -44,7 +44,7 @@ spring:
     druid:
       db-type: com.alibaba.druid.pool.DruidDataSource
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://bj-cynosdbmysql-grp-05gf7ek0.sql.tencentcdb.com:21682/dmp?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
+      url: jdbc:mysql://bj-cynosdbmysql-grp-05gf7ek0.sql.tencentcdb.com:21682/at_order?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
       username: ${DB_USER:root}
       password: ${DB_PWD:asdf@1234}
       # 初始连接数

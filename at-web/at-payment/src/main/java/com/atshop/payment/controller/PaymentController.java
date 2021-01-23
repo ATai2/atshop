@@ -6,6 +6,7 @@ import com.at.common.bean.OmsOrder;
 import com.at.common.bean.PaymentInfo;
 import com.at.common.service.OrderService;
 import com.at.common.service.PaymentService;
+import com.atshop.payment.rest.OrderRestService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ public class PaymentController {
     PaymentService paymentService;
 
     @Autowired
-    OrderService orderService;
+    OrderRestService orderService;
 
     @RequestMapping("alipay/callback/return")
 //    @LoginRequired(loginSuccess = true)
