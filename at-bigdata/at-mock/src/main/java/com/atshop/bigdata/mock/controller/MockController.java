@@ -1,0 +1,12 @@
+package com.atshop.bigdata.mock.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("mock")
+public class MockController {
+
+
+
+}
