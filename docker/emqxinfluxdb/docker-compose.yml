@@ -1,0 +1,26 @@
+version: '3'
+services:
+  emqx:
+    image: emqx/emqx
+    container_name: emqx
+    ports:
+      - "1883:1883"
+      - "8083:8083"
+      - "8883:8883"
+      - "8084:8084"
+      - "18083:18083"
+
+  influxdb:
+    image: influxdb
+    container_name: influxdb
+    ports:
+      - "8083:8083"
+      - "8086:8086"
+    restart: always
+
+  chronograf:
+    image: chronograf
+    container_name: chronograf
+    ports:
+      - "8888:8888"
+    restart: always
