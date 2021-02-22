@@ -15,8 +15,7 @@
         <module>at-dmp</module>
         <module>at-service-util</module>
         <module>at-bigdata</module>
-        <module>flinkdemo</module>
-        <module>at-flinkanalyse</module>
+        <module>eladmin</module>
     </modules>
 
     <packaging>pom</packaging>
