@@ -51,7 +51,7 @@
 //     * @param onlineUserService 用户在线
 //     * @param userCacheClean    用户缓存清理工具
 //     */
-//    public TokenFilter(me.zhengjie.modules.security.security.TokenProvider tokenProvider, SecurityProperties properties, OnlineUserService onlineUserService, UserCacheClean userCacheClean) {
+//    public TokenFilter(com.atshop.modules.security.security.TokenProvider tokenProvider, SecurityProperties properties, OnlineUserService onlineUserService, UserCacheClean userCacheClean) {
 //        this.properties = properties;
 //        this.onlineUserService = onlineUserService;
 //        this.tokenProvider = tokenProvider;
@@ -74,7 +74,7 @@
 //                cleanUserCache = true;
 //            } finally {
 //                if (cleanUserCache || Objects.isNull(onlineUserDto)) {
-//                    userCacheClean.cleanUserCache(String.valueOf(tokenProvider.getClaims(token).get(me.zhengjie.modules.security.security.TokenProvider.AUTHORITIES_KEY)));
+//                    userCacheClean.cleanUserCache(String.valueOf(tokenProvider.getClaims(token).get(com.atshop.modules.security.security.TokenProvider.AUTHORITIES_KEY)));
 //                }
 //            }
 //            if (onlineUserDto != null && StringUtils.hasText(token)) {

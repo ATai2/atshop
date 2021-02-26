@@ -26,7 +26,7 @@
             <version>0.0.1-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
-                    <groupId>me.zhengjie</groupId>
+                    <groupId>com.atshop</groupId>
                     <artifactId>eladmin-common</artifactId>
                 </exclusion>
             </exclusions>

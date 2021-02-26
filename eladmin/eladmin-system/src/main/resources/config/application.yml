@@ -24,9 +24,9 @@ spring:
   redis:
     #数据库索引
     database: ${REDIS_DB:0}
-    host: ${REDIS_HOST:127.0.0.1}
-    port: ${REDIS_PORT:6379}
-    password: ${REDIS_PWD:}
+    host: ${REDIS_HOST:94.191.68.209}
+    port: ${REDIS_PORT:16379}
+    password: ${REDIS_PWD:rootatai}
     #连接超时时间
     timeout: 5000
 
