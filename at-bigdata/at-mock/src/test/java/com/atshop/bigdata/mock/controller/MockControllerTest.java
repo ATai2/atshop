@@ -13,7 +13,7 @@ public class MockControllerTest {
 
     @Test
     public void webInfoservice() {
-        String address = "http://www.";
+        String address = "http://www.baidu.com";
         try {
             URL url=new URL(address);
             URLConnection conn = url.openConnection();
@@ -25,8 +25,6 @@ public class MockControllerTest {
             conn.setRequestProperty("User-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
             conn.setRequestProperty("User-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

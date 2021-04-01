@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>at-mock</module>
-        <module>at-analyse</module>
+
     </modules>
 
 

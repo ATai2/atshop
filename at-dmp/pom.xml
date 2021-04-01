@@ -36,6 +36,16 @@
             <version>12.1.0.1-atlassian-hosted</version>
         </dependency>
         <dependency>
+            <groupId>com.dameng</groupId>
+            <artifactId>Dm7JdbcDriver18</artifactId>
+            <version>7.6.0.165</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.6.1</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
