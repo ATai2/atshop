@@ -47,4 +47,17 @@
 
     <!-- Site specific YARN configuration properties -->
 
+    <property>
+        <name>yarn.log-aggregation-enable</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>yarn.log.server.url</name>
+        <value>http://hadoop11:19888/jobhistory/logs</value>
+    </property>
+    <property>
+        <name>yarn.log-aggregation.retain-seconds</name>
+        <value>604800</value>
+    </property>
+
 </configuration>

@@ -30,21 +30,21 @@
     <!--    网页登录使用的静态用户-->
     <property>
         <name>hadoop.http.staticuser.user</name>
-        <value>atai</value>
+        <value>hadoop</value>
     </property>
     <!--    网页登录使用的静态用户-->
     <property>
         <name>hadoop.http.staticuser.user</name>
-        <value>atai</value>
+        <value>hadoop</value>
     </property>
     <!--    atai允许通过代理访问的主机节点-->
     <property>
-        <name>hadoop.proxyuser.atai.hosts</name>
+        <name>hadoop.proxyuser.hadoop.hosts</name>
         <value>*</value>
     </property>
     <!--    atai允许通过代理用户所属组-->
     <property>
-        <name>hadoop.proxyuser.atai.groups</name>
+        <name>hadoop.proxyuser.hadoop.groups</name>
         <value>*</value>
     </property>
 </configuration>
