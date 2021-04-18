@@ -1,24 +1,24 @@
-version: "2.1"
+version: 3
 services:
-  jobmanager:
-    image: flink
-    expose:
-      - "6123"
-    ports:
-      - "8081:8081"
-    command: jobmanager
+  flink-master:
+    image: bde2020/flink-master:1.12.2-hadoop3.2
+    hostname: flink-master
+    container_name: flink-master
     environment:
-      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+      - INIT_DAEMON_STEP=setup_flink
+    #     - "constraint:node==<yourmasternode>"
 
-  taskmanager:
-    image: flink
-    expose:
-      - "6121"
-      - "6122"
-    depends_on:
-      - jobmanager
-    command: taskmanager
-    links:
-      - "jobmanager:jobmanager"
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+
+  flink-worker:
+    image: bde2020/flink-worker:1.12.2-hadoop3.2
+    hostname: flink-worker
+    container_name: flink-worker
     environment:
-      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+      - FLINK_MASTER_PORT_6123_TCP_ADDR=flink-master
+    #    - FLINK_NUM_TASK_SLOTS=2
+    #    - "constraint:node==<yourworkernode>"
+    depends_on:
+      - "flink-master"
