@@ -86,6 +86,17 @@
             <artifactId>oshi-core</artifactId>
             <version>5.3.6</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.7</version>
+        </dependency>
+
+
     </dependencies>
 
     <!-- 打包 -->
