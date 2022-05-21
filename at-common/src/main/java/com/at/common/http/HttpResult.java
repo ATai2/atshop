@@ -5,11 +5,11 @@ package com.at.common.http;
  * @author Louis
  * @date Jan 12, 2019
  */
-public class HttpResult {
+public class HttpResult<T> {
 
 	private int code = 200;
 	private String msg;
-	private Object data;
+	private T data;
 	
 	public static HttpResult error() {
 		return error(HttpStatus.SC_INTERNAL_SERVER_ERROR, "未知异常，请联系管理员");
@@ -32,7 +32,7 @@ public class HttpResult {
 		return r;
 	}
 	
-	public static HttpResult ok(Object data) {
+	public static <T> HttpResult ok(T data) {
 		HttpResult r = new HttpResult();
 		r.setData(data);
 		return r;
@@ -62,7 +62,7 @@ public class HttpResult {
 		return data;
 	}
 
-	public void setData(Object data) {
+	public void setData(T data) {
 		this.data = data;
 	}
 	

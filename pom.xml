@@ -10,7 +10,6 @@
         <module>at-common</module>
         <module>at-web</module>
         <module>at-infrastructure</module>
-        <module>at-bigdata</module>
     </modules>
 
     <packaging>pom</packaging>

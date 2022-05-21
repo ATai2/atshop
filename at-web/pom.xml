@@ -12,7 +12,6 @@
     <artifactId>at-web</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>at-search</module>
         <module>at-goods</module>
         <module>at-usercenter</module>
         <module>at-carte</module>
