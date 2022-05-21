@@ -32,15 +32,17 @@
         <docker.repostory>hub.docker.com</docker.repostory>
         <docker.image.prefix>atai2</docker.image.prefix>
         <spring-boot-admin.version>2.3.0</spring-boot-admin.version>
-        <hutool.version>5.3.4</hutool.version>
         <common.version>0.0.2-SNAPSHOT</common.version>
+        <mybatis.version>2.2.0</mybatis.version>
+        <hutool.version>5.6.1</hutool.version>
+        <druid.version>1.1.24</druid.version>
     </properties>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.10.RELEASE</version>
-<!--        <version>2.3.1.RELEASE</version>-->
+<!--        <version>2.5.6</version>-->
+        <version>2.3.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 

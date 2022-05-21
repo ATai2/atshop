@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>at-cloud</module>
-        <module>at-apm</module>
         <module>at-appmonitor</module>
         <module>at-gateway</module>
         <module>at-zuul</module>
