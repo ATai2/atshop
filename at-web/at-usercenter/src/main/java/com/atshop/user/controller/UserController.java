@@ -1,7 +1,7 @@
 package com.atshop.user.controller;
 
 import com.at.common.http.HttpResult;
-import org.springframework.stereotype.Controller;
+import com.atshop.user.entity.ShopUser;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

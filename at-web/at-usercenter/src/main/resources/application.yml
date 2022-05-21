@@ -93,14 +93,14 @@ spring:
     password: rootatai
     #连接超时时间
     timeout: 5000
-
-mybatis:
-  mapper-locations: classpath:mapper/*Mapper.xml
-  configuration:
-    map-underscore-to-camel-case: true
-
-mapper:
-  identity: MYSQL
+#
+#mybatis:
+#  mapper-locations: classpath:mapper/*Mapper.xml
+#  configuration:
+#    map-underscore-to-camel-case: true
+#
+#mapper:
+#  identity: MYSQL
 
 logging:
   level:
