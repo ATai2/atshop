@@ -1,7 +1,8 @@
 用户管理：
 
 权限设计
-at-auth
+at-usercenter
+
 策略选择：
     token获取
 

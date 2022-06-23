@@ -1,1 +1,0 @@
-mvn asciidoctor:process-asciidoc  和 mvn generate-resources
